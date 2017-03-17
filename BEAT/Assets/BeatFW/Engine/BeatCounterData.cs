@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BeatFW.Engine
 {
-    static class BeatData
+    static class BeatCounterData
     {
         private static readonly int[] MeasureSizes = { 3, 4 };
         public static int MeasureSize(this MeasureSignature measure)
