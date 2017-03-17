@@ -9,12 +9,14 @@ namespace BeatFW
     [CreateAssetMenu(menuName = "Beat/Tests/PatchSelector")]
     public class DummyPatchSelector:ScriptableObject
     {
-        public AudioClip clip;
+        public AudioClip clip1;
+        public AudioClip clip2;
+        bool is1 = true;
 
         public AudioClip SelectNextPatch()
         {
-            Debug.Assert(clip != null);
-            return clip;
+            Debug.Assert(clip1 != null && clip2 != null);
+            return (is1 = !is1) ? clip1 : clip2;
         }
     }
 }

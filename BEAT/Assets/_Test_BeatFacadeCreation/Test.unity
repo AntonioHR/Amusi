@@ -209,8 +209,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b90ffba240d7054bb4cf1c8a0d10abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selector: {fileID: 0}
-  controller: {fileID: 0}
+  selector: {fileID: 11400000, guid: 7ab02b0661d7d2a408a8241f49d27fde, type: 2}
+  controller: {fileID: 408856855}
 --- !u!114 &408856855
 MonoBehaviour:
   m_ObjectHideFlags: 0
