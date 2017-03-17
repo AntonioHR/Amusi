@@ -14,8 +14,6 @@ namespace BeatFW
 		private float updateRatio = 30f;
 		[SerializeField]
 		private float closeToEndMargin = 5;
-		[SerializeField]
-		private BeatPatchData beatClipDataObject;
 	
 		public bool IsPlaying { get { return state == ControllerState.PLAYING || state == ControllerState.PLAYING_LAST || state == ControllerState.START; } }
         public float BPM { get { return bpm; } }
@@ -23,16 +21,13 @@ namespace BeatFW
 		public AudioSource CurrentAudioSource{ get { return audioSources [audioSourceIndex]; } }
 		public AudioSource NextAudioSource{ get { return audioSources [(audioSourceIndex + 1) % audioSources.Length]; } }
 
-		public AudioClip CurrentClip { get{ return CurrentAudioSource.clip; }}
-		public string CurrentPatch { get; private set;}
-		public AudioClip NextClip { get{ return NextAudioSource.clip; } }
-		public string NextPatch { get; private set;}
+		public AudioClip CurrentPatch { get; private set;}
+		public AudioClip NextPatch { get; private set;}
 
 		private bool d_init = false;
 		private int audioSourceIndex = 0;
 		private double firstClipStartTime;
 		private double currentClipEndTime;
-		private Dictionary<string, AudioClip> beatPatches;
 
 		public enum ControllerState
 		{
@@ -47,7 +42,7 @@ namespace BeatFW
             }
         }
 
-		private Queue<string> patchQueue;
+        private Queue<AudioClip> patchQueue;
 		private AudioSource[] audioSources;
 
 		public event EventHandler<ClipEventArgs> OnClipChange;
@@ -60,12 +55,11 @@ namespace BeatFW
         {
 			audioSources = GetComponents<AudioSource> ();
 			Debug.Assert (audioSources.Length == 2);
-			patchQueue = new Queue<string> ();
-			beatPatches = beatClipDataObject.CreateDictionary ();
+            patchQueue = new Queue<AudioClip>();
 			state = ControllerState.IDLE;
         }
 
-		public void Init(string startPatch, int beatsToStart = 3)
+		public void Init(AudioClip startPatch, int beatsToStart = 3)
 		{
 			Debug.Assert (state != ControllerState.START);
 
@@ -73,7 +67,7 @@ namespace BeatFW
 
 			double initTime = AudioSettings.dspTime;
 			CurrentPatch = startPatch;
-			CurrentAudioSource.clip = beatPatches[startPatch];
+            CurrentAudioSource.clip = CurrentPatch;
 			firstClipStartTime = initTime + beatsToStart / BPS;
 
 			CurrentAudioSource.PlayScheduled (firstClipStartTime);
@@ -85,9 +79,8 @@ namespace BeatFW
 			beatCounter.StartBeatUpdate(firstClipStartTime);
 		}
 
-		public void QueueUpPatch(string patch)
+        public void EnqueuePatch(AudioClip patch)
 		{
-			Debug.Assert (beatPatches.ContainsKey (patch), "does not contain key "+patch);
 			patchQueue.Enqueue (patch);
 			if (state == ControllerState.PLAYING_LAST) {
 				if (ScheduleNextClip ())
@@ -102,7 +95,7 @@ namespace BeatFW
 				return false;
 			//currentClipEndTime = currentClipEndTime + CurrentClip.length;
 			NextPatch = patchQueue.Dequeue ();
-			NextAudioSource.clip = beatPatches[NextPatch];
+            NextAudioSource.clip = NextPatch;
 			NextAudioSource.PlayScheduled (currentClipEndTime);
 			return true;
 		}
@@ -119,10 +112,10 @@ namespace BeatFW
 			while (state == ControllerState.START) {
 				if (AudioSettings.dspTime > firstClipStartTime) {
 					state = ControllerState.PLAYING_LAST;
-					currentClipEndTime = firstClipStartTime + CurrentClip.length;
+                    currentClipEndTime = firstClipStartTime + CurrentPatch.length;
 
 					if (OnFirstClipStart != null)
-						OnFirstClipStart (this, new ClipEventArgs (firstClipStartTime, CurrentClip, CurrentPatch));
+                        OnFirstClipStart(this, new ClipEventArgs(firstClipStartTime, CurrentPatch));
 					if (state == ControllerState.PLAYING_LAST) {
 						if (ScheduleNextClip ())
 							state = ControllerState.PLAYING;
@@ -137,7 +130,7 @@ namespace BeatFW
 				}
 
 				if (OnClipCloseToEnd != null) {
-					OnClipCloseToEnd (this, new ClipEventArgs (AudioSettings.dspTime, CurrentClip,CurrentPatch));
+                    OnClipCloseToEnd(this, new ClipEventArgs(AudioSettings.dspTime, CurrentPatch));
 				}
 
 				while (AudioSettings.dspTime < currentClipEndTime) {
@@ -148,13 +141,13 @@ namespace BeatFW
 
 				if (NextAudioSource.isPlaying) {
 					var clipTime = currentClipEndTime;
-					currentClipEndTime = currentClipEndTime + NextClip.length;
+					currentClipEndTime = currentClipEndTime + NextPatch.length;
 
 					switchClips ();
 					state = ControllerState.PLAYING_LAST;
 
 					if (OnClipChange != null)
-						OnClipChange (this, new ClipEventArgs (clipTime, CurrentClip, CurrentPatch));
+                        OnClipChange(this, new ClipEventArgs(clipTime, CurrentPatch));
 
 					if (ScheduleNextClip ())
 						state = ControllerState.PLAYING;

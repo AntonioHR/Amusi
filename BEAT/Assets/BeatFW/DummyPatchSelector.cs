@@ -7,7 +7,7 @@ using UnityEngine;
 namespace BeatFW
 {
     [CreateAssetMenu(menuName = "Beat/Tests/PatchSelector")]
-    public class DummyPatchSelector:ScriptableObject, IBeatPatchSelector
+    public class DummyPatchSelector:ScriptableObject
     {
         public AudioClip clip;
 

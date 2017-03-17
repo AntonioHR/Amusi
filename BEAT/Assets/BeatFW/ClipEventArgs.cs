@@ -7,12 +7,10 @@ namespace BeatFW
 	{
 		public double Time {get; private set;}
 		public AudioClip Clip {get; private set;}
-		public string Patch {get;private set;}
-		public ClipEventArgs (double time, AudioClip clip, string patch)
+		public ClipEventArgs (double time, AudioClip clip)
 		{
 			this.Time = time;
 			this.Clip = clip;
-			this.Patch = patch;
 		}
 	}
 }

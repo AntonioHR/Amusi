@@ -139,11 +139,11 @@ namespace BeatFW
             beatMusicController = controller; 
             float bpm = beatMusicController.BPM;
             float beatSecondsPeriod = 60f / bpm;
-            beatSamplePeriod = beatSecondsPeriod * beatMusicController.CurrentClip.frequency;
+            beatSamplePeriod = beatSecondsPeriod * beatMusicController.CurrentPatch.frequency;
         }
         public void StartBeatUpdate(double syncTime)
         {
-            beatStart = (float)(syncTime * beatMusicController.CurrentClip.frequency);
+            beatStart = (float)(syncTime * beatMusicController.CurrentPatch.frequency);
             StartCoroutine(BeatUpdate());
         }
         #endregion
@@ -158,7 +158,7 @@ namespace BeatFW
 
                 int beat = CompletedBeats;
                 int measure = CompletedMeasures;
-                currentSample = (float)AudioSettings.dspTime * beatMusicController.CurrentClip.frequency - beatStart;
+                currentSample = (float)AudioSettings.dspTime * beatMusicController.CurrentPatch.frequency - beatStart;
                 currentBeat = currentSample / beatSamplePeriod;
                 if(beat != CompletedBeats)
                 {
