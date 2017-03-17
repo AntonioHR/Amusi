@@ -132,7 +132,6 @@ namespace BeatFW
 
 			}
 			while (IsPlaying) {
-//				Debug.LogFormat ("cycle, phase 1, state:  {0}, val: {1}, target: {2}" , state, (currentClipEndTime - AudioSettings.dspTime),  closeToEndMargin * updateRatio/1000f);
 				while ((currentClipEndTime - AudioSettings.dspTime)> closeToEndMargin * updateRatio/1000f ) {
 					yield return new WaitForSeconds (updateRatio / 1000f);
 				}
