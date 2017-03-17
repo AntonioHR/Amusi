@@ -9,15 +9,17 @@ namespace BeatFW
     public class BeatManager:MonoBehaviour
     {
         public DummyPatchSelector selector;
-        public MusicController musicController;
         [Space()]
         public BeatCounter.Settings beatCounterSettings;
+        public MusicController.Settings musicControllerSettings;
 
-        private BeatCounter counter;
+        BeatCounter counter;
+        MusicController musicController;
 
         void Start()
         {
             Debug.Log("Initializing");
+            musicController = new MusicController(GetComponents<AudioSource>(), musicControllerSettings);
             musicController.OnClipCloseToEnd += controller_OnClipCloseToEnd;
             counter = new BeatCounter(beatCounterSettings, musicController);
 

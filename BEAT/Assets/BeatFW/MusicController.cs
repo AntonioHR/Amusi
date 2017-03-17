@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using System.Collections;
 namespace BeatFW
 {
-    [RequireComponent (typeof (AudioSource))]
-	public class MusicController:MonoBehaviour
+	public class MusicController
 	{
-        [SerializeField]
-		private float bpm;
-		[SerializeField]
-		private float updateRatio = 30f;
-		[SerializeField]
-		private float closeToEndMargin = 5;
+        [Serializable]
+        public class Settings
+        {
+            public float bpm;
+            public float updateRatio = 30f;
+            public float closeToEndMargin = 5;
+        }
+        Settings settings;
 	
 		public bool IsPlaying { get { return state == ControllerState.PLAYING || state == ControllerState.PLAYING_LAST || state == ControllerState.START; } }
-        public float BPM { get { return bpm; } }
-		public float BPS { get { return bpm/ 60; } }
+        public float BPM { get { return settings.bpm; } }
+		public float BPS { get { return settings.bpm/ 60; } }
 		public AudioSource CurrentAudioSource{ get { return audioSources [audioSourceIndex]; } }
 		public AudioSource NextAudioSource{ get { return audioSources [(audioSourceIndex + 1) % audioSources.Length]; } }
 
@@ -50,13 +51,16 @@ namespace BeatFW
 
 
 
-        void Awake()
+        public MusicController(AudioSource[] audioSources, Settings settings)
         {
-			audioSources = GetComponents<AudioSource> ();
-			Debug.Assert (audioSources.Length == 2);
+            this.audioSources = audioSources;
+            this.settings = settings;
+            Debug.Assert(audioSources.Length == 2);
             patchQueue = new Queue<AudioClip>();
-			state = ControllerState.IDLE;
+            state = ControllerState.IDLE;
         }
+
+
 
 		public double Init(AudioClip startPatch, int beatsToStart = 3)
 		{
@@ -84,25 +88,27 @@ namespace BeatFW
 		}
 
 
+
 		private bool ScheduleNextClip()
 		{
 			if (patchQueue.Count == 0)
 				return false;
-			//currentClipEndTime = currentClipEndTime + CurrentClip.length;
 			NextPatch = patchQueue.Dequeue ();
             NextAudioSource.clip = NextPatch;
 			NextAudioSource.PlayScheduled (currentClipEndTime);
 			return true;
 		}
-        
-		private void switchClips()
+        private void switchClips()
 		{
 			audioSourceIndex = (audioSourceIndex + 1) % audioSources.Length;
 			CurrentPatch = NextPatch;
 			NextPatch = null;
 			NextAudioSource.clip = null;
 		}
-		public IEnumerator ClipCheck ()
+		
+        
+        
+        public IEnumerator ClipCheck ()
 		{
 			while (state == ControllerState.START) {
 				if (AudioSettings.dspTime > firstClipStartTime) {
@@ -116,12 +122,13 @@ namespace BeatFW
 							state = ControllerState.PLAYING;
 					}
 				}
-				yield return new WaitForSeconds (updateRatio / 1000f);
+				yield return new WaitForSeconds (settings.updateRatio / 1000f);
 
 			}
 			while (IsPlaying) {
-				while ((currentClipEndTime - AudioSettings.dspTime)> closeToEndMargin * updateRatio/1000f ) {
-					yield return new WaitForSeconds (updateRatio / 1000f);
+                while ((currentClipEndTime - AudioSettings.dspTime) > settings.closeToEndMargin * settings.updateRatio / 1000f)
+                {
+                    yield return new WaitForSeconds(settings.updateRatio / 1000f);
 				}
 
 				if (OnClipCloseToEnd != null) {
@@ -130,7 +137,7 @@ namespace BeatFW
 
 				while (AudioSettings.dspTime < currentClipEndTime) {
 
-					yield return new WaitForSeconds (updateRatio / 1000f);
+                    yield return new WaitForSeconds(settings.updateRatio / 1000f);
 				}
 
 
