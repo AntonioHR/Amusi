@@ -9,18 +9,26 @@ namespace BeatFW
     public class BeatManager:MonoBehaviour
     {
         public DummyPatchSelector selector;
-        public MusicController controller;
+        public MusicController musicController;
+        [Space()]
+        public BeatCounter.Settings beatCounterSettings;
+
+        private BeatCounter counter;
 
         void Start()
         {
             Debug.Log("Initializing");
-            controller.Init(selector.SelectNextPatch());
-            controller.OnClipCloseToEnd += controller_OnClipCloseToEnd;
+            musicController.OnClipCloseToEnd += controller_OnClipCloseToEnd;
+            counter = new BeatCounter(beatCounterSettings, musicController);
+
+            double initTime = musicController.Init(selector.SelectNextPatch());
+            StartCoroutine(musicController.ClipCheck());
+            StartCoroutine(counter.BeatCountCoroutine(initTime));
         }
 
         void controller_OnClipCloseToEnd(object sender, ClipEventArgs e)
         {
-            controller.EnqueuePatch(selector.SelectNextPatch());
+            musicController.EnqueuePatch(selector.SelectNextPatch());
         }
     }
 }

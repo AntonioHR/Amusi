@@ -5,7 +5,6 @@ using System.Collections;
 namespace BeatFW
 {
     [RequireComponent (typeof (AudioSource))]
-    [RequireComponent(typeof(BeatCounter))]
 	public class MusicController:MonoBehaviour
 	{
         [SerializeField]
@@ -59,7 +58,7 @@ namespace BeatFW
 			state = ControllerState.IDLE;
         }
 
-		public void Init(AudioClip startPatch, int beatsToStart = 3)
+		public double Init(AudioClip startPatch, int beatsToStart = 3)
 		{
 			Debug.Assert (state != ControllerState.START);
 
@@ -72,11 +71,7 @@ namespace BeatFW
 
 			CurrentAudioSource.PlayScheduled (firstClipStartTime);
 
-			StartCoroutine (ClipCheck ());
-
-			var beatCounter = GetComponent<BeatCounter>();
-			beatCounter.Init(this);
-			beatCounter.StartBeatUpdate(firstClipStartTime);
+            return initTime;
 		}
 
         public void EnqueuePatch(AudioClip patch)
@@ -107,7 +102,7 @@ namespace BeatFW
 			NextPatch = null;
 			NextAudioSource.clip = null;
 		}
-		private IEnumerator ClipCheck ()
+		public IEnumerator ClipCheck ()
 		{
 			while (state == ControllerState.START) {
 				if (AudioSettings.dspTime > firstClipStartTime) {

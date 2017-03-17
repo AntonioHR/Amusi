@@ -4,18 +4,19 @@ using System;
 
 namespace BeatFW
 {
-    [RequireComponent(typeof(MusicController))]
-	public class BeatCounter : MonoBehaviour
+	public class BeatCounter
     {
-        #region Editor variables
+        [Serializable]
+        public class Settings
+        {
             /// <summary>
             /// The Counter update ratio in milisseconds
             /// </summary>
-            [SerializeField]
-            private float updateRatio = 30f;
-            [SerializeField]
-            private MeasureSignature measureSignature;
-        #endregion
+            public float updateRatio = 30f;
+            public MeasureSignature measureSignature;
+        }
+
+        Settings settings;
 
 
         #region Events
@@ -29,11 +30,11 @@ namespace BeatFW
         #region Public properties
             public int CompletedMeasures
             {
-                get { return (int)(currentBeat / measureSignature.MeasureSize()); }
+                get { return (int)(currentBeat / settings.measureSignature.MeasureSize()); }
             }
             public int CompletedBeatsInMeasure
             {
-                get { return (int)currentBeat % measureSignature.MeasureSize(); }
+                get { return (int)currentBeat % settings.measureSignature.MeasureSize(); }
             }
             public int CompletedBeats
             {
@@ -49,13 +50,12 @@ namespace BeatFW
         #endregion
 
 
-        private MusicController beatMusicController;
+        private MusicController musicController;
 
         private float beatStart;
         
         private float currentSample;
         private float currentBeat;
-		private int pastTrackBeats = 0;
 
 
         /// <summary>
@@ -64,12 +64,19 @@ namespace BeatFW
         private float beatSamplePeriod;
 
 
+
+        public BeatCounter(Settings settings, MusicController musicController)
+        {
+            this.settings = settings;
+            this.musicController = musicController;
+        }
+
         #region Public Functions
         public bool HasStarted
         {
             get
             {
-                return beatMusicController.HasStarted;
+                return musicController.HasStarted;
             }
         }
         public float GetBeatProgress()
@@ -83,11 +90,11 @@ namespace BeatFW
         
         public float GetMeasureProgress()
         {
-            return currentBeat / measureSignature.MeasureSize() - CompletedMeasures;
+            return currentBeat / settings.measureSignature.MeasureSize() - CompletedMeasures;
         }
         public float GetMeasureProgress(int msr, float max = Mathf.Infinity)
         {
-            return Math.Min(currentBeat / measureSignature.MeasureSize() - msr, max);
+            return Math.Min(currentBeat / settings.measureSignature.MeasureSize() - msr, max);
         }
 
         public float GetProgress(BeatUnit unit)
@@ -128,37 +135,29 @@ namespace BeatFW
                     throw new ArgumentException();
             }
         }
-        
-        //public void StartCounting()
-        //{
-            
-        //}
-       
-		public void Init(MusicController controller)
-        {
-            beatMusicController = controller; 
-            float bpm = beatMusicController.BPM;
-            float beatSecondsPeriod = 60f / bpm;
-            beatSamplePeriod = beatSecondsPeriod * beatMusicController.CurrentPatch.frequency;
-        }
-        public void StartBeatUpdate(double syncTime)
-        {
-            beatStart = (float)(syncTime * beatMusicController.CurrentPatch.frequency);
-            StartCoroutine(BeatUpdate());
-        }
-        #endregion
-        
 
-        private IEnumerator BeatUpdate ()
+       
+        #endregion
+
+        private void InitBeatVariables(double syncTime)
+        {
+            float bpm = musicController.BPM;
+            float beatSecondsPeriod = 60f / bpm;
+            beatSamplePeriod = beatSecondsPeriod * musicController.CurrentPatch.frequency;
+            beatStart = (float)(syncTime * musicController.CurrentPatch.frequency);
+        }
+
+        public IEnumerator BeatCountCoroutine(double synctime)
 		{
+            InitBeatVariables(synctime);
 			float eightBeatTarget = 0.25f;
 			float halfBeatTarget = .5f;
-            while(beatMusicController.IsPlaying)
+            while(musicController.IsPlaying)
             {
 
                 int beat = CompletedBeats;
                 int measure = CompletedMeasures;
-                currentSample = (float)AudioSettings.dspTime * beatMusicController.CurrentPatch.frequency - beatStart;
+                currentSample = (float)AudioSettings.dspTime * musicController.CurrentPatch.frequency - beatStart;
                 currentBeat = currentSample / beatSamplePeriod;
                 if(beat != CompletedBeats)
                 {
@@ -186,16 +185,10 @@ namespace BeatFW
                         OnMeasure(this, new BeatEventArgs());
                     }
                 }
-                yield return new WaitForSeconds(updateRatio / 1000f);
+                yield return new WaitForSeconds(settings.updateRatio / 1000f);
             }
             
         }
 	
-		void OnBeatTrackChange(object sender, ClipEventArgs e)
-		{
-			pastTrackBeats = Mathf.CeilToInt (currentBeat);
-			beatStart = (float)e.Time;
-		}
-    
     }
 }
