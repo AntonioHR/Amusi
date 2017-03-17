@@ -4,7 +4,7 @@ using System;
 
 namespace BeatFW
 {
-    [RequireComponent(typeof(BeatMusicController))]
+    [RequireComponent(typeof(MusicController))]
 	public class BeatCounter : MonoBehaviour
     {
         #region Editor variables
@@ -49,7 +49,7 @@ namespace BeatFW
         #endregion
 
 
-        private BeatMusicController beatMusicController;
+        private MusicController beatMusicController;
 
         private float beatStart;
         
@@ -134,7 +134,7 @@ namespace BeatFW
             
         //}
        
-		public void Init(BeatMusicController controller)
+		public void Init(MusicController controller)
         {
             beatMusicController = controller; 
             float bpm = beatMusicController.BPM;

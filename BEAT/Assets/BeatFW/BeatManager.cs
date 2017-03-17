@@ -9,7 +9,7 @@ namespace BeatFW
     public class BeatManager:MonoBehaviour
     {
         public DummyPatchSelector selector;
-        public BeatMusicController controller;
+        public MusicController controller;
 
         void Start()
         {

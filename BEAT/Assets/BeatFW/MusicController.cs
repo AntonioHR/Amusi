@@ -6,7 +6,7 @@ namespace BeatFW
 {
     [RequireComponent (typeof (AudioSource))]
     [RequireComponent(typeof(BeatCounter))]
-	public class BeatMusicController:MonoBehaviour
+	public class MusicController:MonoBehaviour
 	{
         [SerializeField]
 		private float bpm;
