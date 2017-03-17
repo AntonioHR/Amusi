@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.Experimental.Director;
 using Zenject;
+using BeatFW.Engine;
 
 namespace BeatFW
 {

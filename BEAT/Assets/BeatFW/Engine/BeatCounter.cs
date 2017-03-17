@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-namespace BeatFW
+namespace BeatFW.Engine
 {
 	public class BeatCounter
     {

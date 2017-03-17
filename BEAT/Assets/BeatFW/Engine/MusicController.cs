@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-namespace BeatFW
+namespace BeatFW.Engine
 {
 	public class MusicController
 	{
