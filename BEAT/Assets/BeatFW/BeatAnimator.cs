@@ -6,6 +6,9 @@ using BeatFW.Engine;
 
 namespace BeatFW
 {
+    /// <summary>
+    /// Synchs an animators animation to the beat of a beatCounter
+    /// </summary>
     [RequireComponent(typeof(Animator))]
     public class BeatAnimator : MonoBehaviour
     {

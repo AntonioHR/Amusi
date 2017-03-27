@@ -29,7 +29,7 @@ namespace BeatFW
             StartCoroutine(counter.BeatCountCoroutine(initTime));
         }
 
-        void controller_OnClipCloseToEnd(object sender, ClipEventArgs e)
+        void controller_OnClipCloseToEnd()
         {
             musicController.EnqueuePatch(selector.SelectNextPatch());
         }

@@ -20,10 +20,10 @@ namespace BeatFW.Engine
 
 
         #region Events
-		public event EventHandler<BeatEventArgs> OnBeat;
-		public event EventHandler<BeatEventArgs> OnHalfBeat;
-		public event EventHandler<BeatEventArgs> OnEigthBeat;
-        public event EventHandler<BeatEventArgs> OnMeasure;
+		public event Action<BeatCounter> OnBeat;
+        public event Action<BeatCounter> OnHalfBeat;
+        public event Action<BeatCounter> OnEigthBeat;
+        public event Action<BeatCounter> OnMeasure;
         #endregion
         
         
@@ -164,25 +164,25 @@ namespace BeatFW.Engine
 					Debug.Assert(beat == 0 || CompletedBeats == beat + 1, String.Format("Completed beats has unexpected value of {0}, expected value is {1}", CompletedBeats, beat+1));
                     if(OnBeat != null)
                     {
-                        OnBeat(this, new BeatEventArgs());
+                        OnBeat(this);
                     }
                 } 
 				if (currentBeat > halfBeatTarget) {
 					halfBeatTarget = (halfBeatTarget + .5f);
 					if (OnHalfBeat != null)
-						OnHalfBeat (this, new BeatEventArgs ());
+						OnHalfBeat (this);
 				}
 				if (currentBeat > eightBeatTarget) {
 					eightBeatTarget = (eightBeatTarget + .25f);
 					if (OnEigthBeat != null)
-						OnEigthBeat (this, new BeatEventArgs ());
+						OnEigthBeat (this);
 				}
                 if (measure != CompletedMeasures)
                 {
                     Debug.Assert(CompletedMeasures == measure + 1);
                     if (OnMeasure != null)
                     {
-                        OnMeasure(this, new BeatEventArgs());
+                        OnMeasure(this);
                     }
                 }
                 yield return new WaitForSeconds(settings.updateRatio / 1000f);

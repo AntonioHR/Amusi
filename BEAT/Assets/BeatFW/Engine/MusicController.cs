@@ -24,7 +24,6 @@ namespace BeatFW.Engine
 		public AudioClip CurrentPatch { get; private set;}
 		public AudioClip NextPatch { get; private set;}
 
-		private bool d_init = false;
 		private int audioSourceIndex = 0;
 		private double firstClipStartTime;
 		private double currentClipEndTime;
@@ -45,9 +44,9 @@ namespace BeatFW.Engine
         private Queue<AudioClip> patchQueue;
 		private AudioSource[] audioSources;
 
-		public event EventHandler<ClipEventArgs> OnClipChange;
-		public event EventHandler<ClipEventArgs> OnClipCloseToEnd;
-		public event EventHandler<ClipEventArgs> OnFirstClipStart;
+		public event Action OnClipChange;
+        public event Action OnClipCloseToEnd;
+        public event Action OnFirstClipStart;
 
 
 
@@ -116,7 +115,7 @@ namespace BeatFW.Engine
                     currentClipEndTime = firstClipStartTime + CurrentPatch.length;
 
 					if (OnFirstClipStart != null)
-                        OnFirstClipStart(this, new ClipEventArgs(firstClipStartTime, CurrentPatch));
+                        OnFirstClipStart();
 					if (state == ControllerState.PLAYING_LAST) {
 						if (ScheduleNextClip ())
 							state = ControllerState.PLAYING;
@@ -132,7 +131,7 @@ namespace BeatFW.Engine
 				}
 
 				if (OnClipCloseToEnd != null) {
-                    OnClipCloseToEnd(this, new ClipEventArgs(AudioSettings.dspTime, CurrentPatch));
+                    OnClipCloseToEnd();
 				}
 
 				while (AudioSettings.dspTime < currentClipEndTime) {
@@ -142,14 +141,13 @@ namespace BeatFW.Engine
 
 
 				if (NextAudioSource.isPlaying) {
-					var clipTime = currentClipEndTime;
 					currentClipEndTime = currentClipEndTime + NextPatch.length;
 
 					switchClips ();
 					state = ControllerState.PLAYING_LAST;
 
 					if (OnClipChange != null)
-                        OnClipChange(this, new ClipEventArgs(clipTime, CurrentPatch));
+                        OnClipChange();
 
 					if (ScheduleNextClip ())
 						state = ControllerState.PLAYING;
