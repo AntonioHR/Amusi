@@ -20,6 +20,17 @@ namespace BeatFW
 
 
         public float BeatProgressFull { get { return counter.GetFullProgress(); } }
+        public int CompletedBeats { get { return counter.CompletedBeats; } }
+
+
+        public float GetBeatProgress()
+        {
+            return counter.GetBeatProgress();
+        }
+        public float GetBeatProgress(int beat, float max = float.PositiveInfinity)
+        {
+            return counter.GetBeatProgress(beat, max);
+        }
 
 
 

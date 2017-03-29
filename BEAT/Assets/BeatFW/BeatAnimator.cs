@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Experimental.Director;
-using Zenject;
 using BeatFW.Engine;
 
 namespace BeatFW
@@ -13,7 +12,7 @@ namespace BeatFW
     public class BeatAnimator : MonoBehaviour
     {
         private Animator animator;
-        private BeatCounter beatCounter;
+        private BeatManager beatManager;
 
         [SerializeField]
         private bool countFromStart = false;
@@ -22,18 +21,15 @@ namespace BeatFW
 		private float startProgress;
 
 
-
-        [Inject]
-        void Construct(BeatCounter beatCounter)
+        void Awake()
         {
-            this.beatCounter = beatCounter;
-            start = beatCounter.CompletedBeats;
-            startProgress = beatCounter.GetBeatProgress();
+            this.beatManager = FindObjectOfType<BeatManager>();
         }
-
         void Start()
         {
             animator = GetComponent<Animator>();
+            start = beatManager.CompletedBeats;
+            startProgress = beatManager.GetBeatProgress();
         }
 
 
@@ -41,7 +37,7 @@ namespace BeatFW
         void Update()
         {
 
-			animator.SetTime(beatCounter.GetBeatProgress(countFromStart?start:0) - (countFromStart?startProgress:0));
+			animator.SetTime(beatManager.GetBeatProgress(countFromStart?start:0) - (countFromStart?startProgress:0));
 
 
         }
