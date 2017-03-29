@@ -11,12 +11,17 @@ namespace BeatFW
     {
         public AudioClip clip1;
         public AudioClip clip2;
+        
+        [System.NonSerialized]
         bool is1 = true;
 
+        
         public AudioClip SelectNextPatch()
         {
             Debug.Assert(clip1 != null && clip2 != null);
-            return (is1 = !is1) ? clip1 : clip2;
+            var result = (is1 = !is1) ? clip1 : clip2;
+            Debug.LogFormat("Selecting {0} ", result);
+            return result;
         }
     }
 }

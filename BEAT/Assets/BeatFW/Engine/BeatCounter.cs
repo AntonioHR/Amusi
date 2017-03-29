@@ -79,6 +79,10 @@ namespace BeatFW.Engine
                 return musicController.HasStarted;
             }
         }
+        public float GetFullProgress()
+        {
+            return currentBeat;
+        }
         public float GetBeatProgress()
         {
             return currentBeat - CompletedBeats;

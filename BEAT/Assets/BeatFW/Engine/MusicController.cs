@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 namespace BeatFW.Engine
 {
+    [System.Serializable]
 	public class MusicController
 	{
         [Serializable]
@@ -79,6 +80,7 @@ namespace BeatFW.Engine
 
         public void EnqueuePatch(AudioClip patch)
 		{
+            Debug.LogFormat("Enqueueing {0}", patch);
 			patchQueue.Enqueue (patch);
 			if (state == ControllerState.PLAYING_LAST) {
 				if (ScheduleNextClip ())

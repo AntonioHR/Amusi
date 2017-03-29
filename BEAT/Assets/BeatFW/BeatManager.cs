@@ -17,6 +17,12 @@ namespace BeatFW
         BeatCounter counter;
         MusicController musicController;
 
+
+
+        public float BeatProgressFull { get { return counter.GetFullProgress(); } }
+
+
+
         void Start()
         {
             Debug.Log("Initializing");
@@ -33,5 +39,6 @@ namespace BeatFW
         {
             musicController.EnqueuePatch(selector.SelectNextPatch());
         }
+
     }
 }
