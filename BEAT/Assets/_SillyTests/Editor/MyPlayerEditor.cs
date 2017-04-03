@@ -11,6 +11,7 @@ public class MyPlayerEditor : Editor {
     SerializedProperty gunProp;
 
 
+
     void OnEnable()
     {
         damageProp = serializedObject.FindProperty("damage");
