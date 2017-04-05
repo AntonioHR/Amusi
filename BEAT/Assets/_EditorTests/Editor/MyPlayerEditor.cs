@@ -9,6 +9,7 @@ public class MyPlayerEditor : Editor {
     SerializedProperty damageProp;
     SerializedProperty armorProp;
     SerializedProperty gunProp;
+    SerializedProperty stressProp;
 
 
 
@@ -17,8 +18,9 @@ public class MyPlayerEditor : Editor {
         damageProp = serializedObject.FindProperty("damage");
         armorProp = serializedObject.FindProperty("armor");
         gunProp = serializedObject.FindProperty("gun");
+        stressProp = serializedObject.FindProperty("stress");
+        
     }
-
     public override void OnInspectorGUI()
     {
         //Update the SerializedProperty - always do this in the beginning of OnInspectorGUI
@@ -29,9 +31,15 @@ public class MyPlayerEditor : Editor {
 
         EditorGUILayout.PropertyField(gunProp, new GUIContent("Gun Object"));
 
+        EditorGUILayout.LabelField("Stamina");
+        stressProp.floatValue = EditorWidgets.MyCustomSlider(GUILayoutUtility.GetRect(0, 13, "ObjectField"), stressProp.floatValue, EditorStyles.toolbar);
+
+        EditorWidgets.FlashingButton(GUILayoutUtility.GetRect(13, 13), new GUIContent("Dummy!"), EditorStyles.miniButton);
+
         serializedObject.ApplyModifiedProperties();
         base.OnInspectorGUI();
 
+        EditorUtility.SetDirty(target);
     }
 
     static void PropertySlider(SerializedProperty property, int min, int max, string label)
