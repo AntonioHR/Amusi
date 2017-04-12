@@ -10,15 +10,31 @@ namespace BeatFW.Editor
     [CustomPropertyDrawer(typeof(BeatPattern))]
     public class BeatPatternDrawer : PropertyDrawer
     {
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            return 3 * EditorGUIUtility.singleLineHeight;
+        }
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label){
-            var r1 = position;
-            r1.width *= .3f;
-            GUI.Label(r1, label);
-            var r2 = new Rect(position.x + r1.width, position.y, position.width - r1.width, r1.height);
-            if (GUI.Button(r2, new GUIContent("Edit")))
+            Rect r1 = position;
+            r1.height /= 3;
+            EditorGUI.ObjectField(r1, property);
+            Rect r2 = r1;
+            r2.y += r1.height;
+            var pat = (BeatPattern)property.objectReferenceValue;
+            EditorGUI.BeginDisabledGroup(pat == null);
+            if (GUI.Button(r2, "Edit"))
             {
-                BeatPatternWindow.Show(property);
+                BeatPatternWindow.Show(pat);
             }
+
+            Rect r3 = r2;
+            r3.y += r2.height;
+            if (property.objectReferenceValue != null)
+            {
+                BeatPatternWindow.DrawPattern(r3, pat);
+            }
+            EditorGUI.EndDisabledGroup();
+
         }
     }
 }

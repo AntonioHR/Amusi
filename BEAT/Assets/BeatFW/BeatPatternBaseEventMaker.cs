@@ -25,6 +25,8 @@ namespace BeatFW
         public void Update()
         {
             float curr = beatManager.BeatProgressFull;
+            if (curr < 0)
+                return;
             var diff = pattern.NotesBetween(lastVal, curr);
             for (int i = 0; i < diff; i++)
             {

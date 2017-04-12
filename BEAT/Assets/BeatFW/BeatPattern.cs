@@ -10,8 +10,8 @@ namespace BeatFW
     /// <summary>
     /// Stores the data of a Beat Pattern
     /// </summary>
-    [System.Serializable]
-    public class BeatPattern
+    [CreateAssetMenu()]
+    public class BeatPattern : ScriptableObject
     {
 
         [System.Serializable]
@@ -38,6 +38,14 @@ namespace BeatFW
         private int measureCount = 1;
         [SerializeField]
         private List<Note> notes;
+
+        public float[] Notes
+        {
+            get
+            {
+                return notes.Select(x => { return x.TimeInBeats; }).ToArray();
+            }
+        }
 
         private bool sorted = false;
         
