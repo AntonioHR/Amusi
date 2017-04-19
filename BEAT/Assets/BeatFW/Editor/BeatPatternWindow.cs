@@ -29,8 +29,20 @@ namespace BeatFW.Editor
         {
            EditorWindow.GetWindow<BeatPatternWindow>().UpdatePatternObject(BeatPatternProperty);
         }
+        void OnEnable()
+        {
+            if(currentObject != null)
+            {
+                UpdatePatternObject(currentObject);
+            }
+        }
         void OnGUI()
         {
+            if (currentObject == null)
+            {
+                EditorGUILayout.LabelField("No Pattern Object Selected");
+                return;
+            }
             beatsPerMeasure.serializedObject.Update();
             EditorGUILayout.PropertyField(beatsPerMeasure);
             EditorGUILayout.PropertyField(measureCount);

@@ -14,6 +14,6 @@ MonoBehaviour:
   beatsPerMeasure: 4
   measureCount: 1
   notes:
+  - timeInBeats: 1.25
   - timeInBeats: 1.5
   - timeInBeats: 1.75
-  - timeInBeats: 2
