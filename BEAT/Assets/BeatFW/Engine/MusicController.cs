@@ -62,7 +62,7 @@ namespace BeatFW.Engine
 
 
 
-		public double Init(AudioClip startPatch, int beatsToStart = 3)
+		public double Init(AudioClip startPatch, int beatsToStart = 4)
 		{
 			Debug.Assert (state != ControllerState.START);
 
@@ -74,8 +74,8 @@ namespace BeatFW.Engine
 			firstClipStartTime = initTime + beatsToStart / BPS;
 
 			CurrentAudioSource.PlayScheduled (firstClipStartTime);
-
-            return initTime;
+            return firstClipStartTime;
+            //return initTime;
 		}
 
         public void EnqueuePatch(AudioClip patch)
