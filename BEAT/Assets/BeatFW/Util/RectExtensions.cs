@@ -13,11 +13,19 @@ namespace BeatFW.Util
         {
             return new Rect(r.position + margins / 2, r.size - margins);
         }
+        public static Rect MinusMargin(this Rect r, float x, float y)
+        {
+            return MinusMargin(r, new Vector2(x, y));
+        }
         public static Rect Resized(this Rect r, Vector2 resize)
         {
             Vector2 newSize = r.size.Apply(resize);
             Vector2 delta = r.size - newSize;
             return r.MinusMargin(delta);
+        }
+        public static Rect Resized(this Rect r, float x, float y)
+        {
+            return Resized(r, new Vector2(x, y));
         }
         public static Rect AtOrigin(this Rect r)
         {
