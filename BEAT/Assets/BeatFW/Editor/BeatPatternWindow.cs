@@ -17,17 +17,22 @@ namespace BeatFW.Editor
         SerializedProperty measureCount;
         SerializedProperty notes;
 
+        bool locked;
+
         static GUIStyle toggles;
 
         GUISkin skin;
 
-        void UpdatePatternObject(BeatPattern obj)
+        void UpdatePatternObject(BeatPattern obj, bool lockIt = true)
         {
             currentObject = obj;
             var serialized = new SerializedObject(currentObject);
             beatsPerMeasure = serialized.FindProperty("beatsPerMeasure");
             measureCount = serialized.FindProperty("measureCount");
             notes = serialized.FindProperty("notes");
+            if(lockIt)
+                locked = true;
+            this.Repaint();
         }
 
         public static void Show(BeatPattern BeatPatternProperty)
@@ -38,13 +43,17 @@ namespace BeatFW.Editor
         {
             if(currentObject != null)
             {
-                UpdatePatternObject(currentObject);
+                UpdatePatternObject(currentObject, false);
             }
             skin = Resources.Load<GUISkin>("EditorSkin");
             toggles = skin.toggle;
         }
         void OnGUI()
         {
+            var wasLocked = locked;
+            locked = GUILayout.Toggle(locked, "Lock");
+            if (wasLocked && !locked)
+                CheckUpdate();
             if (currentObject == null)
             {
                 EditorGUILayout.LabelField("No Pattern Object Selected");
@@ -64,6 +73,21 @@ namespace BeatFW.Editor
             DrawEditablePatern(rect, currentObject);
         }
 
+        void OnSelectionChange()
+        {
+            if(!locked)
+            {
+                CheckUpdate();
+            }
+        }
+        void CheckUpdate()
+        {
+            var eventMaker = Selection.activeGameObject.GetComponent<BeatPatternBaseEventMaker>();
+            if (eventMaker != null)
+            {
+                this.UpdatePatternObject(eventMaker.pattern, false);
+            }
+        }
 
         public static void DrawEditablePatern(Rect rect, BeatPattern pat)
         {
