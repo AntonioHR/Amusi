@@ -10,7 +10,7 @@ namespace BeatFW.Editor
 {
     public class BeatPatternWindow : EditorWindow
     {
-        static float divisions = .25f;
+        static float minTempo = .25f;
         BeatPattern currentObject;
 
         SerializedProperty beatsPerMeasure;
@@ -67,22 +67,22 @@ namespace BeatFW.Editor
 
         public static void DrawEditablePatern(Rect rect, BeatPattern pat)
         {
-            int totalBeats = pat.GetSize(divisions);
+            int totalBeats = pat.GetSize(minTempo);
             //Draw Background Rect
             Color background = new Color(.35f, .35f, .35f);
             EditorGUI.DrawRect(rect, background);
 
-            var insideRect = rect.MinusMargin(10, 5);
             //Draw Buttons
-            var buttonRects = insideRect.GetHorGridInside(totalBeats, 5);
+            //var grid = rect.MinusMargin(10, 5).GetHorGridInsideWithSpaces(totalBeats, 2, Vector2.zero);
+            var grid = rect.MinusMargin(10, 0).GetHorGridInsideWithSpaces(totalBeats, 2, new Vector2(0, 5));
 
-            var inactive = new Color(0, 1, 1);
-            var active = new Color(0, .25f, .25f);
-            for (int i = 0; i < totalBeats; i++)
+            var active = new Color(0, 1, 1);
+            var inactive = new Color(0, .25f, .25f);
+            for (int i = 0; i < grid.Slots.Length; i++)
             {
-                EditorGUI.DrawRect(buttonRects[i], pat.HasNoteOn(i, divisions) ? active : inactive);
-                var hasNote = pat.HasNoteOn(i, divisions);
-                var isToggled = GUI.Toggle(buttonRects[i], hasNote, GUIContent.none, GUIStyle.none);
+                EditorGUI.DrawRect(grid.Slots[i], pat.HasNoteOn(i, minTempo) ? active : inactive);
+                var hasNote = pat.HasNoteOn(i, minTempo);
+                var isToggled = GUI.Toggle(grid.Slots[i], hasNote, GUIContent.none, GUIStyle.none);
                 if(!hasNote && isToggled)
                 {
                     pat.AddNoteOn(i);
@@ -90,6 +90,24 @@ namespace BeatFW.Editor
                 {
                     pat.RemoveNoteOn(i);
                 }
+            }
+            
+            //var defaultColor = new Color(.25f, .25f, .25f);
+            var defaultColor = background;
+            var beatColor = new Color(.65f, .65f, .65f);
+            var measureColor = new Color(1, 1, 1);
+            int indxPerBeat = Mathf.RoundToInt(1/minTempo);
+            int beatPoint = indxPerBeat - 1;
+            int measurePoint = (indxPerBeat * pat.BeatsPerMeasure) - 1;
+            for (int i = 0; i < grid.Divisions.Length; i++)
+            {
+                Color c = defaultColor;
+                //If it is a Beat Division
+                if(i % indxPerBeat == beatPoint)
+                {
+                    c = i % (indxPerBeat * pat.BeatsPerMeasure) ==  measurePoint ? measureColor:beatColor;
+                }
+                EditorGUI.DrawRect(grid.Divisions[i], c);
             }
         }
 
@@ -119,7 +137,7 @@ namespace BeatFW.Editor
             var beatColor = new Color(1, .7f, .7f, .7f);
             var halfBeatColor = new Color(1, .7f, .7f, .3f);
             //Draw divisions
-            for (float i = divisions; i < totalBeats; i+= divisions)
+            for (float i = minTempo; i < totalBeats; i+= minTempo)
             {
                 EditorGUI.DrawRect(new Rect(rect.x + beatWidth * i - 2, rect.y, 4, rect.height), 
                     i % 1.0f != 0? halfBeatColor : (i % pat.BeatsPerMeasure != 0? beatColor : measureColor));

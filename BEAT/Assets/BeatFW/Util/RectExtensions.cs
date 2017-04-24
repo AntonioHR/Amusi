@@ -13,7 +13,7 @@ namespace BeatFW.Util
             public HorizontalGrid(int size)
             {
                 Slots = new Rect[size];
-                Divisions = new Rect[size];
+                Divisions = new Rect[size-1];
             }
             public Rect[] Slots;
             public Rect[] Divisions;
@@ -60,20 +60,30 @@ namespace BeatFW.Util
             }
             return result;
         }
-        public static HorizontalGrid GetHorGridInsideWithSpaces(this Rect rect, int length, float spacing)
+        public static HorizontalGrid GetHorGridInsideWithSpaces(this Rect rect, int length, float spacing, Vector2 margin)
         {
             var result = new HorizontalGrid(length);
-            float totalBlankSpace = (spacing * (length - 1));
-            var barSize = (rect.size - totalBlankSpace * Vector2.right).Apply(1.0f / length, 1);
-            Vector2 currentPos = rect.position;
-            Vector2 delta1 = Vector2.right * barSize.x;
-            Vector2 delta2 = Vector2.right * spacing;
+
+            var outside = rect;
+            var inside = rect.MinusMargin(margin);
+
+            float totalBlankSpace = (spacing * (length - 2));
+
+            var slotSize = (inside.size - totalBlankSpace * Vector2.right).Apply(1.0f / length, 1);
+            var divisionSize = new Vector2(spacing, outside.height);
+
+            Vector2 delta = Vector2.right * (slotSize.x + spacing);
+            Vector2 slotPos = inside.position;
+            Vector2 divPos = outside.position + Vector2.right * slotSize.x;
             for (int i = 0; i < length; i++)
             {
-                result.Slots[i] = new Rect(currentPos, delta1);
-                currentPos += delta1;
-                result.Divisions[i] = new Rect(currentPos, delta2);
-                currentPos += delta2;
+                result.Slots[i] = new Rect(slotPos, slotSize);
+                if (i < length - 1)
+                {
+                    result.Divisions[i] = new Rect(divPos, divisionSize);
+                }
+                slotPos += delta;
+                divPos += delta;
             }
             return result;
         }
