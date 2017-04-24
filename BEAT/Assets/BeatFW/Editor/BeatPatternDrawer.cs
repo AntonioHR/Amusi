@@ -31,7 +31,7 @@ namespace BeatFW.Editor
             r3.y += r2.height;
             if (property.objectReferenceValue != null)
             {
-                BeatPatternWindow.DrawPattern(r3, pat);
+                BeatPatternWindow.DrawPatternView(r3, pat);
             }
             EditorGUI.EndDisabledGroup();
 
