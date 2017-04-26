@@ -30,14 +30,15 @@ public class StyleTestWindow : EditorWindow {
         Rect inside = position.AtOrigin().Resized(Vector2.one * .75f);
         EditorGUI.DrawRect(inside, Color.gray);
 
-        arr = (SimpleArray)EditorGUI.ObjectField(new Rect(inside.position - Vector2.up * EditorGUIUtility.singleLineHeight, new Vector2(100, EditorGUIUtility.singleLineHeight)), arr, typeof(SimpleArray));
-
+        arr = (SimpleArray)EditorGUI.ObjectField(new Rect(inside.position - Vector2.up * 2 * EditorGUIUtility.singleLineHeight, new Vector2(100, EditorGUIUtility.singleLineHeight)), arr, typeof(SimpleArray));
+        arr.offset = EditorGUI.FloatField(new Rect(inside.position - Vector2.up * EditorGUIUtility.singleLineHeight, new Vector2(100, EditorGUIUtility.singleLineHeight)), "Offset", arr.offset);
 
         int length = arr.data.Length;
-        var rects = inside.MinusMargin(Vector2.one * 10).GetHorGridInside(length, 10);
+        var grid = inside.GetMaskedHorizontalGridInside(arr.offset, length, 30, 10, Vector2.one * 10);
         for (int i = 0; i < length; i++)
         {
-            arr.data[i] = GUI.Toggle(rects[i], arr.data[i], GUIContent.none, toggles);
+            if(grid.isValid[i])
+                arr.data[i] = GUI.Toggle(grid.Slots[i], arr.data[i], GUIContent.none, toggles);
         }
     }
 }

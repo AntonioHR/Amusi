@@ -98,7 +98,7 @@ namespace BeatFW.Editor
 
             //Draw Buttons
             //var grid = rect.MinusMargin(10, 5).GetHorGridInsideWithSpaces(totalBeats, 2, Vector2.zero);
-            var grid = rect.MinusMargin(10, 0).GetHorGridInsideWithSpaces(totalBeats, 2, new Vector2(0, 5));
+            var grid = rect.MinusMargin(10, 0).GetHorizontalGridInside(totalBeats, 2, new Vector2(0, 5));
 
             var active = new Color(0, 1, 1);
             var inactive = new Color(0, .25f, .25f);

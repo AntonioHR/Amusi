@@ -8,4 +8,5 @@ using UnityEngine;
 public class SimpleArray : ScriptableObject
 {
     public bool[] data;
+    public float offset;
 }
