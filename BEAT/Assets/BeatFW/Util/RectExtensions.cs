@@ -31,6 +31,10 @@ namespace BeatFW.Util
         {
             return MinusMargin(r, new Vector2(x, y));
         }
+        public static Rect MinusMargin(this Rect r, float left, float top, float right, float bottom)
+        {
+            return new Rect(r.position + new Vector2(left, top), r.size - new Vector2(left+right, top+bottom));
+        }
 
         public static Rect Intersection(this Rect r1, Rect r2)
         {
