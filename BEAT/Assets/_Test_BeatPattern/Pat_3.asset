@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Name: Pat_3
   m_EditorClassIdentifier: 
   beatsPerMeasure: 4
-  measureCount: 1
+  measureCount: 2
   notes:
-  - timeInBeats: 0.5
+  - timeInBeats: 0
   - timeInBeats: 1
+  - timeInBeats: 2
+  - timeInBeats: 3
+  - timeInBeats: 4
+  - timeInBeats: 5
