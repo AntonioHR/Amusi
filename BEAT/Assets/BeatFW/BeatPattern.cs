@@ -59,7 +59,7 @@ namespace BeatFW
         { 
             get 
             {
-                return GetNote(index);
+                return GetNoteAtIndex(index);
             } 
         }
 
@@ -71,17 +71,31 @@ namespace BeatFW
             return NotesUntil(end) - NotesUntil(start);
         }
 
-        public Note GetNote(int index)
+        public Note GetNoteAtIndex(int index)
         {
             CheckSort();
             return notes[index]; 
         }
-        public void AddNote()
+        
+        public void AddNoteOn(int count, float unit = .25f)
         {
-            sorted = false;
-            notes.Add(new Note());
+            var note =new Note();
+            note.TimeInBeats = count * unit;
+            notes.Add(note);
+        }
+        public void RemoveNoteOn(int count, float unit = .25f)
+        {
+            notes.RemoveAll(x => x.TimeInBeats == count * unit);
+        }
+        public bool HasNoteOn(int count, float unit = .25f)
+        {
+            return notes.Any(x => x.TimeInBeats == count * unit);
         }
         
+        public int GetSize(float unit = .25f)
+        {
+            return Mathf.RoundToInt(measureCount * beatsPerMeasure / unit );
+        }
 
 
         private void CheckSort()

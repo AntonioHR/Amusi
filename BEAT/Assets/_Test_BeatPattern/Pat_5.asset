@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: Pat_5
   m_EditorClassIdentifier: 
   beatsPerMeasure: 4
-  measureCount: 1
+  measureCount: 2
   notes:
-  - timeInBeats: 1.25
-  - timeInBeats: 1.5
-  - timeInBeats: 1.75
+  - timeInBeats: 6
+  - timeInBeats: 6.5
+  - timeInBeats: 7
+  - timeInBeats: 7.5

@@ -8,7 +8,16 @@ namespace BeatFW.Util
 {
     public static class RectExtensions
     {
-
+        public class HorizontalGrid
+        {
+            public HorizontalGrid(int size)
+            {
+                Slots = new Rect[size];
+                Divisions = new Rect[size-1];
+            }
+            public Rect[] Slots;
+            public Rect[] Divisions;
+        }
         public static Rect MinusMargin(this Rect r, Vector2 margins)
         {
             return new Rect(r.position + margins / 2, r.size - margins);
@@ -38,6 +47,7 @@ namespace BeatFW.Util
 
         public static Rect[] GetHorGridInside(this Rect rect, int length, float spacing)
         {
+
             Rect[] result = new Rect[length];
             float totalBlankSpace = (spacing * (length - 1));
             var barSize = (rect.size - totalBlankSpace * Vector2.right).Apply(1.0f/length, 1);
@@ -47,6 +57,33 @@ namespace BeatFW.Util
             {
                 result[i] = new Rect(currentPos, barSize);
                 currentPos += Vector2.right * delta;
+            }
+            return result;
+        }
+        public static HorizontalGrid GetHorGridInsideWithSpaces(this Rect rect, int length, float spacing, Vector2 margin)
+        {
+            var result = new HorizontalGrid(length);
+
+            var outside = rect;
+            var inside = rect.MinusMargin(margin);
+
+            float totalBlankSpace = (spacing * (length - 2));
+
+            var slotSize = (inside.size - totalBlankSpace * Vector2.right).Apply(1.0f / length, 1);
+            var divisionSize = new Vector2(spacing, outside.height);
+
+            Vector2 delta = Vector2.right * (slotSize.x + spacing);
+            Vector2 slotPos = inside.position;
+            Vector2 divPos = outside.position + Vector2.right * slotSize.x;
+            for (int i = 0; i < length; i++)
+            {
+                result.Slots[i] = new Rect(slotPos, slotSize);
+                if (i < length - 1)
+                {
+                    result.Divisions[i] = new Rect(divPos, divisionSize);
+                }
+                slotPos += delta;
+                divPos += delta;
             }
             return result;
         }

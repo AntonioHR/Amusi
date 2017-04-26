@@ -13,5 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beatsPerMeasure: 4
   measureCount: 1
-  notes:
-  - timeInBeats: 3
+  notes: []

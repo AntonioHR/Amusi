@@ -155,7 +155,9 @@ namespace BeatFW.Engine
 		{
             InitBeatVariables(synctime);
 			float eightBeatTarget = 0.25f;
-			float halfBeatTarget = .5f;
+            float halfBeatTarget = .5f;
+            currentSample = (float)AudioSettings.dspTime * musicController.CurrentPatch.frequency - beatStart;
+            currentBeat = currentSample / beatSamplePeriod;
             while(musicController.IsPlaying)
             {
 
@@ -181,9 +183,10 @@ namespace BeatFW.Engine
 					if (OnEigthBeat != null)
 						OnEigthBeat (this);
 				}
-                if (measure != CompletedMeasures)
+                var completed = CompletedMeasures;
+                if (measure != completed)
                 {
-                    Debug.Assert(CompletedMeasures == measure + 1);
+                    Debug.Assert(completed == measure + 1);
                     if (OnMeasure != null)
                     {
                         OnMeasure(this);
