@@ -71,6 +71,10 @@ namespace BeatFW.Util
         {
             return new Rect(position, r.size);
         }
+        public static Rect Translated(this Rect r, Vector2 position)
+        {
+            return new Rect(r.position + position, r.size);
+        }
 
         public static HorizontalGrid GetHorizontalGridInside(this Rect rect, int length, float spacing, Vector2 margin)
         {
