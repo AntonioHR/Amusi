@@ -15,14 +15,31 @@ public class Grid: ScriptableObject
         public Vector2 position;
         public string name;
     }
+    [Serializable]
+    public class Link
+    {
+        public Link(int originIndex, int targetIndex)
+        {
+            this.originIndex = originIndex;
+            this.targetIndex = targetIndex;
+        }
+        public int originIndex;
+        public int targetIndex;
+    }
 
     public Grid()
     {
         boxes = new List<Box>();
+        links = new List<Link>();
     }
     public List<Box> boxes;
+    public List<Link> links;
     public Vector2 object_size;
 
+    public Box GetByIndex(int index)
+    {
+        return boxes[index];
+    }
     public Box GetByClick(Vector2 click)
     {
         var r = new Rect(Vector2.zero, object_size);
@@ -32,11 +49,17 @@ public class Grid: ScriptableObject
                 return r.Contains(click);
             });
     }
-    public void MoveForward(Box box)
+    
+    public Link GenerateLink(Box b1, Box b2)
     {
-        boxes.Remove(box);
-        boxes.Add(box);
+        return new Link(boxes.IndexOf(b1), boxes.IndexOf(b2));
     }
+
+    //public void MoveForward(Box box)
+    //{
+    //    boxes.Remove(box);
+    //    boxes.Add(box);
+    //}
 
     public Vector2 GetDefaultPosition()
     {

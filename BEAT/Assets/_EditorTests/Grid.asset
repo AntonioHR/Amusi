@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e78eed403f3b964080f57a38b537ac6, type: 3}
+  m_Name: Grid
+  m_EditorClassIdentifier: 
+  drag_debug: {x: 1268.5, y: 622.75}
+  boxes:
+  - position: {x: -1188, y: -566}
+    name: 
+  - position: {x: -1131, y: -449.5}
+    name: 
+  links:
+  - originIndex: 0
+    targetIndex: 1
+  object_size: {x: 150, y: 50}

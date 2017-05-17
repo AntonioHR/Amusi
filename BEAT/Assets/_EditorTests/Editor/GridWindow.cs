@@ -77,7 +77,7 @@ public class GridWindow : EditorWindow
                         if (target != null)
                         {
                             state.selection = target;
-                            grid.MoveForward(target);
+                            //grid.MoveForward(target);
                             Event.current.Use();
                         } else
                         {
@@ -93,6 +93,18 @@ public class GridWindow : EditorWindow
                         grid.boxes.Remove(target);
                         if (state.selection == target)
                             state.selection = null;
+                    }
+                }
+                break;
+            case EventType.ContextClick:
+                widgetSpaceMousePos = Event.current.mousePosition - rect.position;
+                gridSpaceMousePos = widgetSpaceMousePos - state.drag;
+                if (rect.Contains(Event.current.mousePosition))
+                {
+                    Grid.Box target = grid.GetByClick(gridSpaceMousePos);
+                    if (target != null && state.selection != null && target != state.selection)
+                    {
+                        grid.links.Add(grid.GenerateLink(state.selection, target));
                     }
                 }
                 break;
