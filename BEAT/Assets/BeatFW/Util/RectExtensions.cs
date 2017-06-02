@@ -134,15 +134,5 @@ namespace BeatFW.Util
             }
             return result;
         }
-        
-
-        static Vector2 Apply(this Vector2 v1, float v2x, float v2y)
-        {
-            return new Vector2(v1.x * v2x, v1.y * v2y);
-        }
-        static Vector2 Apply(this Vector2 v1, Vector2 v2)
-        {
-            return Apply(v1, v2.x, v2.y);
-        }
     }
 }

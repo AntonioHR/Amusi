@@ -11,13 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e78eed403f3b964080f57a38b537ac6, type: 3}
   m_Name: Grid
   m_EditorClassIdentifier: 
-  drag_debug: {x: 1268.5, y: 622.75}
+  drag_debug: {x: 2435.5, y: 1023.25}
   boxes:
-  - position: {x: -1188, y: -566}
+  - position: {x: -300, y: -300}
     name: 
-  - position: {x: -1131, y: -449.5}
+  - position: {x: -14, y: -117}
+    name: 
+  - position: {x: 100, y: 0}
     name: 
   links:
   - originIndex: 0
     targetIndex: 1
-  object_size: {x: 150, y: 50}
+  object_size: {x: 50, y: 50}
