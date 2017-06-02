@@ -36,10 +36,7 @@ namespace BeatFW
 
         void Update()
         {
-
-			animator.SetTime(beatManager.GetBeatProgress(countFromStart?start:0) - (countFromStart?startProgress:0));
-
-
+            //animator.SetTime(beatManager.GetBeatProgress(countFromStart?start:0) - (countFromStart?startProgress:0));
         }
     }
 }
