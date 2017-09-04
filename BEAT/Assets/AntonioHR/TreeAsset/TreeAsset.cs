@@ -30,6 +30,7 @@ namespace AntonioHR.TreeAsset
 
         protected abstract T InstantiateRoot();
         protected abstract T InstantiateDefaultNode();
+        protected abstract subT InstantiateNode<subT>() where subT : T;
 
         protected void Init()
         {
@@ -60,14 +61,22 @@ namespace AntonioHR.TreeAsset
 
             return newNode;
         }
+        public subT CreateChildFor<subT>(T parent, string name = "Node") where subT : T
+        {
+            var newNode = InstantiateNode<subT>();
+            newNode.name = name;
+            AssetDatabase.AddObjectToAsset(newNode, this);
+
+            hierarchy.AddAsFloatingNode(newNode);
+            newNode.ChangeParentTo(parent);
+
+            return newNode;
+        }
+
 
         public void DeleteNodeAndAllChildren(T node)
         {
             node.DeleteNodeAndChildren();
         }
-
-
-
-       
     }
 }

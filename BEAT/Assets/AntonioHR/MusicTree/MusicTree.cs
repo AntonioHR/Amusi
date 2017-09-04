@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using AntonioHR.TreeAsset;
+using UnityEditor;
+using AntonioHR.MusicTree.Nodes;
 
 namespace AntonioHR.MusicTree
 {
@@ -17,9 +19,36 @@ namespace AntonioHR.MusicTree
 
         protected override MusicTreeNode InstantiateDefaultNode()
         {
-            var result = ScriptableObject.CreateInstance<SelectorMusicTreeNode>();
+            return InstantiateNode<SelectorMusicTreeNode>();
+        }
+
+        protected override subT InstantiateNode<subT>()
+        {
+            var result = ScriptableObject.CreateInstance<subT>();
             result.name = "Node(Selector)";
             return result;
         }
+
+        
+
+
+        #region Debug Examples
+        [MenuItem("Music Tree/Example Tree")]
+        public static void CreateExampleTree()
+        {
+            var tree = ScriptableObject.CreateInstance<MusicTree>();
+            AssetDatabase.CreateAsset(tree, "Assets/Example Tree.asset");
+
+            AssetDatabase.SaveAssets();
+            tree.Init();
+
+
+            var seq1 = tree.CreateChildFor<SequenceMusicTreeNode>(tree.Root, "Sequence 1");
+            var m1 = tree.CreateChildFor<CueMusicTreeNode>(seq1, "Music 1");
+
+            var m2 = tree.CreateChildFor<CueMusicTreeNode>(seq1, "Music 2");
+
+        }
+        #endregion
     }
 }
