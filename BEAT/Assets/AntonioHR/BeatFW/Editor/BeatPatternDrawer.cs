@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace AntonioHR.BeatFW.Editor
 {
-    [CustomPropertyDrawer(typeof(BeatPattern))]
+    [CustomPropertyDrawer(typeof(BeatPatternAsset))]
     public class BeatPatternDrawer : PropertyDrawer
     {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
@@ -20,7 +20,7 @@ namespace AntonioHR.BeatFW.Editor
             EditorGUI.ObjectField(r1, property);
             Rect r2 = r1;
             r2.y += r1.height;
-            var pat = (BeatPattern)property.objectReferenceValue;
+            var pat = (BeatPatternAsset)property.objectReferenceValue;
             EditorGUI.BeginDisabledGroup(pat == null);
             if (GUI.Button(r2, "Edit"))
             {

@@ -10,13 +10,13 @@ namespace AntonioHR.BeatFW.Editor
     public class BeatPatternWindow : EditorWindow
     {
         static float divisions = .25f;
-        BeatPattern currentObject;
+        BeatPatternAsset currentObject;
 
         SerializedProperty beatsPerMeasure;
         SerializedProperty measureCount;
         SerializedProperty notes;
 
-        void UpdatePatternObject(BeatPattern obj)
+        void UpdatePatternObject(BeatPatternAsset obj)
         {
             currentObject = obj;
             var serialized = new SerializedObject(currentObject);
@@ -25,7 +25,7 @@ namespace AntonioHR.BeatFW.Editor
             notes = serialized.FindProperty("notes");
         }
 
-        public static void Show(BeatPattern BeatPatternProperty)
+        public static void Show(BeatPatternAsset BeatPatternProperty)
         {
            EditorWindow.GetWindow<BeatPatternWindow>().UpdatePatternObject(BeatPatternProperty);
         }
@@ -54,7 +54,7 @@ namespace AntonioHR.BeatFW.Editor
             DrawPattern(rect, currentObject);
         }
 
-        public static void DrawPattern(Rect rect, BeatPattern pat)
+        public static void DrawPattern(Rect rect, BeatPatternAsset pat)
         {
             float totalBeats = (pat.MeasureCount * pat.BeatsPerMeasure);
             var beatWidth = rect.width / totalBeats;

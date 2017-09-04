@@ -10,7 +10,7 @@ public class BeatPatternListener : MonoBehaviour
 {
     public UnityEvent OnNoteEvent;
 
-    public BeatPattern pattern;
+    public BeatPatternAsset pattern;
 
     BeatManager beatManager;
 

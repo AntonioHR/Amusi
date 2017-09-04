@@ -11,7 +11,7 @@ namespace AntonioHR.BeatFW
     /// Stores the data of a Beat Pattern
     /// </summary>
     [CreateAssetMenu()]
-    public class BeatPattern : ScriptableObject
+    public class BeatPatternAsset : ScriptableObject
     {
 
         [System.Serializable]

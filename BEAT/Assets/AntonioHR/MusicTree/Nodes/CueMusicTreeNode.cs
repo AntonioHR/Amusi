@@ -13,5 +13,6 @@ namespace AntonioHR.MusicTree.Nodes
             get { return ChildrenPolicy.None; }
         }
         public AudioClip clip;
+        public BeatFW.BeatPatternAsset pattern;
     }
 }
