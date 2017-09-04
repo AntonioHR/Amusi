@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-namespace BeatFW.Engine
+namespace AntonioHR.BeatFW.Engine
 {
     [System.Serializable]
 	public class MusicController

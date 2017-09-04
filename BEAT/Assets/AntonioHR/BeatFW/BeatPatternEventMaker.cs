@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine.Events;
 
-namespace BeatFW
+namespace AntonioHR.BeatFW
 {
     class BeatPatternEventMaker : BeatPatternBaseEventMaker
     {

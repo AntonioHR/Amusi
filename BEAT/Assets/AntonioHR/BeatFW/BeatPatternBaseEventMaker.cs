@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace BeatFW
+namespace AntonioHR.BeatFW
 {
     public abstract class BeatPatternBaseEventMaker : MonoBehaviour
     {

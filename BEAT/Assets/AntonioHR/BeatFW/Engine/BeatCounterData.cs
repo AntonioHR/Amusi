@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BeatFW.Engine
+namespace AntonioHR.BeatFW.Engine
 {
     static class BeatCounterData
     {

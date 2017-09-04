@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using BeatFW.Engine;
+using AntonioHR.BeatFW.Engine;
 
-namespace BeatFW
+namespace AntonioHR.BeatFW
 {
     public class BeatManager:MonoBehaviour
     {

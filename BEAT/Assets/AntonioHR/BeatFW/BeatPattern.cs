@@ -1,11 +1,11 @@
-﻿using BeatFW.Engine;
+﻿using AntonioHR.BeatFW.Engine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace BeatFW
+namespace AntonioHR.BeatFW
 {
     /// <summary>
     /// Stores the data of a Beat Pattern

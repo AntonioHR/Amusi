@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace BeatFW.Util
+namespace AntonioHR.BeatFW.Util
 {
     public static class RectExtensions
     {

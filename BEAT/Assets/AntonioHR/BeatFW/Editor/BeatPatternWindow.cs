@@ -5,7 +5,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace BeatFW.Editor
+namespace AntonioHR.BeatFW.Editor
 {
     public class BeatPatternWindow : EditorWindow
     {

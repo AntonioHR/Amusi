@@ -5,7 +5,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace BeatFW.Editor
+namespace AntonioHR.BeatFW.Editor
 {
     [CustomPropertyDrawer(typeof(BeatPattern))]
     public class BeatPatternDrawer : PropertyDrawer
