@@ -1,4 +1,4 @@
-﻿using AntonioHR.BeatFW.Engine;
+﻿using AntonioHR.BeatFW.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
