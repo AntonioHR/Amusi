@@ -31,7 +31,6 @@ namespace AntonioHR.BeatFW
         }
 
 
-
         [SerializeField]
         private int beatsPerMeasure = 4;
         [SerializeField]
