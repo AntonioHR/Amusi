@@ -50,6 +50,8 @@ namespace AntonioHR.MusicTree.Nodes
                         return ExecutionState.Running;
                     case ExecutionState.Fail:
                         return ExecutionState.Fail;
+                    case ExecutionState.Skipped:
+                        continue;
                     case ExecutionState.Done:
                         continue;
                 }

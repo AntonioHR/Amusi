@@ -8,7 +8,7 @@ namespace AntonioHR.MusicTree
 {
     public abstract class MusicTreeNode : TreeNodeAsset
     {
-        public enum ExecutionState { Fail, Running, Done }
+        public enum ExecutionState { Fail, Running, Done, Skipped }
 
         public enum ChildrenPolicy { None, Single, Multiple}
         public abstract ChildrenPolicy Policy { get; }

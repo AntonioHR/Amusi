@@ -24,8 +24,11 @@ namespace AntonioHR.MusicTree.Nodes
 
             foreach (var child in GetChildrenAs<MusicTreeNode>())
             {
-                if (child.Execute(out result) == ExecutionState.Running)
+                var execState = child.Execute(out result);
+                if (execState == ExecutionState.Running)
                     return ExecutionState.Running;
+                else if (execState == ExecutionState.Done)
+                    return ExecutionState.Done;
             }
             result = null;
             return ExecutionState.Fail;
