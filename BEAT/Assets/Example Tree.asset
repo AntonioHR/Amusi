@@ -24,7 +24,7 @@ MonoBehaviour:
   m_Name: Music 1
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114748616302938830}
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 8df729abdbcbabe43be3791d8a552ad8, type: 3}
   pattern: {fileID: 0}
 --- !u!114 &114160714916529884
 MonoBehaviour:
@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Name: Music 2
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114160714916529884}
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 1f26598844e7bef4395f57387cbbff40, type: 3}
   pattern: {fileID: 0}
 --- !u!114 &114520114583708134
 MonoBehaviour:

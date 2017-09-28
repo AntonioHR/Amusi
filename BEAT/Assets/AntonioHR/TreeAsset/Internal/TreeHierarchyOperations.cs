@@ -70,7 +70,7 @@ namespace AntonioHR.TreeAsset.Internal
             {
                 self.UnattachFromParent();
             }
-            foreach (var node in self.BottomUp())
+            foreach (var node in self.Postorder())
             {
                 GameObject.DestroyImmediate(self);
             }

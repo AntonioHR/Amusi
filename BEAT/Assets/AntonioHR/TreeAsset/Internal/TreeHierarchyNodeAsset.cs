@@ -27,5 +27,15 @@ namespace AntonioHR.TreeAsset.Internal
         {
             get { return _children.AsEnumerable(); }
         }
+
+        public ITreeNode<TreeHierarchyNodeAsset> Parent
+        {
+            get { return Parent; }
+        }
+
+        public IEnumerable<TreeHierarchyNodeAsset> SibilingsAfter
+        {
+            get { return _parent.Children.SkipWhile(c => c != this).Skip(1); }
+        }
     }
 }

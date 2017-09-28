@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using AntonioHR.MusicTree;
 using AntonioHR.BeatFW.Internal;
+using AntonioHR.BeatFW;
 
-namespace AntonioHR.BeatFW
+namespace AntonioHR.MusicTree
 {
-    public class BeatManager:MonoBehaviour, IBeatManager
+    public class MusicTreePlayer : MonoBehaviour, IBeatManager
     {
-        public DummyPatchSelector selector;
+        public MusicTreeAsset musicTree;
         [Space()]
         public BeatCounter.Settings beatCounterSettings;
         public MusicController.Settings musicControllerSettings;
 
         BeatCounter counter;
         MusicController musicController;
+        MusicTreeRuntime musicTreeRuntime;
 
 
 
@@ -40,15 +43,25 @@ namespace AntonioHR.BeatFW
             musicController = new MusicController(GetComponents<AudioSource>(), musicControllerSettings);
             musicController.OnClipCloseToEnd += controller_OnClipCloseToEnd;
             counter = new BeatCounter(beatCounterSettings, musicController);
+            musicTreeRuntime = new MusicTreeRuntime(musicTree);
 
-            double initTime = musicController.Init(selector.SelectNextPatch());
+            double initTime = musicController.Init(musicTreeRuntime.SelectNextPatch());
             StartCoroutine(musicController.ClipCheck());
             StartCoroutine(counter.BeatCountCoroutine(initTime));
         }
 
         void controller_OnClipCloseToEnd()
         {
-            musicController.EnqueuePatch(selector.SelectNextPatch());
+            try
+            {
+                var newPatch = musicTreeRuntime.SelectNextPatch();
+                musicController.EnqueuePatch(newPatch);
+            }
+            catch (NoValidPatchToPlayException e)
+            {
+                Debug.Log("No valid Patch to play");
+                throw;
+            }
         }
 
     }

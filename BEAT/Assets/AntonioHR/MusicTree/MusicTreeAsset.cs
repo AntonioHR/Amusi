@@ -7,7 +7,7 @@ using AntonioHR.MusicTree.Nodes;
 
 namespace AntonioHR.MusicTree
 {
-    public class MusicTree : TreeAsset<MusicTreeNode>
+    public class MusicTreeAsset : TreeAsset<MusicTreeNode>
     {
 
         protected override MusicTreeNode InstantiateRoot()
@@ -36,7 +36,7 @@ namespace AntonioHR.MusicTree
         [MenuItem("Music Tree/Example Tree")]
         public static void CreateExampleTree()
         {
-            var tree = ScriptableObject.CreateInstance<MusicTree>();
+            var tree = ScriptableObject.CreateInstance<MusicTreeAsset>();
             AssetDatabase.CreateAsset(tree, "Assets/Example Tree.asset");
 
             AssetDatabase.SaveAssets();

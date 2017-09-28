@@ -22,7 +22,7 @@ namespace AntonioHR.TreeAsset
         {
             self.UnattachFromParent();
 
-            var removedContent = self.TopDown();
+            var removedContent = self.Preorder();
 
             self._hierarchy.DeleteHierarchy();
 
@@ -36,37 +36,53 @@ namespace AntonioHR.TreeAsset
 
         #region Tree Interface
         
-        public static IEnumerable<T> TopDown<T>(this T self) where T : ITreeNode<T>
+        public static IEnumerable<T> Preorder<T>(this T self) where T : ITreeNode<T>
         {
             List<T> list = new List<T>();
-            TopDownAdd(self, list);
+            PreorderAdd(self, list);
 
             return list.AsEnumerable();
         }
-        public static IEnumerable<T> BottomUp<T>(this T self) where T : ITreeNode<T>
+        public static IEnumerable<T> Postorder<T>(this T self) where T : ITreeNode<T>
         {
             List<T> list = new List<T>();
-            BottomUpAdd(self, list);
+            PostorderAdd(self, list);
 
             return list.AsEnumerable();
         }
 
-        private static void TopDownAdd<T>(T current, List<T> list) where T : ITreeNode<T>
+        private static void PreorderAdd<T>(T current, List<T> list) where T : ITreeNode<T>
         {
             list.Add(current);
             foreach (var child in current.Children)
             {
-                TopDownAdd(child, list);
+                PreorderAdd(child, list);
             }
         }
-        private static void BottomUpAdd<T>(T current, List<T> list) where T : ITreeNode<T>
+        private static void PostorderAdd<T>(T current, List<T> list) where T : ITreeNode<T>
         {
             foreach (var child in current.Children)
             {
-                BottomUpAdd(child, list);
+                PostorderAdd(child, list);
             }
             list.Add(current);
         }
         #endregion
+    }
+    public class NoParentException<T> : Exception where T:ITreeNode<T>
+    {
+        public ITreeNode<T> Node { get; private set; }
+        public NoParentException(ITreeNode<T> node)
+        {
+            this.Node = node;
+        }
+    }
+    public class NoNextSibilingException<T> : Exception where T : ITreeNode<T>
+    {
+        public ITreeNode<T> Node { get; private set; }
+        public NoNextSibilingException(ITreeNode<T> node)
+        {
+            this.Node = node;
+        }
     }
 }

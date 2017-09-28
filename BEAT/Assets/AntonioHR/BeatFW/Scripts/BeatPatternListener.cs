@@ -1,4 +1,5 @@
 ﻿using AntonioHR.BeatFW;
+using AntonioHR.MusicTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,14 @@ public class BeatPatternListener : MonoBehaviour
 
     public BeatPatternAsset pattern;
 
-    BeatManager beatManager;
+    IBeatManager beatManager;
 
     float lastVal;
 
 
     public void Awake()
     {
-        beatManager = FindObjectOfType<BeatManager>();
+        beatManager = FindObjectOfType<MusicTreePlayer>();
     }
 
     public void Update()
