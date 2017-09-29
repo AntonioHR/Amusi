@@ -35,7 +35,45 @@ namespace AntonioHR.TreeAsset
 
 
         #region Tree Interface
-        
+
+
+        public delegate void TreeNodeAction<T>(T node, int h, int x) where T : ITreeNode<T>;
+
+
+        public static void RunActionInPreorder<T>(this T node, TreeNodeAction<T> action) where T : ITreeNode<T>
+        {
+            node.RunActionInPreorderRecursion<T>(action, 0, 0);
+        }
+        public static void RunActionInPostOrder<T>(this T node, TreeNodeAction<T> action) where T : ITreeNode<T>
+        {
+            node.RunActionInPostOrderRecursion<T>(action, 0, 0);
+        }
+
+        private static void RunActionInPreorderRecursion<T>(this T node, TreeNodeAction<T> action, int h, int x) where T : ITreeNode<T>
+        {
+            action(node, h, x);
+            int i = 0;
+            foreach (var item in node.Children)
+            {
+                item.RunActionInPreorderRecursion(action, h + 1, i);
+                i++;
+            }
+        }
+        private static void RunActionInPostOrderRecursion<T>(this T node, TreeNodeAction<T> action, int h, int x) where T : ITreeNode<T>
+        {
+            int i = 0;
+            foreach (var item in node.Children)
+            {
+                item.RunActionInPostOrderRecursion(action, h + 1, i);
+                i++;
+            }
+            action(node, h, x);
+        }
+
+
+
+
+        //Traversal Iterators
         public static IEnumerable<T> Preorder<T>(this T self) where T : ITreeNode<T>
         {
             List<T> list = new List<T>();

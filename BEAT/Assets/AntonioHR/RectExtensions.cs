@@ -27,6 +27,10 @@ namespace AntonioHR
         {
             return new Rect(position, r.size);
         }
+        public static Rect CenteredAt(this Rect r, Vector2 position)
+        {
+            return new Rect(position - r.size/2, r.size);
+        }
 
         public static Rect[] GetHorGridInside(this Rect rect, int length, float spacing)
         {

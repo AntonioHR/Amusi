@@ -32,6 +32,11 @@ namespace AntonioHR.TreeAsset
             get { return _hierarchy.SibilingsAfter.Select(x => x._content); }
         }
 
+        public IEnumerable<TreeNodeAsset> SibilingsBefore
+        {
+            get { return _hierarchy.SibilingsBefore.Select(x => x._content); }
+        }
+
         public ITreeNode<TreeNodeAsset> Parent
         {
             get { return _hierarchy._parent._content; }

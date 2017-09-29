@@ -35,7 +35,13 @@ namespace AntonioHR.TreeAsset.Internal
 
         public IEnumerable<TreeHierarchyNodeAsset> SibilingsAfter
         {
-            get { return _parent.Children.SkipWhile(c => c != this).Skip(1); }
+            get { return IsRoot? Enumerable.Empty<TreeHierarchyNodeAsset>():
+                _parent.Children.SkipWhile(c => c != this).Skip(1); }
+        }
+        public IEnumerable<TreeHierarchyNodeAsset> SibilingsBefore
+        {
+            get { return IsRoot? Enumerable.Empty<TreeHierarchyNodeAsset>():
+                _parent.Children.TakeWhile(c => c != this); }
         }
     }
 }
