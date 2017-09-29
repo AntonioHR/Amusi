@@ -51,14 +51,22 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
 
         public MusicTreeAsset tree;
 
-        public int sibilingSeparation = 40;
-        public int subTreeSeparation = 90;
+        public int sibilingSeparation = 120;
+        public int subTreeSeparation = 140;
 
-        public int levelSeparation = 50;
+        public int levelSeparation = 100;
 
-        public int yStart = 30;
+        public int yStart = 100;
+        public int xStart = 100;
 
-        public int nodeSize = 20;
+        public int nodeSize = 50;
+
+
+        Texture sequence_icon;
+        Texture selector_icon;
+        Texture cue_icon;
+
+
 
         Dictionary<TreeNodeAsset, TreeNodeDrawer> nodeDrawers;
 
@@ -81,6 +89,10 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
         {
             this.tree = tree;
             nodeDrawers = new Dictionary<TreeNodeAsset, TreeNodeDrawer>();
+
+            selector_icon =  Resources.Load<Texture>("icon_selector");
+            sequence_icon = Resources.Load<Texture>("icon_sequence");
+            cue_icon = Resources.Load<Texture>("icon_music");
         }
 
         public void Draw()
@@ -106,7 +118,8 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
         {
             var nodeDrawer = nodeDrawers[node];
             Rect baseRect = new Rect(0, 0, nodeSize, nodeSize);
-            var nodePosition = new Vector2((nodeDrawer.localX + mod) * sibilingSeparation, nodeDrawer.height * levelSeparation + yStart);
+            var nodePosition = new Vector2((nodeDrawer.localX + mod) * sibilingSeparation + xStart, 
+                nodeDrawer.height * levelSeparation + yStart);
 
 
 
@@ -123,25 +136,37 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
             DrawNode(ref baseRect, ref nodePosition, node);
         }
 
-        private static void DrawNode(ref Rect baseRect, ref Vector2 nodePosition, TreeNodeAsset node)
+        private void DrawNode(ref Rect baseRect, ref Vector2 nodePosition, TreeNodeAsset node)
         {
             Color color = Color.gray;
 
+            Texture tex = null;
+
             if(node is CueMusicTreeNode)
             {
-                color = Color.red;
+                //color = Color.red;
+                tex = cue_icon;
             }
             else if (node is SelectorMusicTreeNode)
             {
-                color = Color.green;
+                //color = Color.green;
+                tex = selector_icon;
             }
             else if (node is SequenceMusicTreeNode)
             {
-                color = Color.cyan;
+                //color = Color.cyan;
+                tex = sequence_icon;
             } 
 
 
             EditorGUI.DrawRect(baseRect.At(nodePosition), color);
+            if (tex != null)
+                GUI.DrawTexture(baseRect.At(nodePosition).Resized(Vector2.one * 1), tex);
+
+            if(GUI.Button(baseRect.At(nodePosition), GUIContent.none, GUIStyle.none))
+            {
+                Selection.activeObject = node;
+            }
         }
 
 
