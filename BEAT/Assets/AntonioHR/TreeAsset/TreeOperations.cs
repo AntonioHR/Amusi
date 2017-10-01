@@ -35,7 +35,7 @@ namespace AntonioHR.TreeAsset
 
 
         #region Tree Interface
-
+        
 
         public delegate void TreeNodeAction<T>(T node, int h, int x) where T : ITreeNode<T>;
 

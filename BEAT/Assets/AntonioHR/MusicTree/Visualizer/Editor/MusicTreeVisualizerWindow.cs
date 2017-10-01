@@ -100,11 +100,11 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
             nodeDrawers = new Dictionary<TreeNodeAsset, TreeNodeDrawer>();
 
 
-            calculateBaseXOfNodes();
+            CalculateBaseXOfNodes();
 
             //resolveNodeConflicts();
 
-            reserveLayoutSpace();
+            ReserveLayoutSpace();
 
             DrawNodes();
         }
@@ -170,7 +170,7 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
         }
 
 
-        private void calculateBaseXOfNodes()
+        private void CalculateBaseXOfNodes()
         {
             var root = tree.Root;
 
@@ -204,19 +204,60 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
                 });
         }
 
-        private void resolveNodeConflicts()
+        private void ResolveNodeConflicts()
         {
-            throw new System.NotImplementedException();
+            var root = tree.Root;
+            foreach (var node in TreeOperations.Preorder<TreeNodeAsset>(root))
+            {
+                var musicNode = (MusicTreeNode)node;
+                
+                var contourDict
+            }
         }
 
 
-        private void reserveLayoutSpace()
+        private void CalculateLeftContour(MusicTreeNode node, ref Dictionary<int, float> result)
         {
-            Vector2 size = calculateSize();
+            var drawer = nodeDrawers[node];
+            result.Add(drawer.height, CalculateRealX(node));
+
+            var children = new List<MusicTreeNode>(node.GetChildrenAs<MusicTreeNode>());
+            if (children.Count > 0)
+            {
+                var leftmost = children[0];
+                CalculateLeftContour(leftmost, ref result);
+            }
+        }
+        private void CalculateRightContour(MusicTreeNode node, ref Dictionary<int, float> result)
+        {
+            var drawer = nodeDrawers[node];
+            result.Add(drawer.height, CalculateRealX(node));
+
+            var children = new List<MusicTreeNode>(node.GetChildrenAs<MusicTreeNode>());
+            if (children.Count > 0)
+            {
+                var rightmost = children[children.Count - 1];
+                CalculateRightContour(rightmost, ref result);
+            }
+        }
+
+        private float CalculateRealX(MusicTreeNode node)
+        {
+            return nodeDrawers[node].localX + CalculateRealX((MusicTreeNode) node.Parent);
+        }
+
+        private float CalculateMod(MusicTreeNode node)
+        {
+            return nodeDrawers[node].mod + CalculateMod((MusicTreeNode) node.Parent);
+        }
+
+        private void ReserveLayoutSpace()
+        {
+            Vector2 size = CalculateSize();
             GUILayoutUtility.GetRect(size.x, size.y);
         }
 
-        private Vector2 calculateSize()
+        private Vector2 CalculateSize()
         {
             return new Vector2(900, 900);
         }
