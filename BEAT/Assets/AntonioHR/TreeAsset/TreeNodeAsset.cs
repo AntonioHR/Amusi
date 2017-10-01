@@ -55,6 +55,7 @@ namespace AntonioHR.TreeAsset
     {
         IEnumerable<T> Children { get; }
         IEnumerable<T> SibilingsAfter { get; }
+        IEnumerable<T> SibilingsBefore { get; }
         bool IsRoot { get; }
         ITreeNode<T> Parent { get; }
     }
