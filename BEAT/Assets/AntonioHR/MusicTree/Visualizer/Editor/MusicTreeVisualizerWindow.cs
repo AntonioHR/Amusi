@@ -211,7 +211,6 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
             {
                 var musicNode = (MusicTreeNode)node;
                 
-                var contourDict
             }
         }
 

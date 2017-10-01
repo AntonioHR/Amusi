@@ -19,32 +19,36 @@ namespace AntonioHR.TreeAsset
         public static ReadonlyTree<T> CreateFrom(TreeAsset<T> treeAsset)
         {
             var rootAsset = treeAsset.Root;
-            return new ReadonlyTree<T>(CreateNodeRecursively(rootAsset));
+            ReadonlyNode<T>.Data data;
+            return new ReadonlyTree<T>(CreateNodeRecursively(rootAsset, 0, out data));
         }
-        private static ReadonlyNode<T> CreateNodeRecursively(TreeNodeAsset nodeAsset, int height = 0)
+        private static ReadonlyNode<T> CreateNodeRecursively(TreeNodeAsset nodeAsset, int height, out ReadonlyNode<T>.Data myData)
         {
             var childrenList = new List<ReadonlyNode<T>>();
-            var me = new ReadonlyNode<T>();
-            me.Height = height;
+            myData = new ReadonlyNode<T>.Data();
+            var me = new ReadonlyNode<T>(myData);
+            myData.Height = height;
 
             ReadonlyNode<T> prev = null;
+            ReadonlyNode<T>.Data prevData = null;
             int index = 0;
             foreach (var child in nodeAsset._hierarchy.Children)
             {
-                ReadonlyNode<T> node = CreateNodeRecursively(child._content, height + 1);
-                node.Parent = me;
-                node.Left = prev;
-                node.myIndex = index;
-                node.Asset = (T)child._content;
+                ReadonlyNode<T>.Data childData;
+                ReadonlyNode<T> node = CreateNodeRecursively(child._content, height + 1, out childData);
+                childData.Parent = me;
+                childData.Left = prev;
+                childData.SibilingIndex = index;
+                childData.Asset = (T)child._content;
 
                 childrenList.Add(node);
 
-                prev.Right = node;
+                prevData.Right = node;
                 prev = node;
                 index++;
             }
 
-            me.Children = childrenList.AsReadOnly();
+            myData.Children = childrenList.AsReadOnly();
 
             return me;
 
@@ -54,19 +58,44 @@ namespace AntonioHR.TreeAsset
     }
     public class ReadonlyNode<T> : ITreeNode<ReadonlyNode<T>> where T : TreeNodeAsset
     {
-        public ReadonlyNode<T> Right;
-        public ReadonlyNode<T> Left;
-        public ReadonlyNode<T> Parent;
-        public int Height;
-        public int myIndex;
-        public T Asset;
-        public ReadOnlyCollection<ReadonlyNode<T>> Children;
+        public class Data
+        {
+            public ReadonlyNode<T> Right;
+            public ReadonlyNode<T> Left;
+            public ReadonlyNode<T> Parent;
+            public int Height;
+            public int SibilingIndex;
+            public T Asset;
+            public ReadOnlyCollection<ReadonlyNode<T>> Children;
+        }
+
+        public ReadonlyNode<T> Right { get { return _data.Right; } }
+        public ReadonlyNode<T> Left { get { return _data.Left; } }
+        public ReadonlyNode<T> Parent { get { return _data.Parent; } }
+        public int Height{ get { return _data.Height; } }
+        public int SibilingIndex { get { return _data.SibilingIndex; } }
+        public T Asset { get { return _data.Asset; } }
+
+        public ReadOnlyCollection<ReadonlyNode<T>> Children
+        {
+            get
+            {
+                return _data.Children;
+            }
+        }
+
+
+        private Data _data;
+        public ReadonlyNode(Data data)
+        {
+            _data = data;
+        }
 
         public IEnumerable<ReadonlyNode<T>> SibilingsAfter
         {
             get
             {
-                return Parent.Children.Skip(myIndex + 1);
+                return Parent.Children.Skip(SibilingIndex+ 1);
             }
         }
 
@@ -74,7 +103,7 @@ namespace AntonioHR.TreeAsset
         {
             get
             {
-                return Parent.Children.Take(myIndex);
+                return Parent.Children.Take(SibilingIndex);
             }
         }
 
