@@ -27,7 +27,6 @@ namespace AntonioHR.TreeAsset
                 return hierarchy.GetFloatingNodesAs<T>();
             }
         }
-
         protected abstract T InstantiateRoot();
         protected abstract T InstantiateDefaultNode();
         protected abstract subT InstantiateNode<subT>() where subT : T;
