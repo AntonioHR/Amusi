@@ -9,42 +9,55 @@ namespace AntonioHR.TreeAsset
 {
     public class ReadonlyTree<T> where T:TreeNodeAsset
     {
-        public ReadonlyNode<T> Root { get; private set; }
+        public ReadonlyTreeNode<T> Root { get; private set; }
+        public int NodeCount { get; private set; }
+        public IEnumerable<ReadonlyTreeNode<T>> AllNodes { get { return Root.Preorder(); } }
 
 
-        public ReadonlyTree(ReadonlyNode<T> root)
+
+        public ReadonlyTree(ReadonlyTreeNode<T> root, int nodeCount)
         {
-            Root = root;
+            this.Root = root;
+            this.NodeCount = nodeCount;
         }
 
         public static ReadonlyTree<T> CreateFrom(TreeAsset<T> treeAsset)
         {
             var rootAsset = treeAsset.Root;
-            ReadonlyNode<T>.Data data;
-            return new ReadonlyTree<T>(CreateNodeRecursively(rootAsset, 0, out data));
-        }
-        private static ReadonlyNode<T> CreateNodeRecursively(TreeNodeAsset nodeAsset, int height, out ReadonlyNode<T>.Data myData)
-        {
-            var childrenList = new List<ReadonlyNode<T>>();
-            myData = new ReadonlyNode<T>.Data();
-            var me = new ReadonlyNode<T>(myData);
-            myData.Height = height;
+            ReadonlyTreeNode<T>.Data data;
+            int nextNodeId = 0;
+            var root = CreateNodeRecursively(rootAsset, 0, ref nextNodeId, out data);
 
-            ReadonlyNode<T> prev = null;
-            ReadonlyNode<T>.Data prevData = null;
+            return new ReadonlyTree<T>(root, nextNodeId);
+        }
+        private static ReadonlyTreeNode<T> CreateNodeRecursively(TreeNodeAsset nodeAsset, int height, ref int nextNodeId, out ReadonlyTreeNode<T>.Data myData)
+        {
+            var childrenList = new List<ReadonlyTreeNode<T>>();
+            myData = new ReadonlyTreeNode<T>.Data();
+            var me = new ReadonlyTreeNode<T>(myData);
+            myData.Depth = height;
+            myData.NodeId = nextNodeId;
+            myData.Asset = (T)nodeAsset;
+            myData.SibilingIndex = 0;
+            myData.SubtreeDepth = myData.Depth;
+            nextNodeId++;
+
+            ReadonlyTreeNode<T> prev = null;
+            ReadonlyTreeNode<T>.Data prevData = null;
             int index = 0;
             foreach (var child in nodeAsset._hierarchy.Children)
             {
-                ReadonlyNode<T>.Data childData;
-                ReadonlyNode<T> node = CreateNodeRecursively(child._content, height + 1, out childData);
+                ReadonlyTreeNode<T>.Data childData;
+                ReadonlyTreeNode<T> node = CreateNodeRecursively(child._content, height + 1, ref nextNodeId, out childData);
                 childData.Parent = me;
                 childData.Left = prev;
                 childData.SibilingIndex = index;
-                childData.Asset = (T)child._content;
 
                 childrenList.Add(node);
+                myData.SubtreeDepth = Math.Max(myData.SubtreeDepth, childData.SubtreeDepth);
 
-                prevData.Right = node;
+                if(prevData != null)
+                    prevData.Right = node;
                 prev = node;
                 index++;
             }
@@ -54,8 +67,6 @@ namespace AntonioHR.TreeAsset
             return me;
 
         }
-
-
     }
 
 }
