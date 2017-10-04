@@ -17,7 +17,11 @@ namespace AntonioHR.MusicTree
 
         public bool Evaluate(Condition cond)
         {
-            return cond.IsTrueFor(values[cond.variableName]);
+
+            var result = cond.IsTrueFor(values[cond.variableName]);
+
+            UnityEngine.Debug.LogFormat("Condition for variable {0}  was evaluated {1}", cond.variableName, result);
+            return result;
         }
 
         public float GetFloatValue(string name)

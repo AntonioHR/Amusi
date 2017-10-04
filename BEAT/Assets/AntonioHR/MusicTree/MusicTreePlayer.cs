@@ -37,6 +37,35 @@ namespace AntonioHR.MusicTree
 
 
 
+        public float GetFloatValue(string name)
+        {
+            return musicTreeRuntime.GetFloatValue(name);
+        }
+        public void SetFloatValue(string name, float newVal)
+        {
+            musicTreeRuntime.SetFloatValue(name, newVal);
+        }
+
+        public bool GetBoolValue(string name)
+        {
+            return musicTreeRuntime.GetBoolValue(name);
+        }
+        public void SetBoolValue(string name, bool newVal)
+        {
+            musicTreeRuntime.SetBoolValue(name, newVal);
+        }
+
+        public int GetIntValue(string name)
+        {
+            return musicTreeRuntime.GetIntValue(name);
+        }
+        public void SetIntValue(string name, int newVal)
+        {
+            musicTreeRuntime.SetIntValue(name, newVal);
+        }
+
+
+
         void Start()
         {
             Debug.Log("Initializing");

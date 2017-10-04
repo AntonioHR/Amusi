@@ -62,6 +62,34 @@ namespace AntonioHR.MusicTree
 
             return resultNode;
         }
+
+
+        public float GetFloatValue(string name)
+        {
+            return env.GetFloatValue(name);
+        }
+        public void SetFloatValue(string name, float newVal)
+        {
+            env.SetFloatValue(name, newVal);
+        }
+
+        public bool GetBoolValue(string name)
+        {
+            return env.GetBoolValue(name);
+        }
+        public void SetBoolValue(string name, bool newVal)
+        {
+            env.SetBoolValue(name, newVal);
+        }
+
+        public int GetIntValue(string name)
+        {
+            return env.GetIntValue(name);
+        }
+        public void SetIntValue(string name, int newVal)
+        {
+            env.SetIntValue(name, newVal);
+        }
     }
 
     
