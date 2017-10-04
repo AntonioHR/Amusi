@@ -27,6 +27,30 @@ namespace AntonioHR
         {
             return new Rect(position, r.size);
         }
+
+        public static Rect ShrinkToLeft(this Rect r, float ratio)
+        {
+            return new Rect(r.position, new Vector2(r.width * ratio, r.height));
+        }
+        public static Rect ShrinkToRight(this Rect r, float ratio)
+        {
+            return new Rect(r.position + Vector2.right * r.width * (1- ratio), new Vector2(r.width * ratio, r.height));
+        }
+
+        public static Rect ShrinkToRightAbsolute(this Rect r, float offset)
+        {
+            return new Rect(r.position + Vector2.right * offset, new Vector2(r.width - offset, r.height));
+        }
+
+        public static Rect ShrinkToLeftAbsolute(this Rect r, float offset)
+        {
+            return new Rect(r.position, new Vector2(r.width - offset, r.height));
+        }
+
+        public static Rect Translated(this Rect r, Vector2 position)
+        {
+            return new Rect(r.position + position, r.size);
+        }
         public static Rect CenteredAt(this Rect r, Vector2 position)
         {
             return new Rect(position - r.size/2, r.size);

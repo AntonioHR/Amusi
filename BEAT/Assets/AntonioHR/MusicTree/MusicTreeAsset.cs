@@ -4,11 +4,14 @@ using UnityEngine;
 using AntonioHR.TreeAsset;
 using UnityEditor;
 using AntonioHR.MusicTree.Nodes;
+using AntonioHR.ConditionVariables;
 
 namespace AntonioHR.MusicTree
 {
     public class MusicTreeAsset : TreeAsset<MusicTreeNode>
     {
+
+        public ConditionVariableCollection variables;
 
         protected override MusicTreeNode InstantiateRoot()
         {
