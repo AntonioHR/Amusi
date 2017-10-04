@@ -12,6 +12,25 @@ MonoBehaviour:
   m_Name: Example Tree
   m_EditorClassIdentifier: 
   hierarchy: {fileID: 114966657828524820}
+  vars:
+  - name: Count
+    value:
+      type: 0
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+  - name: Angry
+    value:
+      type: 1
+      intValue: 0
+      boolValue: 1
+      floatValue: 0
+  - name: 
+    value:
+      type: 0
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
 --- !u!114 &114033144550501360
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ namespace AntonioHR.MusicTree
         {
             this.tree = tree;
             playing = false;
+
+            env = MusicTreeEnvironment.CreateFrom(tree.vars);
         }
 
 
@@ -49,7 +51,6 @@ namespace AntonioHR.MusicTree
             return resultNode;
         }
 
-
         private CueMusicTreeNode TryExecuteFromStart()
         {
             CueMusicTreeNode resultNode = null;
@@ -62,6 +63,8 @@ namespace AntonioHR.MusicTree
             return resultNode;
         }
     }
+
+    
     public class NoValidPatchToPlayException : Exception
     {
 

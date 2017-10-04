@@ -3541,6 +3541,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &237345469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 237345471}
+  - component: {fileID: 237345470}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &237345470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 237345469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8778d66056a96a14786bf3a8434aabf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  var:
+    type: 1
+    intValue: 4
+    boolValue: 0
+    floatValue: 0.25
+--- !u!4 &237345471
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 237345469}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &408856853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3570,7 +3615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdf48b4a1c94364d8f6c2697f00a5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicTree: {fileID: 11400000, guid: 1875f334a946fae40b03345f76bf67da, type: 2}
+  musicTree: {fileID: 11400000, guid: ba50418ec82b27c4dbd97111bb3543bb, type: 2}
   beatCounterSettings:
     updateRatio: 30
     measureSignature: 1

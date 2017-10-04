@@ -5,6 +5,13 @@ using System.Text;
 
 namespace AntonioHR.ConditionVariables
 {
+
+    [Serializable]
+    public class ConditionVariable
+    {
+        public string name;
+        public ConditionVariableValue value;
+    }
     [Serializable]
     public class ConditionVariableValue
     {

@@ -8,7 +8,12 @@ namespace AntonioHR.MusicTree
 {
     public class MusicTreeEnvironment
     {
-        public Dictionary<string, ConditionVariableValue> values;
+        private Dictionary<string, ConditionVariableValue> values;
+
+        private MusicTreeEnvironment()
+        {
+            values = new Dictionary<string, ConditionVariableValue>();
+        }
 
         public bool Evaluate(Condition cond)
         {
@@ -70,6 +75,19 @@ namespace AntonioHR.MusicTree
                 throw new WrongVariableTypeException(name, ConditionVariableValue.Type.Integer, val.type);
             }
             return val.intValue;
+        }
+
+
+        public static MusicTreeEnvironment CreateFrom(IEnumerable<ConditionVariable> varDescriptions)
+        {
+            var result = new MusicTreeEnvironment();
+
+            foreach (var varDescription in varDescriptions)
+            {
+                result.values.Add(varDescription.name, varDescription.value);
+            }
+
+            return result;
         }
     }
     public class WrongVariableTypeException: Exception

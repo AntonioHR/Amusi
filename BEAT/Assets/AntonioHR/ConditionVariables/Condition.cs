@@ -5,6 +5,7 @@ using System.Text;
 
 namespace AntonioHR.ConditionVariables
 {
+    [Serializable]
     public class Condition
     {
         public enum IntCondition { EqualTo, Greater, GreaterEq, Less, LessEq}

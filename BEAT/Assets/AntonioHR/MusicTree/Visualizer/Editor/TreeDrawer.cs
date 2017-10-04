@@ -21,6 +21,7 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
         Texture sequence_icon;
         Texture selector_icon;
         Texture cue_icon;
+        Texture condition_icon;
         #endregion
 
         Dictionary<TreeNodeAsset, TreeNodeDrawer> nodeDrawers;
@@ -54,6 +55,7 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
             selector_icon = Resources.Load<Texture>("icon_selector");
             sequence_icon = Resources.Load<Texture>("icon_sequence");
             cue_icon = Resources.Load<Texture>("icon_music");
+            condition_icon = Resources.Load<Texture>("icon_condition");
         }
 
         void UpdateTreeCache()
@@ -67,10 +69,6 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
         {
             nodeDrawers = new Dictionary<TreeNodeAsset, TreeNodeDrawer>();
 
-            //CalculateBaseXOfNodes();
-
-            ////resolveNodeConflicts();
-
             ReserveLayoutSpace();
 
             DrawNodes();
@@ -78,9 +76,6 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
 
         private void DrawNodes()
         {
-            //DrawNodeRecursion(tree.Root, 0, Vector2.zero);
-
-
             foreach (var node in cachedTree.AllNodes)
             {
                 if (!node.IsRoot)
@@ -104,27 +99,6 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
             Handles.DrawLine(parentBounds.center, myBounds.center);
         }
 
-        //private void DrawNodeRecursion(TreeNodeAsset node, float mod, Vector2 parentPos)
-        //{
-        //    var nodeDrawer = nodeDrawers[node];
-        //    Rect baseRect = new Rect(0, 0, nodeSize, nodeSize);
-        //    var nodePosition = new Vector2((nodeDrawer.localX + mod) * sibilingSeparation + xStart,
-        //        nodeDrawer.height * levelSeparation + yStart);
-
-
-
-        //    foreach (var child in node.Children)
-        //    {
-        //        DrawNodeRecursion(child, mod + nodeDrawer.mod, nodePosition);
-        //    }
-
-        //    if (!node.IsRoot)
-        //    {
-        //        var offset = (Vector2.right * .5f * nodeSize);
-        //        Handles.DrawLine(nodePosition + offset, parentPos + offset);
-        //    }
-        //    DrawNode(bounds, node);
-        //}
 
         private void DrawNode(Rect bounds, TreeNodeAsset node)
         {
@@ -146,6 +120,9 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
             {
                 //color = Color.cyan;
                 tex = sequence_icon;
+            } else if(node is ConditionMusicTreeNode)
+            {
+                tex = condition_icon;
             }
 
 

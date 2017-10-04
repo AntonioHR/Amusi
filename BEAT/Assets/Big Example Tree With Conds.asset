@@ -1,0 +1,384 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8a8382ad7728d4e891434c395b5dbd, type: 3}
+  m_Name: Big Example Tree With Conds
+  m_EditorClassIdentifier: 
+  hierarchy: {fileID: 114160970602604554}
+  vars:
+  - name: close
+    value:
+      type: 1
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+  - name: angry
+    value:
+      type: 1
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+--- !u!114 &114008438491580026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Music 1)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children: []
+  _parent: {fileID: 114542273216728726}
+  _isFloating: 0
+  _content: {fileID: 114223923700985728}
+--- !u!114 &114068833726587736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Music 3)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children: []
+  _parent: {fileID: 114580672827147218}
+  _isFloating: 0
+  _content: {fileID: 114263278107064076}
+--- !u!114 &114073567372758104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Condition 1)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children:
+  - {fileID: 114542273216728726}
+  _parent: {fileID: 114102692830432166}
+  _isFloating: 0
+  _content: {fileID: 114386488193544982}
+--- !u!114 &114080924510996388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Selector 2)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children:
+  - {fileID: 114213613211218370}
+  - {fileID: 114090487508971886}
+  _parent: {fileID: 114580672827147218}
+  _isFloating: 0
+  _content: {fileID: 114249440608563276}
+--- !u!114 &114090487508971886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Music 5)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children: []
+  _parent: {fileID: 114080924510996388}
+  _isFloating: 0
+  _content: {fileID: 114593014135732456}
+--- !u!114 &114102692830432166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Root(Selector))
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children:
+  - {fileID: 114073567372758104}
+  - {fileID: 114580672827147218}
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114960822603188072}
+--- !u!114 &114154540166600636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddcb9cbce767c6445ade3f93d0df87f7, type: 3}
+  m_Name: Sequence 1
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114542273216728726}
+--- !u!114 &114160970602604554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b772e827a70c054d9e28f5770432221, type: 3}
+  m_Name: Hierarchy
+  m_EditorClassIdentifier: 
+  _root: {fileID: 114102692830432166}
+  _floaters: []
+--- !u!114 &114213613211218370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Condition 2)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children:
+  - {fileID: 114473538558975044}
+  _parent: {fileID: 114080924510996388}
+  _isFloating: 0
+  _content: {fileID: 114690494829753724}
+--- !u!114 &114223923700985728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbeab65ce57b08b4bac6e61493efbd75, type: 3}
+  m_Name: Music 1
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114008438491580026}
+  clip: {fileID: 0}
+  pattern: {fileID: 0}
+--- !u!114 &114249440608563276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9684df622861745a281526ef304a9f, type: 3}
+  m_Name: Selector 2
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114080924510996388}
+--- !u!114 &114263278107064076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbeab65ce57b08b4bac6e61493efbd75, type: 3}
+  m_Name: Music 3
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114068833726587736}
+  clip: {fileID: 0}
+  pattern: {fileID: 0}
+--- !u!114 &114308051869420768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddcb9cbce767c6445ade3f93d0df87f7, type: 3}
+  m_Name: Sequence 2
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114580672827147218}
+--- !u!114 &114386488193544982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1b6e5f010b4ad408648963f4aa8e74, type: 3}
+  m_Name: Condition 1
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114073567372758104}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 1
+    variableName: angry
+--- !u!114 &114473538558975044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Music 4)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children: []
+  _parent: {fileID: 114213613211218370}
+  _isFloating: 0
+  _content: {fileID: 114921567062568952}
+--- !u!114 &114542273216728726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Sequence 1)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children:
+  - {fileID: 114008438491580026}
+  - {fileID: 114974626058441236}
+  _parent: {fileID: 114073567372758104}
+  _isFloating: 0
+  _content: {fileID: 114154540166600636}
+--- !u!114 &114580672827147218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Sequence 2)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children:
+  - {fileID: 114068833726587736}
+  - {fileID: 114080924510996388}
+  _parent: {fileID: 114102692830432166}
+  _isFloating: 0
+  _content: {fileID: 114308051869420768}
+--- !u!114 &114593014135732456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbeab65ce57b08b4bac6e61493efbd75, type: 3}
+  m_Name: Music 5
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114090487508971886}
+  clip: {fileID: 0}
+  pattern: {fileID: 0}
+--- !u!114 &114690494829753724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1b6e5f010b4ad408648963f4aa8e74, type: 3}
+  m_Name: Condition 2
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114213613211218370}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 0
+    variableName: close
+--- !u!114 &114921567062568952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbeab65ce57b08b4bac6e61493efbd75, type: 3}
+  m_Name: Music 4
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114473538558975044}
+  clip: {fileID: 0}
+  pattern: {fileID: 0}
+--- !u!114 &114960822603188072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da9684df622861745a281526ef304a9f, type: 3}
+  m_Name: Root(Selector)
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114102692830432166}
+--- !u!114 &114964561163367618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbeab65ce57b08b4bac6e61493efbd75, type: 3}
+  m_Name: Music 2
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114974626058441236}
+  clip: {fileID: 0}
+  pattern: {fileID: 0}
+--- !u!114 &114974626058441236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Music 2)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114160970602604554}
+  _children: []
+  _parent: {fileID: 114542273216728726}
+  _isFloating: 0
+  _content: {fileID: 114964561163367618}

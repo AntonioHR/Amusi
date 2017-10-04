@@ -11,7 +11,7 @@ namespace AntonioHR.MusicTree
     public class MusicTreeAsset : TreeAsset<MusicTreeNode>
     {
 
-        public ConditionVariableCollection variables;
+        public List<ConditionVariable> vars;
 
         protected override MusicTreeNode InstantiateRoot()
         {
@@ -72,6 +72,30 @@ namespace AntonioHR.MusicTree
             var m3 = tree.CreateChildFor<CueMusicTreeNode>(seq2, "Music 3");
             var sel2 = tree.CreateChildFor<SelectorMusicTreeNode>(seq2, "Selector 2");
             var m4 = tree.CreateChildFor<CueMusicTreeNode>(sel2, "Music 4");
+            var m5 = tree.CreateChildFor<CueMusicTreeNode>(sel2, "Music 5");
+        }
+        [MenuItem("Music Tree/Big Example Tree with Conditions")]
+        public static void CreateBigExampleTreeWithConds()
+        {
+            var tree = ScriptableObject.CreateInstance<MusicTreeAsset>();
+            AssetDatabase.CreateAsset(tree, "Assets/Big Example Tree With Conds.asset");
+
+            AssetDatabase.SaveAssets();
+            tree.Init();
+
+            var cond1 = tree.CreateChildFor<ConditionMusicTreeNode>(tree.Root, "Condition 1");
+            var seq1 = tree.CreateChildFor<SequenceMusicTreeNode>(cond1, "Sequence 1");
+            var m1 = tree.CreateChildFor<CueMusicTreeNode>(seq1, "Music 1");
+
+            var m2 = tree.CreateChildFor<CueMusicTreeNode>(seq1, "Music 2");
+
+            var seq2 = tree.CreateChildFor<SequenceMusicTreeNode>(tree.Root, "Sequence 2");
+
+            var m3 = tree.CreateChildFor<CueMusicTreeNode>(seq2, "Music 3");
+            var sel2 = tree.CreateChildFor<SelectorMusicTreeNode>(seq2, "Selector 2");
+
+            var cond2 = tree.CreateChildFor<ConditionMusicTreeNode>(sel2, "Condition 2");
+            var m4 = tree.CreateChildFor<CueMusicTreeNode>(cond2, "Music 4");
             var m5 = tree.CreateChildFor<CueMusicTreeNode>(sel2, "Music 5");
         }
         #endregion

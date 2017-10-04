@@ -23,6 +23,8 @@ namespace AntonioHR.ConditionVariables.Editor
         public override void OnGUI(UnityEngine.Rect position, SerializedProperty property, UnityEngine.GUIContent label)
         {
             UpdateObject(property);
+            if (obj == null)
+                return;
 
             var jump = new Vector2(0, EditorGUIUtility.singleLineHeight);
 
