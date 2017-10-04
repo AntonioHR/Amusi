@@ -1,0 +1,95 @@
+﻿using AntonioHR.ConditionVariables;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace AntonioHR.MusicTree
+{
+    public class MusicTreeEnvironment
+    {
+        public Dictionary<string, ConditionVariableValue> values;
+
+        public bool Evaluate(Condition cond)
+        {
+            return cond.IsTrueFor(values[cond.variableName]);
+        }
+
+        public float GetFloatValue(string name)
+        {
+            var val = values[name];
+            if (val.type != ConditionVariableValue.Type.Float)
+            {
+                throw new WrongVariableTypeException(name, ConditionVariableValue.Type.Float, val.type);
+            }
+            return val.floatValue;
+        }
+        public void SetFloatValue(string name, float newVal)
+        {
+            var val = values[name];
+            if(val.type != ConditionVariableValue.Type.Float)
+            {
+                throw new WrongVariableTypeException(name, ConditionVariableValue.Type.Float, val.type);
+            }
+            val.floatValue = newVal;
+        }
+
+        public void SetBoolValue(string name, bool newVal)
+        {
+            var val = values[name];
+            if (val.type != ConditionVariableValue.Type.Boolean)
+            {
+                throw new WrongVariableTypeException(name, ConditionVariableValue.Type.Boolean, val.type);
+            }
+            val.boolValue = newVal;
+        }
+        public bool GetBoolValue(string name)
+        {
+            var val = values[name];
+            if (val.type != ConditionVariableValue.Type.Boolean)
+            {
+                throw new WrongVariableTypeException(name, ConditionVariableValue.Type.Boolean, val.type);
+            }
+            return val.boolValue;
+        }
+
+        public void SetIntValue(string name, int newVal)
+        {
+            var val = values[name];
+            if (val.type != ConditionVariableValue.Type.Integer)
+            {
+                throw new WrongVariableTypeException(name, ConditionVariableValue.Type.Integer, val.type);
+            }
+            val.intValue = newVal;
+        }
+        public int GetIntValue(string name)
+        {
+            var val = values[name];
+            if (val.type != ConditionVariableValue.Type.Integer)
+            {
+                throw new WrongVariableTypeException(name, ConditionVariableValue.Type.Integer, val.type);
+            }
+            return val.intValue;
+        }
+    }
+    public class WrongVariableTypeException: Exception
+    {
+        public ConditionVariableValue.Type ExpectedType{get;private set;}
+        public ConditionVariableValue.Type ActualType{get;private set;}
+        public string VarName{ get; private set; }
+
+        public WrongVariableTypeException(string varName, ConditionVariableValue.Type expectedType, ConditionVariableValue.Type actualType)
+        {
+            this.ExpectedType = expectedType;
+            this.ActualType = actualType;
+            this.VarName = varName;
+        }
+        public override string Message
+        {
+            get
+            {
+                return string.Format("Tried to use {0} as a {0}, but it is a {1}", VarName, ExpectedType, ActualType);
+            }
+        }
+    }
+}

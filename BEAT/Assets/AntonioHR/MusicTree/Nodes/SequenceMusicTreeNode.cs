@@ -13,37 +13,37 @@ namespace AntonioHR.MusicTree.Nodes
             get { return ChildrenPolicy.Multiple; }
         }
 
-        public override ExecutionState ContinueExecution(MusicTreeNode currentChild, out CueMusicTreeNode result)
+        public override ExecutionState ContinueExecution(MusicTreeEnvironment env, MusicTreeNode currentChild, out CueMusicTreeNode result)
         {
-            return ExecuteChildrenAfter(currentChild, out result);
+            return ExecuteChildrenAfter(currentChild, env, out result);
         }
 
-        public override ExecutionState Execute(out CueMusicTreeNode result)
+        public override ExecutionState Execute(MusicTreeEnvironment env, out CueMusicTreeNode result)
         {
             if (_hierarchy._children.Count == 0)
             {
                 result = null;
                 return ExecutionState.Done;
             }
-            return ExecuteAllChildren(out result);
+            return ExecuteAllChildren(env, out result);
         }
 
 
-        private ExecutionState ExecuteChildrenAfter(MusicTreeNode child, out CueMusicTreeNode result)
+        private ExecutionState ExecuteChildrenAfter(MusicTreeNode child, MusicTreeEnvironment env, out CueMusicTreeNode result)
         {
-            return ExecuteChildren(child.SibilingsAfter, out result);
+            return ExecuteChildren(env, child.SibilingsAfter, out result);
         }
 
-        private ExecutionState ExecuteAllChildren(out CueMusicTreeNode result)
+        private ExecutionState ExecuteAllChildren(MusicTreeEnvironment env, out CueMusicTreeNode result)
         {
-            return ExecuteChildren(Children, out result);
+            return ExecuteChildren(env, Children, out result);
         }
 
-        private  ExecutionState ExecuteChildren(IEnumerable<TreeNodeAsset> childrenToExecute, out CueMusicTreeNode result)
+        private ExecutionState ExecuteChildren(MusicTreeEnvironment env, IEnumerable<TreeNodeAsset> childrenToExecute, out CueMusicTreeNode result)
         {
             foreach (var child in childrenToExecute)
             {
-                var executionState = ((MusicTreeNode)child).Execute(out result);
+                var executionState = ((MusicTreeNode)child).Execute(env, out result);
                 switch (executionState)
                 {
                     case ExecutionState.Running:

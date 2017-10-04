@@ -13,8 +13,8 @@ namespace AntonioHR.MusicTree
         public enum ChildrenPolicy { None, Single, Multiple}
         public abstract ChildrenPolicy Policy { get; }
 
-        public abstract ExecutionState Execute(out CueMusicTreeNode result);
-        public abstract ExecutionState ContinueExecution(MusicTreeNode currentChild, out CueMusicTreeNode result);
+        public abstract ExecutionState Execute(MusicTreeEnvironment env, out CueMusicTreeNode result);
+        public abstract ExecutionState ContinueExecution(MusicTreeEnvironment env, MusicTreeNode currentChild, out CueMusicTreeNode result);
 
     }
 }

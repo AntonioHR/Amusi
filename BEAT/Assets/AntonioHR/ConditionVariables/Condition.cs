@@ -35,7 +35,7 @@ namespace AntonioHR.ConditionVariables
                 case IntCondition.LessEq:
                     return i <= intVal;
                 default:
-                    return false;
+                    throw new InvalidOperationException();
             }
         }
         public bool IsTrueFor(float f)
@@ -53,7 +53,7 @@ namespace AntonioHR.ConditionVariables
                 case FloatCondition.LessEq:
                     return f <= floatVal;
                 default:
-                    return false;;
+                    throw new InvalidOperationException();
             }
         }
         public bool IsTrueFor(bool b)
@@ -63,7 +63,21 @@ namespace AntonioHR.ConditionVariables
                 case BooleanCondition.Is:
                     return boolVal == b;
                 default:
-                    return false;
+                    throw new InvalidOperationException();
+            }
+        }
+        public bool IsTrueFor(ConditionVariableValue val)
+        {
+            switch (val.type)
+            {
+                case ConditionVariableValue.Type.Integer:
+                    return IsTrueFor(val.intValue);
+                case ConditionVariableValue.Type.Boolean:
+                    return IsTrueFor(val.boolValue);
+                case ConditionVariableValue.Type.Float:
+                    return IsTrueFor(val.floatValue);
+                default:
+                    throw new InvalidOperationException();
             }
         }
     }

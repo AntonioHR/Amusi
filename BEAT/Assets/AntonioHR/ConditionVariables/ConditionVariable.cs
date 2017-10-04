@@ -6,7 +6,7 @@ using System.Text;
 namespace AntonioHR.ConditionVariables
 {
     [Serializable]
-    public class ConditionVariable
+    public class ConditionVariableValue
     {
        public enum Type { Integer, Boolean, Float}
 

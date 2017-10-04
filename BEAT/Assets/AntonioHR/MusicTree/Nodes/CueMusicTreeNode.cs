@@ -16,19 +16,18 @@ namespace AntonioHR.MusicTree.Nodes
         public BeatFW.BeatPatternAsset pattern;
 
 
-        public MusicTreeNode.ExecutionState FindNext(out CueMusicTreeNode result)
+        public MusicTreeNode.ExecutionState FindNext(MusicTreeEnvironment env, out CueMusicTreeNode result)
         {
-            return ((MusicTreeNode)Parent).ContinueExecution(this, out result);
+            return ((MusicTreeNode)Parent).ContinueExecution(env, this, out result);
         }
 
-        public override MusicTreeNode.ExecutionState Execute(out CueMusicTreeNode result)
+        public override MusicTreeNode.ExecutionState Execute(MusicTreeEnvironment env, out CueMusicTreeNode result)
         {
             result = this;
             return ExecutionState.Running;
         }
 
-        public override MusicTreeNode.ExecutionState ContinueExecution
-            (MusicTreeNode currentChild, out CueMusicTreeNode result)
+        public override MusicTreeNode.ExecutionState ContinueExecution(MusicTreeEnvironment env, MusicTreeNode currentChild, out CueMusicTreeNode result)
         {
             throw new InvalidOperationException();
         }

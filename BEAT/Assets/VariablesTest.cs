@@ -6,7 +6,7 @@ using UnityEngine;
 public class VariablesTest : MonoBehaviour {
 
     public ConditionVariableCollection collection;
-    public ConditionVariable var;
+    public ConditionVariableValue var;
 
 	// Use this for initialization
 	void Start () {

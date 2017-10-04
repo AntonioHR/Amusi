@@ -7,10 +7,10 @@ using UnityEngine;
 
 namespace AntonioHR.ConditionVariables.Editor
 {
-    [CustomPropertyDrawer(typeof(ConditionVariable))]
+    [CustomPropertyDrawer(typeof(ConditionVariableValue))]
     public class ConditionVariableInspector : PropertyDrawer
     {
-        public ConditionVariable obj;
+        public ConditionVariableValue obj;
 
 
         public override float GetPropertyHeight(SerializedProperty property, UnityEngine.GUIContent label)
@@ -35,7 +35,7 @@ namespace AntonioHR.ConditionVariables.Editor
             EditorGUI.LabelField(r_label, property.name);
 
 
-            obj.type = (ConditionVariable.Type)EditorGUI.EnumPopup(r_full.Translated(jump).ShrinkToRightAbsolute(10), "Type", obj.type);
+            obj.type = (ConditionVariableValue.Type)EditorGUI.EnumPopup(r_full.Translated(jump).ShrinkToRightAbsolute(10), "Type", obj.type);
 
 
             DrawPropertyValue(r_full.Translated(2 * jump).ShrinkToRightAbsolute(10));
@@ -45,13 +45,13 @@ namespace AntonioHR.ConditionVariables.Editor
         {
             switch (obj.type)
             {
-                case ConditionVariable.Type.Integer:
+                case ConditionVariableValue.Type.Integer:
                     obj.intValue = EditorGUI.IntField(position, "Starting Value", obj.intValue);
                     break;
-                case ConditionVariable.Type.Boolean:
+                case ConditionVariableValue.Type.Boolean:
                     obj.boolValue = EditorGUI.Toggle(position, "Starting Value", obj.boolValue);
                     break;
-                case ConditionVariable.Type.Float:
+                case ConditionVariableValue.Type.Float:
                     obj.floatValue = EditorGUI.FloatField(position, "Starting Value", obj.floatValue);
                     break;
                 default:
@@ -61,7 +61,7 @@ namespace AntonioHR.ConditionVariables.Editor
 
         private void UpdateObject(SerializedProperty property)
         {
-            obj = (ConditionVariable)EditorHelper.GetTargetObjectOfProperty(property);
+            obj = (ConditionVariableValue)EditorHelper.GetTargetObjectOfProperty(property);
         }
     }
 }

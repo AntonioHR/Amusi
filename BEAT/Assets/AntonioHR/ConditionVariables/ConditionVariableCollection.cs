@@ -14,6 +14,6 @@ namespace AntonioHR.ConditionVariables
     public class NamedConditionVariable
     {
         public string name;
-        public ConditionVariable value;
+        public ConditionVariableValue value;
     }
 }

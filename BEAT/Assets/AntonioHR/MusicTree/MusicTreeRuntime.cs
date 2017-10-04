@@ -13,6 +13,8 @@ namespace AntonioHR.MusicTree
         private CueMusicTreeNode currentlyPlayed;
         private bool playing = false;
 
+        private MusicTreeEnvironment env;
+
         public MusicTreeRuntime(MusicTreeAsset tree)
         {
             this.tree = tree;
@@ -31,7 +33,7 @@ namespace AntonioHR.MusicTree
             CueMusicTreeNode resultNode = null;
             if(playing)
             {
-                var execStateFirstTry = currentlyPlayed.FindNext(out resultNode);
+                var execStateFirstTry = currentlyPlayed.FindNext(env, out resultNode);
                 if (execStateFirstTry == MusicTreeNode.ExecutionState.Running)
                 {
                     currentlyPlayed = resultNode;
@@ -52,7 +54,7 @@ namespace AntonioHR.MusicTree
         {
             CueMusicTreeNode resultNode = null;
 
-            var executionState = tree.Root.Execute(out resultNode);
+            var executionState = tree.Root.Execute(env, out resultNode);
 
             playing = (executionState == MusicTreeNode.ExecutionState.Running);
             currentlyPlayed = resultNode;
