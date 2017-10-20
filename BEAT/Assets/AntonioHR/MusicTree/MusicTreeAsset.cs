@@ -5,6 +5,7 @@ using AntonioHR.TreeAsset;
 using UnityEditor;
 using AntonioHR.MusicTree.Nodes;
 using AntonioHR.ConditionVariables;
+using AntonioHR.MusicTree.Internal;
 
 namespace AntonioHR.MusicTree
 {
@@ -12,6 +13,8 @@ namespace AntonioHR.MusicTree
     {
 
         public List<ConditionVariable> vars;
+
+        public List<BeatTrackDefinition> trackDefinitions;
 
         protected override MusicTreeNode InstantiateRoot()
         {

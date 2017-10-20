@@ -20,9 +20,10 @@ namespace AntonioHR.BeatFW.Editor
         {
             currentObject = obj;
             var serialized = new SerializedObject(currentObject);
-            beatsPerMeasure = serialized.FindProperty("beatsPerMeasure");
-            measureCount = serialized.FindProperty("measureCount");
-            notes = serialized.FindProperty("notes");
+            var serializedPat = serialized.FindProperty("pattern");
+            beatsPerMeasure = serializedPat.FindPropertyRelative("beatsPerMeasure");
+            measureCount = serializedPat.FindPropertyRelative("measureCount");
+            notes = serializedPat.FindPropertyRelative("notes");
         }
 
         public static void Show(BeatPatternAsset BeatPatternProperty)
@@ -51,10 +52,10 @@ namespace AntonioHR.BeatFW.Editor
             var rect = GUILayoutUtility.GetRect(EditorGUIUtility.currentViewWidth, EditorGUIUtility.singleLineHeight * 2);
             rect.x += rect.width *.25f;
             rect.width *= .5f;
-            DrawPattern(rect, currentObject);
+            DrawPattern(rect, currentObject.pattern);
         }
 
-        public static void DrawPattern(Rect rect, BeatPatternAsset pat)
+        public static void DrawPattern(Rect rect, BeatPattern pat)
         {
             float totalBeats = (pat.MeasureCount * pat.BeatsPerMeasure);
             var beatWidth = rect.width / totalBeats;

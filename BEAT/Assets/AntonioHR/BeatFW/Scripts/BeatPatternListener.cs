@@ -11,7 +11,7 @@ public class BeatPatternListener : MonoBehaviour
 {
     public UnityEvent OnNoteEvent;
 
-    public BeatPatternAsset pattern;
+    public BeatPatternAsset patternAsset;
 
     IBeatManager beatManager;
 
@@ -28,7 +28,7 @@ public class BeatPatternListener : MonoBehaviour
         float curr = beatManager.BeatProgressFull;
         if (curr < 0)
             return;
-        var diff = pattern.NotesBetween(lastVal, curr);
+        var diff = patternAsset.pattern.NotesBetween(lastVal, curr);
         for (int i = 0; i < diff; i++)
         {
             OnNote();

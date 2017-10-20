@@ -11,12 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16fe82e42610a9246afd55e2dab42a3f, type: 3}
   m_Name: Pat_1
   m_EditorClassIdentifier: 
-  beatsPerMeasure: 4
-  measureCount: 8
-  notes:
-  - timeInBeats: 9
-  - timeInBeats: 10
-  - timeInBeats: 11
-  - timeInBeats: 12
-  - timeInBeats: 13
-  - timeInBeats: 8
+  pattern:
+    beatsPerMeasure: 4
+    measureCount: 1
+    notes:
+    - timeInBeats: 0
+    - timeInBeats: 2

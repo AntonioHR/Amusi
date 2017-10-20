@@ -14,7 +14,5 @@ namespace AntonioHR.MusicTree
         public abstract ChildrenPolicy Policy { get; }
 
         public abstract void Accept(MusicNodeVisitor vis, PlayableMusicTreeNode container);
-
-
     }
 }

@@ -20,18 +20,18 @@ namespace AntonioHR.BeatFW.Editor
             EditorGUI.ObjectField(r1, property);
             Rect r2 = r1;
             r2.y += r1.height;
-            var pat = (BeatPatternAsset)property.objectReferenceValue;
-            EditorGUI.BeginDisabledGroup(pat == null);
+            var pattAsset = (BeatPatternAsset)property.objectReferenceValue;
+            EditorGUI.BeginDisabledGroup(pattAsset == null);
             if (GUI.Button(r2, "Edit"))
             {
-                BeatPatternWindow.Show(pat);
+                BeatPatternWindow.Show(pattAsset);
             }
 
             Rect r3 = r2;
             r3.y += r2.height;
             if (property.objectReferenceValue != null)
             {
-                BeatPatternWindow.DrawPattern(r3, pat);
+                BeatPatternWindow.DrawPattern(r3, pattAsset.pattern);
             }
             EditorGUI.EndDisabledGroup();
 

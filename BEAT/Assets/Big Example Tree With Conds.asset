@@ -25,6 +25,7 @@ MonoBehaviour:
       intValue: 0
       boolValue: 0
       floatValue: 0
+  trackDefinitions: []
 --- !u!114 &114008438491580026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114974626058441236}
   clip: {fileID: 8300000, guid: 2c113a99fc6915949b41a2f0025fc4a7, type: 3}
-  pattern: {fileID: 0}
+  pattern: {fileID: 11400000, guid: b39793780c1434f46833ca8857ac3226, type: 2}
 --- !u!114 &114974626058441236
 MonoBehaviour:
   m_ObjectHideFlags: 0

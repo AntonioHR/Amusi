@@ -13,6 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hierarchy: {fileID: 0}
   vars: []
+  trackDefinitions:
+  - name: bg
+  - name: voice
 --- !u!114 &114047239968192438
 MonoBehaviour:
   m_ObjectHideFlags: 0
