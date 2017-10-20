@@ -18,13 +18,14 @@ namespace AntonioHR.MusicTree
 
         BeatCounter counter;
         MusicController musicController;
-        MusicTreeRuntime musicTreeRuntime;
+        //MusicTreeRuntime musicTreeRuntime;
+        PlayableMusicTree musicTreeRuntime;
 
 
 
+        #region Beat Acessors
         public float BeatProgressFull { get { return counter.GetFullProgress(); } }
         public int CompletedBeats { get { return counter.CompletedBeats; } }
-
 
         public float GetBeatProgress()
         {
@@ -34,9 +35,9 @@ namespace AntonioHR.MusicTree
         {
             return counter.GetBeatProgress(beat, max);
         }
+        #endregion
 
-
-
+        #region Tree Envionment Accessors
         public float GetFloatValue(string name)
         {
             return musicTreeRuntime.GetFloatValue(name);
@@ -63,8 +64,7 @@ namespace AntonioHR.MusicTree
         {
             musicTreeRuntime.SetIntValue(name, newVal);
         }
-
-
+        #endregion
 
         void Start()
         {
@@ -72,7 +72,7 @@ namespace AntonioHR.MusicTree
             musicController = new MusicController(GetComponents<AudioSource>(), musicControllerSettings);
             musicController.OnClipCloseToEnd += controller_OnClipCloseToEnd;
             counter = new BeatCounter(beatCounterSettings, musicController);
-            musicTreeRuntime = new MusicTreeRuntime(musicTree);
+            musicTreeRuntime = PlayableMusicTree.CreateTreeFrom<PlayableMusicTree>(musicTree);
 
             double initTime = musicController.Init(musicTreeRuntime.SelectNextPatch());
             StartCoroutine(musicController.ClipCheck());

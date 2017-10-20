@@ -26,7 +26,7 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
 
         Dictionary<TreeNodeAsset, TreeNodeDrawer> nodeDrawers;
 
-        ReadonlyTree<MusicTreeNode> cachedTree;
+        RuntimeTree<MusicTreeNode> cachedTree;
         TreeNodePositioning<MusicTreeNode> cachedPositioning;
 
         class TreeNodeDrawer
@@ -61,7 +61,7 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
         void UpdateTreeCache()
         {
 
-            cachedTree = ReadonlyTree<MusicTreeNode>.CreateFrom(tree);
+            cachedTree = RuntimeTree<MusicTreeNode>.CreateTreeFrom(tree);
             cachedPositioning = TreeNodePositioning<MusicTreeNode>.CreateFrom(cachedTree);
         }
 
@@ -91,7 +91,7 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
             }
         }
 
-        private void DrawLineToParent(ReadonlyTreeNode<MusicTreeNode> node, MusicTreeNode musicTreeNode)
+        private void DrawLineToParent(RuntimeTreeNode<MusicTreeNode> node, MusicTreeNode musicTreeNode)
         {
             var parentBounds = cachedPositioning.GetBoundsFor(node.Parent);
             var myBounds = cachedPositioning.GetBoundsFor(node);

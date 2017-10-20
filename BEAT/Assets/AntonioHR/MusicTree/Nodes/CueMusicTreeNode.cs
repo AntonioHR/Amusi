@@ -1,8 +1,10 @@
-﻿using System;
+﻿using AntonioHR.MusicTree.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using AntonioHR.TreeAsset.Internal;
 
 namespace AntonioHR.MusicTree.Nodes
 {
@@ -15,21 +17,9 @@ namespace AntonioHR.MusicTree.Nodes
         public AudioClip clip;
         public BeatFW.BeatPatternAsset pattern;
 
-
-        public MusicTreeNode.ExecutionState FindNext(MusicTreeEnvironment env, out CueMusicTreeNode result)
+        public override void Accept(MusicNodeVisitor vis, PlayableMusicTreeNode container)
         {
-            return ((MusicTreeNode)Parent).ContinueExecution(env, this, out result);
-        }
-
-        public override MusicTreeNode.ExecutionState Execute(MusicTreeEnvironment env, out CueMusicTreeNode result)
-        {
-            result = this;
-            return ExecutionState.Running;
-        }
-
-        public override MusicTreeNode.ExecutionState ContinueExecution(MusicTreeEnvironment env, MusicTreeNode currentChild, out CueMusicTreeNode result)
-        {
-            throw new InvalidOperationException();
+            vis.Visit(this, container);
         }
     }
 }

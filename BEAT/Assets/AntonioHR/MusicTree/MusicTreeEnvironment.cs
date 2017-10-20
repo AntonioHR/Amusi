@@ -88,7 +88,7 @@ namespace AntonioHR.MusicTree
 
             foreach (var varDescription in varDescriptions)
             {
-                result.values.Add(varDescription.name, varDescription.value);
+                result.values.Add(varDescription.name, new ConditionVariableValue(varDescription.value));
             }
 
             return result;

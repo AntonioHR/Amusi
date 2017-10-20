@@ -17,6 +17,17 @@ namespace AntonioHR.ConditionVariables
     {
        public enum Type { Integer, Boolean, Float}
 
+        public ConditionVariableValue()
+        {
+        }
+        public ConditionVariableValue(ConditionVariableValue other)
+        {
+            type = other.type;
+            intValue = other.intValue;
+            boolValue = other.boolValue;
+            floatValue = other.floatValue;
+        }
+
         public Type type;
 
         public int intValue;
