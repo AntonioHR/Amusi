@@ -163,7 +163,10 @@ namespace AntonioHR.BeatFW.Internal
                 int measure = CompletedMeasures;
                 currentSample = (float)AudioSettings.dspTime * musicController.CurrentPatch.frequency - beatStart;
                 currentBeat = currentSample / beatSamplePeriod;
-                if(beat != CompletedBeats)
+
+
+                //Events
+                if (beat != CompletedBeats)
                 {
 					Debug.Assert(beat == 0 || CompletedBeats == beat + 1, String.Format("Completed beats has unexpected value of {0}, expected value is {1}", CompletedBeats, beat+1));
                     if(OnBeat != null)
@@ -189,6 +192,8 @@ namespace AntonioHR.BeatFW.Internal
                         OnMeasure(this);
                     }
                 }
+
+
                 yield return new WaitForSeconds(settings.updateRatio / 1000f);
             }
             

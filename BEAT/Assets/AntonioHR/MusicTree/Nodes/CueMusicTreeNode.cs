@@ -17,6 +17,8 @@ namespace AntonioHR.MusicTree.Nodes
         public AudioClip clip;
         public BeatFW.BeatPatternAsset pattern;
 
+        public List<BeatFW.BeatPattern> patterns;
+
         public override void Accept(MusicNodeVisitor vis, PlayableMusicTreeNode container)
         {
             vis.Visit(this, container);
