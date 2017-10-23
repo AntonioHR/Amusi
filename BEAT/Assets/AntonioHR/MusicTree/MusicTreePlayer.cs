@@ -7,10 +7,11 @@ using AntonioHR.MusicTree;
 using AntonioHR.BeatFW.Internal;
 using AntonioHR.BeatFW;
 using AntonioHR.MusicTree.Internal;
+using AntonioHR.MusicTree.Nodes;
 
 namespace AntonioHR.MusicTree
 {
-    public class MusicTreePlayer : MonoBehaviour, IBeatManager
+    public class MusicTreePlayer : MonoBehaviour
     {
         public MusicTreeAsset musicTree;
         [Space()]
@@ -19,25 +20,11 @@ namespace AntonioHR.MusicTree
 
         BeatCounter counter;
         MusicController musicController;
-        NoteEventHandler checker;
+        NoteEventManager checker;
 
         PlayableRuntimeMusicTree musicTreeRuntime;
+        private CueMusicTreeNode nextCueNode;
 
-
-
-        #region Beat Acessors
-        public float BeatProgressFull { get { return counter.GetFullProgress(); } }
-        public int CompletedBeats { get { return counter.CompletedBeats; } }
-
-        public float GetBeatProgress()
-        {
-            return counter.GetBeatProgress();
-        }
-        public float GetBeatProgress(int beat, float max = float.PositiveInfinity)
-        {
-            return counter.GetBeatProgress(beat, max);
-        }
-        #endregion
 
         #region Tree Envionment Accessors
         public float GetFloatValue(string name)
@@ -72,28 +59,38 @@ namespace AntonioHR.MusicTree
         {
             Debug.Log("Initializing");
             musicController = new MusicController(GetComponents<AudioSource>(), musicControllerSettings);
-            musicController.OnClipCloseToEnd += controller_OnClipCloseToEnd;
-            counter = new BeatCounter(beatCounterSettings, musicController);
+            musicController.OnClipCloseToEnd += Controller_OnClipCloseToEnd;
+            musicController.OnNewClipStart += MusicController_OnNewClipStarted;
+            counter = new BeatCounter(beatCounterSettings);
             musicTreeRuntime = PlayableRuntimeMusicTree.CreateTreeFrom<PlayableRuntimeMusicTree>(musicTree);
-            checker = new NoteEventHandler();
+            checker = new NoteEventManager(musicTree);
 
-            double initTime = musicController.Init(musicTreeRuntime.SelectNextPatch());
-            StartCoroutine(musicController.ClipCheck());
-            StartCoroutine(counter.BeatCountCoroutine(initTime));
+            nextCueNode = musicTreeRuntime.SelectNextPatch();
+            double initTime = musicController.Init(nextCueNode.clip);
+            counter.UpdateClipVariables(musicController.CurrentClipStartDSPTme, musicController.BPM, musicController.Frequency);
         }
+
 
         void Update()
         {
-            checker.Update(counter.Progress);
+            musicController.Step();
+            counter.Step();
+            checker.PerformChecks(counter.Progress);
         }
 
 
-        void controller_OnClipCloseToEnd()
+        private void MusicController_OnNewClipStarted()
+        {
+            counter.UpdateClipVariables(musicController.CurrentClipStartDSPTme, musicController.BPM, musicController.Frequency);
+            checker.SwitchCue(nextCueNode);
+        }
+
+        private void Controller_OnClipCloseToEnd()
         {
             try
             {
-                var newPatch = musicTreeRuntime.SelectNextPatch();
-                musicController.EnqueuePatch(newPatch);
+                nextCueNode = musicTreeRuntime.SelectNextPatch();
+                musicController.EnqueueClip(nextCueNode.clip);
             }
             catch (NoValidPatchToPlayException e)
             {

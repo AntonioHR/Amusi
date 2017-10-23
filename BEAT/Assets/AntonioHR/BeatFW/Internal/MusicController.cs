@@ -14,42 +14,49 @@ namespace AntonioHR.BeatFW.Internal
             public float updateRatio = 30f;
             public float closeToEndMargin = 5;
         }
-        Settings settings;
-	
-		public bool IsPlaying { get { return state == ControllerState.PLAYING || state == ControllerState.PLAYING_LAST || state == ControllerState.START; } }
+        public enum ControllerState
+        {
+            IDLE, START, PLAYING, PLAYING_LAST, ENDED
+        }
+
+        #region public Properties
+        public bool IsPlaying { get { return State == ControllerState.PLAYING || State == ControllerState.PLAYING_LAST || State == ControllerState.START; } }
         public float BPM { get { return settings.bpm; } }
 		public float BPS { get { return settings.bpm/ 60; } }
-		public AudioSource CurrentAudioSource{ get { return audioSources [audioSourceIndex]; } }
+        public int Frequency { get { return CurrentClip.frequency; } }
+        public AudioSource CurrentAudioSource{ get { return audioSources [audioSourceIndex]; } }
 		public AudioSource NextAudioSource{ get { return audioSources [(audioSourceIndex + 1) % audioSources.Length]; } }
 
-		public AudioClip CurrentPatch { get; private set;}
-		public AudioClip NextPatch { get; private set;}
+		public AudioClip CurrentClip { get; private set;}
+		public AudioClip NextPatch { get; private set; }
+        public ControllerState State { get; private set; }
 
-		private int audioSourceIndex = 0;
-		private double firstClipStartTime;
-		private double currentClipEndTime;
-
-		public enum ControllerState
-		{
-			IDLE, START, PLAYING, PLAYING_LAST, ENDED
-		}
-		public ControllerState state { get; private set; }
+        public double CurrentClipStartDSPTme { get; private set; }
+        
         public bool HasStarted
         {
             get
             {
-                return state == ControllerState.PLAYING || state == ControllerState.PLAYING_LAST || state == ControllerState.ENDED;
+                return State == ControllerState.PLAYING || State == ControllerState.PLAYING_LAST || State == ControllerState.ENDED;
             }
         }
 
-        private Queue<AudioClip> patchQueue;
-		private AudioSource[] audioSources;
-
-		public event Action OnClipChange;
+        #endregion
+        
+        public event Action OnNewClipStart;
         public event Action OnClipCloseToEnd;
         public event Action OnFirstClipStart;
 
+        private Settings settings;
 
+
+        private int audioSourceIndex = 0;
+		private double firstClipStartTime;
+		private double currentClipEndTime;
+        private bool triggeredCloseToEndMargin = false;
+
+        private Queue<AudioClip> patchQueue;
+		private AudioSource[] audioSources;
 
         public MusicController(AudioSource[] audioSources, Settings settings)
         {
@@ -57,40 +64,34 @@ namespace AntonioHR.BeatFW.Internal
             this.settings = settings;
             Debug.Assert(audioSources.Length == 2);
             patchQueue = new Queue<AudioClip>();
-            state = ControllerState.IDLE;
+            State = ControllerState.IDLE;
         }
-
-
-
+        
 		public double Init(AudioClip startPatch, int beatsToStart = 4)
 		{
-			Debug.Assert (state != ControllerState.START);
+			Debug.Assert (State != ControllerState.START);
 
-			state = ControllerState.START;
+			State = ControllerState.START;
 
 			double initTime = AudioSettings.dspTime;
-			CurrentPatch = startPatch;
-            CurrentAudioSource.clip = CurrentPatch;
+			CurrentClip = startPatch;
+            CurrentAudioSource.clip = CurrentClip;
 			firstClipStartTime = initTime + beatsToStart / BPS;
 
 			CurrentAudioSource.PlayScheduled (firstClipStartTime);
             return firstClipStartTime;
-            //return initTime;
 		}
 
-        public void EnqueuePatch(AudioClip patch)
+        public void EnqueueClip(AudioClip clip)
 		{
-            Debug.LogFormat("Enqueueing {0}", patch);
-			patchQueue.Enqueue (patch);
-			if (state == ControllerState.PLAYING_LAST) {
-				if (ScheduleNextClip ())
-					state = ControllerState.PLAYING;
+            Debug.LogFormat("Enqueueing {0}", clip);
+			patchQueue.Enqueue (clip);
+			if (State == ControllerState.PLAYING_LAST) {
+				if (ScheduleNextAudioClip ())
+					State = ControllerState.PLAYING;
 			}
 		}
-
-
-
-		private bool ScheduleNextClip()
+		private bool ScheduleNextAudioClip()
 		{
 			if (patchQueue.Count == 0)
 				return false;
@@ -99,67 +100,90 @@ namespace AntonioHR.BeatFW.Internal
 			NextAudioSource.PlayScheduled (currentClipEndTime);
 			return true;
 		}
-        private void switchClips()
-		{
-			audioSourceIndex = (audioSourceIndex + 1) % audioSources.Length;
-			CurrentPatch = NextPatch;
-			NextPatch = null;
-			NextAudioSource.clip = null;
-		}
 		
-        
-        
-        public IEnumerator ClipCheck ()
-		{
-			while (state == ControllerState.START) {
-				if (AudioSettings.dspTime > firstClipStartTime) {
-					state = ControllerState.PLAYING_LAST;
-                    currentClipEndTime = firstClipStartTime + CurrentPatch.length;
+        public void Step()
+        {
+            if(State == ControllerState.START)
+            {
+                PreStartStep();
+            } else if(IsPlaying)
+            {
+                PlayingStep();
+            }
+        }
 
-					if (OnFirstClipStart != null)
-                        OnFirstClipStart();
-					if (state == ControllerState.PLAYING_LAST) {
-						if (ScheduleNextClip ())
-							state = ControllerState.PLAYING;
-					}
-				}
-				yield return new WaitForSeconds (settings.updateRatio / 1000f);
+        private void PreStartStep()
+        {
+            if (AudioSettings.dspTime > firstClipStartTime)
+            {
+                State = ControllerState.PLAYING_LAST;
+                currentClipEndTime = firstClipStartTime + CurrentClip.length;
 
-			}
-			while (IsPlaying) {
-                while ((currentClipEndTime - AudioSettings.dspTime) > settings.closeToEndMargin * settings.updateRatio / 1000f)
+                if (OnFirstClipStart != null)
+                    OnFirstClipStart();
+                if(OnNewClipStart != null)
+                    OnNewClipStart();
+                if (State == ControllerState.PLAYING_LAST)
                 {
-                    yield return new WaitForSeconds(settings.updateRatio / 1000f);
-				}
+                    if (ScheduleNextAudioClip())
+                        State = ControllerState.PLAYING;
+                }
+            }
+        }
 
-				if (OnClipCloseToEnd != null) {
+        private void PlayingStep()
+        {
+            if (!triggeredCloseToEndMargin && IsOnCloseToEndMargin())
+            {
+                triggeredCloseToEndMargin = true;
+                if (OnClipCloseToEnd != null)
                     OnClipCloseToEnd();
-				}
+            }
+            if (IsCurrentClipOver())
+            {
+                triggeredCloseToEndMargin = false;
+                PerformSwitch();
+            }
+        }
+        private void PerformSwitch()
+        {
+            if (NextAudioSource.isPlaying)
+            {
+                CurrentClipStartDSPTme = currentClipEndTime;
+                currentClipEndTime = currentClipEndTime + NextPatch.length;
 
-				while (AudioSettings.dspTime < currentClipEndTime) {
+                SwitchAudioClips();
+                State = ControllerState.PLAYING_LAST;
 
-                    yield return new WaitForSeconds(settings.updateRatio / 1000f);
-				}
+                if (OnNewClipStart != null)
+                    OnNewClipStart();
 
+                if (ScheduleNextAudioClip())
+                    State = ControllerState.PLAYING;
+            }
+            else
+            {
+                State = ControllerState.ENDED;
+            }
+        }
+        private void SwitchAudioClips()
+        {
+            audioSourceIndex = (audioSourceIndex + 1) % audioSources.Length;
+            CurrentClip = NextPatch;
+            NextPatch = null;
+            NextAudioSource.clip = null;
+        }
 
-				if (NextAudioSource.isPlaying) {
-					currentClipEndTime = currentClipEndTime + NextPatch.length;
+        private bool IsCurrentClipOver()
+        {
+            return AudioSettings.dspTime < currentClipEndTime;
+        }
+        private bool IsOnCloseToEndMargin()
+        {
+            return (currentClipEndTime - AudioSettings.dspTime) > settings.closeToEndMargin * settings.updateRatio / 1000f;
+        }
 
-					switchClips ();
-					state = ControllerState.PLAYING_LAST;
-
-					if (OnClipChange != null)
-                        OnClipChange();
-
-					if (ScheduleNextClip ())
-						state = ControllerState.PLAYING;
-				} else {
-					state = ControllerState.ENDED;
-					yield break;
-				}
-			}
-
-		}
+        
     }
 }
 

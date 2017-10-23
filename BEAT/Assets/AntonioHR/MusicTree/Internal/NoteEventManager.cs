@@ -14,6 +14,7 @@ namespace AntonioHR.MusicTree.Internal
         private float lastTime;
         private List<INoteEventListener>[,] eventListeners;
         private Dictionary<string, int> trackIds;
+        
 
 
         public CueMusicTreeNode currentCue;
@@ -59,23 +60,25 @@ namespace AntonioHR.MusicTree.Internal
 
         public void SwitchCue(CueMusicTreeNode newCue)
         {
-            Update(float.PositiveInfinity);
+            PerformChecks(float.PositiveInfinity);
             currentCue = newCue;
             lastTime = float.NegativeInfinity;
         }
 
         
 
-        public void Update(float currentTime)
+        public void PerformChecks(float currentTime)
         {
-            List<NoteEvent> events = new List<NoteEvent>();
-            for (int i = 0; i < currentCue.Tracks.Count; i++)
+            if (currentCue != null)
             {
-                events.Clear();
-                currentCue.Tracks[i].CalculateTriggersBetween(currentTime, lastTime, events);
-                TriggerEvents(i, events);
+                List<NoteEvent> events = new List<NoteEvent>();
+                for (int i = 0; i < currentCue.Tracks.Count; i++)
+                {
+                    events.Clear();
+                    currentCue.Tracks[i].CalculateTriggersBetween(currentTime, lastTime, events);
+                    TriggerEvents(i, events);
+                }
             }
-
             lastTime = currentTime;
         }
 

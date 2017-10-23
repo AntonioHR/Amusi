@@ -24,14 +24,14 @@ namespace AntonioHR.MusicTree
 
 
 
-        internal UnityEngine.AudioClip SelectNextPatch()
+        internal CueMusicTreeNode SelectNextPatch()
         {
             FindNextCue();
 
             if (currentlyPlayedNode == null)
                 throw new NoValidPatchToPlayException();
 
-            return currentlyPlayedNode.clip;
+            return currentlyPlayedNode;
         }
 
         private void FindNextCue()

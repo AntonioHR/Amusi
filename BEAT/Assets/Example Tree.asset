@@ -31,6 +31,7 @@ MonoBehaviour:
       intValue: 0
       boolValue: 0
       floatValue: 0
+  trackDefinitions: []
 --- !u!114 &114033144550501360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,8 +44,8 @@ MonoBehaviour:
   m_Name: Music 1
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114661695978593270}
-  clip: {fileID: 0}
-  pattern: {fileID: 0}
+  clip: {fileID: 8300000, guid: bebe688629953fe4481a6b458f11da6f, type: 3}
+  Tracks: []
 --- !u!114 &114123915654942688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,8 +121,8 @@ MonoBehaviour:
   m_Name: Music 2
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114134434110645798}
-  clip: {fileID: 0}
-  pattern: {fileID: 0}
+  clip: {fileID: 8300000, guid: 80876aaec8f5f0149a63bd0b3e6eace2, type: 3}
+  Tracks: []
 --- !u!114 &114469791945131186
 MonoBehaviour:
   m_ObjectHideFlags: 0
