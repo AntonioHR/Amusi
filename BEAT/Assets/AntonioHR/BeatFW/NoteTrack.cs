@@ -12,7 +12,7 @@ namespace AntonioHR.BeatFW
         public string name;
     }
     [Serializable]
-    public class Note
+    public struct Note
     {
         public float start;
         public float duration;

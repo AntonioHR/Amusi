@@ -19,10 +19,6 @@ namespace AntonioHR.MusicTree.Nodes
 
         public List<NoteTrack> Tracks;
 
-        //public BeatFW.BeatPatternAsset pattern;
-
-        //public List<BeatFW.BeatPattern> patterns;
-
         public override void Accept(MusicNodeVisitor vis, PlayableRuntimeMusicTreeNode container)
         {
             vis.Visit(this, container);

@@ -75,7 +75,7 @@ namespace AntonioHR.MusicTree.Internal
                 for (int i = 0; i < currentCue.Tracks.Count; i++)
                 {
                     events.Clear();
-                    currentCue.Tracks[i].CalculateTriggersBetween(currentTime, lastTime, events);
+                    currentCue.Tracks[i].CalculateTriggersBetween(lastTime, currentTime, events);
                     TriggerEvents(i, events);
                 }
             }

@@ -55,6 +55,18 @@ namespace AntonioHR.MusicTree
         }
         #endregion
 
+        public void AddListener(string track, int subTrack, INoteEventListener listener)
+        {
+            checker.AddListener(track, subTrack, listener);
+        }
+
+        public void RemoveListener(string track, int subTrack, INoteEventListener listener)
+        {
+            checker.RemoveListener(track, subTrack, listener);
+        }
+
+
+
         void Start()
         {
             Debug.Log("Initializing");
@@ -74,8 +86,11 @@ namespace AntonioHR.MusicTree
         void Update()
         {
             musicController.Step();
-            counter.Step();
-            checker.PerformChecks(counter.Progress);
+            if (musicController.HasStarted)
+            {
+                counter.Step();
+                checker.PerformChecks(counter.Progress);
+            }
         }
 
 
