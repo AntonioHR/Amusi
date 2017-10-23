@@ -16,11 +16,13 @@ namespace AntonioHR.BeatFW.Internal
         }
         public enum ControllerState
         {
-            IDLE, START, PLAYING, PLAYING_LAST, ENDED
+            IDLE, START, PLAYING,
+            //PLAYING_LAST, 
+            ENDED
         }
 
         #region public Properties
-        public bool IsPlaying { get { return State == ControllerState.PLAYING || State == ControllerState.PLAYING_LAST || State == ControllerState.START; } }
+        public bool IsPlaying { get { return State == ControllerState.PLAYING || State == ControllerState.START; } }
         public float BPM { get { return settings.bpm; } }
 		public float BPS { get { return settings.bpm/ 60; } }
         public int Frequency { get { return CurrentClip.frequency; } }
@@ -37,7 +39,7 @@ namespace AntonioHR.BeatFW.Internal
         {
             get
             {
-                return State == ControllerState.PLAYING || State == ControllerState.PLAYING_LAST || State == ControllerState.ENDED;
+                return State == ControllerState.PLAYING || State == ControllerState.ENDED;
             }
         }
 
@@ -54,6 +56,7 @@ namespace AntonioHR.BeatFW.Internal
 		private double firstClipStartTime;
 		private double currentClipEndTime;
         private bool triggeredCloseToEndMargin = false;
+        private bool hasNextScheduled = false;
 
         private Queue<AudioClip> patchQueue;
 		private AudioSource[] audioSources;
@@ -86,10 +89,10 @@ namespace AntonioHR.BeatFW.Internal
 		{
             Debug.LogFormat("Enqueueing {0}", clip);
 			patchQueue.Enqueue (clip);
-			if (State == ControllerState.PLAYING_LAST) {
-				if (ScheduleNextAudioClip ())
-					State = ControllerState.PLAYING;
-			}
+            if(!hasNextScheduled)
+            {
+                hasNextScheduled = ScheduleNextAudioClip();
+            }
 		}
 		private bool ScheduleNextAudioClip()
 		{
@@ -116,18 +119,14 @@ namespace AntonioHR.BeatFW.Internal
         {
             if (AudioSettings.dspTime > firstClipStartTime)
             {
-                State = ControllerState.PLAYING_LAST;
+                State = ControllerState.PLAYING;
                 currentClipEndTime = firstClipStartTime + CurrentClip.length;
 
                 if (OnFirstClipStart != null)
                     OnFirstClipStart();
                 if(OnNewClipStart != null)
                     OnNewClipStart();
-                if (State == ControllerState.PLAYING_LAST)
-                {
-                    if (ScheduleNextAudioClip())
-                        State = ControllerState.PLAYING;
-                }
+                hasNextScheduled = ScheduleNextAudioClip();
             }
         }
 
@@ -141,8 +140,14 @@ namespace AntonioHR.BeatFW.Internal
             }
             if (IsCurrentClipOver())
             {
-                triggeredCloseToEndMargin = false;
-                PerformSwitch();
+                if (hasNextScheduled)
+                {
+                    triggeredCloseToEndMargin = false;
+                    PerformSwitch();
+                } else
+                {
+                    State = ControllerState.ENDED;
+                }
             }
         }
         private void PerformSwitch()
@@ -153,17 +158,11 @@ namespace AntonioHR.BeatFW.Internal
                 currentClipEndTime = currentClipEndTime + NextPatch.length;
 
                 SwitchAudioClips();
-                State = ControllerState.PLAYING_LAST;
 
                 if (OnNewClipStart != null)
                     OnNewClipStart();
 
-                if (ScheduleNextAudioClip())
-                    State = ControllerState.PLAYING;
-            }
-            else
-            {
-                State = ControllerState.ENDED;
+                hasNextScheduled = ScheduleNextAudioClip();
             }
         }
         private void SwitchAudioClips()
@@ -176,11 +175,11 @@ namespace AntonioHR.BeatFW.Internal
 
         private bool IsCurrentClipOver()
         {
-            return AudioSettings.dspTime < currentClipEndTime;
+            return AudioSettings.dspTime > currentClipEndTime;
         }
         private bool IsOnCloseToEndMargin()
         {
-            return (currentClipEndTime - AudioSettings.dspTime) > settings.closeToEndMargin * settings.updateRatio / 1000f;
+            return (currentClipEndTime - AudioSettings.dspTime) < settings.closeToEndMargin * settings.updateRatio / 1000f;
         }
 
         

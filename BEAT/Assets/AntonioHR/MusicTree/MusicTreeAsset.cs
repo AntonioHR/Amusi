@@ -17,7 +17,10 @@ namespace AntonioHR.MusicTree
 
         public List<NoteTrackDefinition> trackDefinitions;
 
-        public int MaxSubTrack { get { throw new NotImplementedException(); } }
+        [SerializeField]
+        private int maxSubTrack;
+
+        public int MaxSubTrack { get { return maxSubTrack; } }
 
         protected override MusicTreeNode InstantiateRoot()
         {
