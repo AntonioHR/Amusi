@@ -25,7 +25,7 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
         {
             EditorGUI.BeginChangeCheck();
 
-            tree = EditorGUILayout.ObjectField(tree, typeof(MusicTreeAsset)) as MusicTreeAsset;
+            tree = EditorGUILayout.ObjectField(tree, typeof(MusicTreeAsset), false) as MusicTreeAsset;
             if (EditorGUI.EndChangeCheck())
             {
                 //Changed
@@ -35,8 +35,6 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
 
             using(var scrollview = new EditorGUILayout.ScrollViewScope(scrollPos))
             {
-                //GUILayoutUtility.GetRect(900, 900);
-                //EditorGUI.DrawRect(new Rect(100, 100, 500, 300), Color.red);
                 if(drawer != null)
                 {
                     drawer.DrawTree();

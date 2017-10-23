@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AntonioHR.MusicTree.ConditionVariables;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,16 +24,14 @@ namespace AntonioHR.ConditionVariables.Editor
         public override void OnGUI(UnityEngine.Rect position, SerializedProperty property, UnityEngine.GUIContent label)
         {
             UpdateObject(property);
-            //if (obj == null)
-            //    return;
 
             var jump = new Vector2(0, EditorGUIUtility.singleLineHeight);
 
 
             Rect r_full = new Rect(position.position, new Vector2(position.width, EditorGUIUtility.singleLineHeight));
             Rect r_label = new Rect(position.position, new Vector2(EditorGUIUtility.labelWidth, EditorGUIUtility.singleLineHeight));
-            Rect r_value = new Rect(position.position + Vector2.right * EditorGUIUtility.labelWidth, 
-                new Vector2(EditorGUIUtility.fieldWidth, EditorGUIUtility.singleLineHeight));
+            //Rect r_value = new Rect(position.position + Vector2.right * EditorGUIUtility.labelWidth, 
+            //    new Vector2(EditorGUIUtility.fieldWidth, EditorGUIUtility.singleLineHeight));
             
             EditorGUI.LabelField(r_label, property.name);
 

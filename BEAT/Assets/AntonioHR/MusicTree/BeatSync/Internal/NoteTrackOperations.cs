@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AntonioHR.BeatFW.Internal
+namespace AntonioHR.MusicTree.BeatSync.Internal
 {
     public static class NoteTrackOperations
     {
@@ -20,8 +20,7 @@ namespace AntonioHR.BeatFW.Internal
                 bool endsBefore = eventEnd < note.start;
                 bool endsAfter = eventEnd > noteEnd;
                 bool endsInside = !endsBefore && !endsAfter;
-
-                //UnityEngine.Debug.LogFormat("Start: {6} {0}, {1}, {2}\n End: {7} {3}, {4}, {5}", startsBefore, startsInside, startsAfter, endsBefore, endsInside, endsAfter, eventStart, eventEnd);
+                
 
                 if(endsBefore)
                     return;
@@ -36,7 +35,6 @@ namespace AntonioHR.BeatFW.Internal
                         result.Add(new NoteEvent(NoteEvent.Type.End, note.subTrack, 1.0f));
                     } else if(endsInside)
                     {
-                        float noteProgressBeats = eventEnd - note.start;
                         result.Add(new NoteEvent(NoteEvent.Type.Start, note.subTrack, 0.0f));
                     }
                 } else if (startsInside)

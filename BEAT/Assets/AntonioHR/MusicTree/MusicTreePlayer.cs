@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using AntonioHR.MusicTree;
-using AntonioHR.BeatFW.Internal;
-using AntonioHR.BeatFW;
+using AntonioHR.MusicTree.BeatSync.Internal;
+using AntonioHR.MusicTree.BeatSync;
 using AntonioHR.MusicTree.Internal;
 using AntonioHR.MusicTree.Nodes;
 
@@ -15,7 +15,6 @@ namespace AntonioHR.MusicTree
     {
         public MusicTreeAsset musicTree;
         [Space()]
-        public BeatCounter.Settings beatCounterSettings;
         public MusicController.Settings musicControllerSettings;
 
         BeatCounter counter;
@@ -73,13 +72,13 @@ namespace AntonioHR.MusicTree
             musicController = new MusicController(GetComponents<AudioSource>(), musicControllerSettings);
             musicController.OnClipCloseToEnd += Controller_OnClipCloseToEnd;
             musicController.OnNewClipStart += MusicController_OnNewClipStarted;
-            counter = new BeatCounter(beatCounterSettings);
+            counter = new BeatCounter();
             musicTreeRuntime = PlayableRuntimeMusicTree.CreateTreeFrom<PlayableRuntimeMusicTree>(musicTree);
             checker = new NoteEventManager(musicTree);
 
             nextCueNode = musicTreeRuntime.SelectNextPatch();
             double initTime = musicController.Init(nextCueNode.clip);
-            counter.UpdateClipVariables(musicController.CurrentClipStartDSPTme, musicController.BPM, musicController.Frequency);
+            counter.UpdateClipVariables(initTime, musicController.BPM, musicController.Frequency);
         }
 
 
@@ -107,7 +106,9 @@ namespace AntonioHR.MusicTree
                 nextCueNode = musicTreeRuntime.SelectNextPatch();
                 musicController.EnqueueClip(nextCueNode.clip);
             }
+#pragma warning disable CS0168 // Variable is declared but never used
             catch (NoValidPatchToPlayException e)
+#pragma warning restore CS0168 // Variable is declared but never used
             {
                 Debug.Log("No valid Patch to play");
                 throw;

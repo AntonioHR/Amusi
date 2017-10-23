@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using AntonioHR.TreeAsset.Internal;
-using AntonioHR.BeatFW;
+using AntonioHR.MusicTree.BeatSync;
 
 namespace AntonioHR.MusicTree.Nodes
 {

@@ -1,10 +1,10 @@
-﻿using AntonioHR.ConditionVariables;
+﻿using AntonioHR.MusicTree.ConditionVariables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AntonioHR.MusicTree
+namespace AntonioHR.MusicTree.Internal
 {
     public class MusicTreeEnvironment
     {

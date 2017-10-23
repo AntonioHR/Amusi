@@ -23,31 +23,14 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
         Texture cue_icon;
         Texture condition_icon;
         #endregion
-
-        Dictionary<TreeNodeAsset, TreeNodeDrawer> nodeDrawers;
+        
 
         RuntimeTree<MusicTreeNode> cachedTree;
         TreeNodePositioning<MusicTreeNode> cachedPositioning;
-
-        class TreeNodeDrawer
-        {
-            public TreeNodeDrawer(TreeNodeAsset node, float localX, int height)
-            {
-                this.node = node;
-                this.localX = localX;
-                this.height = height;
-                this.mod = 0;
-            }
-            public TreeNodeAsset node;
-            public float localX;
-            public int height;
-            public float mod;
-        }
-
+        
         public TreeDrawer(MusicTreeAsset tree)
         {
             this.tree = tree;
-            nodeDrawers = new Dictionary<TreeNodeAsset, TreeNodeDrawer>();
 
             UpdateTreeCache();
 
@@ -67,7 +50,6 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
 
         public void DrawTree()
         {
-            nodeDrawers = new Dictionary<TreeNodeAsset, TreeNodeDrawer>();
 
             ReserveLayoutSpace();
 

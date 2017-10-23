@@ -7,7 +7,7 @@ using AntonioHR.TreeAsset.Internal;
 using AntonioHR.MusicTree.Nodes;
 using AntonioHR.MusicTree.Internal;
 
-namespace AntonioHR.MusicTree
+namespace AntonioHR.MusicTree.Internal
 {
     public class PlayableRuntimeMusicTree : RuntimeTree<MusicTreeAsset, MusicTreeNode, PlayableRuntimeMusicTreeNode>
     {

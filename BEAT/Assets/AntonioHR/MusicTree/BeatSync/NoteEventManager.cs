@@ -1,12 +1,12 @@
-﻿using AntonioHR.BeatFW;
-using AntonioHR.BeatFW.Internal;
+﻿using AntonioHR.MusicTree.BeatSync;
+using AntonioHR.MusicTree.BeatSync.Internal;
 using AntonioHR.MusicTree.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AntonioHR.MusicTree.Internal
+namespace AntonioHR.MusicTree.BeatSync
 {
     public class NoteEventManager
     {

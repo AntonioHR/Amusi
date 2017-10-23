@@ -2,25 +2,10 @@
 using System.Collections;
 using System;
 
-namespace AntonioHR.BeatFW.Internal
+namespace AntonioHR.MusicTree.BeatSync.Internal
 {
 	public class BeatCounter
     {
-        [Serializable]
-        public class Settings
-        {
-            /// <summary>
-            /// The Counter update ratio in milisseconds
-            /// </summary>
-            public float updateRatio = 30f;
-            public MeasureSignature measureSignature;
-        }
-
-
-
-
-        
-        private Settings settings;
         
         private float clipStart;
         private int clipFrequency;
@@ -33,9 +18,8 @@ namespace AntonioHR.BeatFW.Internal
 
         
 
-        public BeatCounter(Settings settings)
+        public BeatCounter()
         {
-            this.settings = settings;
         }
 
         public void UpdateClipVariables(double syncTime, float bpm, int frequency)

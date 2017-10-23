@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AntonioHR.BeatFW
+namespace AntonioHR.MusicTree.BeatSync
 {
     [Serializable]
     public class NoteTrack
