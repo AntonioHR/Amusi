@@ -13,6 +13,6 @@ namespace AntonioHR.MusicTree
         public enum ChildrenPolicy { None, Single, Multiple}
         public abstract ChildrenPolicy Policy { get; }
 
-        public abstract void Accept(MusicNodeVisitor vis, PlayableMusicTreeNode container);
+        public abstract void Accept(MusicNodeVisitor vis, PlayableRuntimeMusicTreeNode container);
     }
 }

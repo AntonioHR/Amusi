@@ -9,12 +9,12 @@ namespace AntonioHR.MusicTree.Internal
 {
     public static class NodeVisitorOperations
     {
-        public static void Accept(this PlayableMusicTreeNode node, MusicNodeVisitor v)
+        public static void Accept(this PlayableRuntimeMusicTreeNode node, MusicNodeVisitor v)
         {
             node.Asset.Accept(v, node);
         }
 
-        public static PlayableMusicTreeNode.State Execute(this PlayableMusicTreeNode root, MusicTreeEnvironment env, out CueMusicTreeNode resultNode)
+        public static PlayableRuntimeMusicTreeNode.State Execute(this PlayableRuntimeMusicTreeNode root, MusicTreeEnvironment env, out CueMusicTreeNode resultNode)
         {
             var visitor = new ExecutionStepNodeVisitor(env);
             root.Accept(visitor);

@@ -22,10 +22,10 @@ namespace AntonioHR.MusicTree.Internal
 
 
 
-        public void Visit(SelectorMusicTreeNode n, PlayableMusicTreeNode nContainer)
+        public void Visit(SelectorMusicTreeNode n, PlayableRuntimeMusicTreeNode nContainer)
         {
 
-            PlayableMusicTreeNode first = nContainer.isRunning? nContainer.ActiveChild : nContainer.LeftmostChild;
+            PlayableRuntimeMusicTreeNode first = nContainer.isRunning? nContainer.ActiveChild : nContainer.LeftmostChild;
 
             foreach (var ch in nContainer.ChildrenStartingAt(first))
             {
@@ -33,16 +33,16 @@ namespace AntonioHR.MusicTree.Internal
 
                 switch (ch.ExecutionState)
                 {
-                    case PlayableMusicTreeNode.State.Running:
-                        nContainer.ExecutionState = PlayableMusicTreeNode.State.Running;
+                    case PlayableRuntimeMusicTreeNode.State.Running:
+                        nContainer.ExecutionState = PlayableRuntimeMusicTreeNode.State.Running;
                         nContainer.ActiveChild = ch;
                         return;
-                    case PlayableMusicTreeNode.State.Idle:
+                    case PlayableRuntimeMusicTreeNode.State.Idle:
                         throw new Exception("Child should not have set itself to idle");
-                    case PlayableMusicTreeNode.State.Failed:
+                    case PlayableRuntimeMusicTreeNode.State.Failed:
                         continue;
-                    case PlayableMusicTreeNode.State.Complete:
-                        nContainer.ExecutionState = PlayableMusicTreeNode.State.Complete;
+                    case PlayableRuntimeMusicTreeNode.State.Complete:
+                        nContainer.ExecutionState = PlayableRuntimeMusicTreeNode.State.Complete;
                         nContainer.ActiveChild = ch;
                         return;
                     default:
@@ -50,13 +50,13 @@ namespace AntonioHR.MusicTree.Internal
                 }
             }
 
-            nContainer.ExecutionState = PlayableMusicTreeNode.State.Failed;
+            nContainer.ExecutionState = PlayableRuntimeMusicTreeNode.State.Failed;
             
         }
 
-        public void Visit(SequenceMusicTreeNode n, PlayableMusicTreeNode nContainer)
+        public void Visit(SequenceMusicTreeNode n, PlayableRuntimeMusicTreeNode nContainer)
         {
-            PlayableMusicTreeNode first = nContainer.isRunning ? nContainer.ActiveChild : nContainer.LeftmostChild;
+            PlayableRuntimeMusicTreeNode first = nContainer.isRunning ? nContainer.ActiveChild : nContainer.LeftmostChild;
 
             foreach (var ch in nContainer.ChildrenStartingAt(first))
             {
@@ -64,27 +64,27 @@ namespace AntonioHR.MusicTree.Internal
 
                 switch (ch.ExecutionState)
                 {
-                    case PlayableMusicTreeNode.State.Running:
-                        nContainer.ExecutionState = PlayableMusicTreeNode.State.Running;
+                    case PlayableRuntimeMusicTreeNode.State.Running:
+                        nContainer.ExecutionState = PlayableRuntimeMusicTreeNode.State.Running;
                         nContainer.ActiveChild = ch;
                         return;
-                    case PlayableMusicTreeNode.State.Idle:
+                    case PlayableRuntimeMusicTreeNode.State.Idle:
                         throw new Exception("Child should not have set itself to idle");
-                    case PlayableMusicTreeNode.State.Failed:
-                        nContainer.ExecutionState = PlayableMusicTreeNode.State.Failed;
+                    case PlayableRuntimeMusicTreeNode.State.Failed:
+                        nContainer.ExecutionState = PlayableRuntimeMusicTreeNode.State.Failed;
                         return;
-                    case PlayableMusicTreeNode.State.Complete:
+                    case PlayableRuntimeMusicTreeNode.State.Complete:
                         continue;
                     default:
                         throw new NotImplementedException();
                 }
             }
 
-            nContainer.ExecutionState = PlayableMusicTreeNode.State.Complete;
+            nContainer.ExecutionState = PlayableRuntimeMusicTreeNode.State.Complete;
             nContainer.ActiveChild = nContainer.RightmostChild;
         }
 
-        public void Visit(ConditionMusicTreeNode n, PlayableMusicTreeNode nContainer)
+        public void Visit(ConditionMusicTreeNode n, PlayableRuntimeMusicTreeNode nContainer)
         {
             var child = nContainer.LeftmostChild;
             
@@ -95,20 +95,20 @@ namespace AntonioHR.MusicTree.Internal
                 nContainer.ActiveChild = child;
             } else
             {
-                nContainer.ExecutionState = PlayableMusicTreeNode.State.Failed;
+                nContainer.ExecutionState = PlayableRuntimeMusicTreeNode.State.Failed;
             }
         }
 
-        public void Visit(CueMusicTreeNode n, PlayableMusicTreeNode nContainer)
+        public void Visit(CueMusicTreeNode n, PlayableRuntimeMusicTreeNode nContainer)
         {
-            if(nContainer.ExecutionState == PlayableMusicTreeNode.State.Running)
+            if(nContainer.ExecutionState == PlayableRuntimeMusicTreeNode.State.Running)
             {
                 //If was already playing, it is assumed to be finished
-                nContainer.ExecutionState = PlayableMusicTreeNode.State.Complete;
+                nContainer.ExecutionState = PlayableRuntimeMusicTreeNode.State.Complete;
                 this.RunningLeaf = null;
             } else 
             {
-                nContainer.ExecutionState = PlayableMusicTreeNode.State.Running;
+                nContainer.ExecutionState = PlayableRuntimeMusicTreeNode.State.Running;
                 this.RunningLeaf = n;
             }
         }

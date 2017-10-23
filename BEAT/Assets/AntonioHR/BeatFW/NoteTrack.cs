@@ -17,5 +17,7 @@ namespace AntonioHR.BeatFW
         public float start;
         public float duration;
         public int subTrack;
+
+        public float End { get { return start + duration; } }
     }
 }

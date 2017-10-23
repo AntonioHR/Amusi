@@ -9,16 +9,20 @@ using AntonioHR.MusicTree.Internal;
 
 namespace AntonioHR.MusicTree
 {
-    public class PlayableMusicTree : RuntimeTree<MusicTreeAsset, MusicTreeNode, PlayableMusicTreeNode>
+    public class PlayableRuntimeMusicTree : RuntimeTree<MusicTreeAsset, MusicTreeNode, PlayableRuntimeMusicTreeNode>
     {
+
+        private CueMusicTreeNode currentlyPlayedNode;
+        private MusicTreeEnvironment env;
+
+        public CueMusicTreeNode CurrentlyPlayedNode { get { return currentlyPlayedNode; } }
 
         protected override void AfterInit()
         {
             env = MusicTreeEnvironment.CreateFrom(Asset.vars);
         }
 
-        private CueMusicTreeNode currentlyPlayedNode;
-        private MusicTreeEnvironment env;
+
 
         internal UnityEngine.AudioClip SelectNextPatch()
         {
@@ -34,7 +38,7 @@ namespace AntonioHR.MusicTree
         {
             var result = Root.Execute(env, out currentlyPlayedNode);
 
-            if (result != PlayableMusicTreeNode.State.Running)
+            if (result != PlayableRuntimeMusicTreeNode.State.Running)
             {
                 //Second Try
                 result = Root.Execute(env, out currentlyPlayedNode);
@@ -70,13 +74,13 @@ namespace AntonioHR.MusicTree
         #endregion
     }
 
-    public class PlayableMusicTreeNode : RuntimeTreeNode<MusicTreeNode, PlayableMusicTreeNode>
+    public class PlayableRuntimeMusicTreeNode : RuntimeTreeNode<MusicTreeNode, PlayableRuntimeMusicTreeNode>
     {
         internal bool isRunning { get { return ExecutionState == State.Running; } }
 
         public enum State { Idle, Running, Failed, Complete }
         public State ExecutionState { get; set; }
-        public PlayableMusicTreeNode ActiveChild { get; set; }
+        public PlayableRuntimeMusicTreeNode ActiveChild { get; set; }
 
         public void Accept(MusicNodeVisitor n)
         {

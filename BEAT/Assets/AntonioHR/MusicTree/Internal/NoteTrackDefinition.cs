@@ -6,7 +6,7 @@ using System.Text;
 namespace AntonioHR.MusicTree.Internal
 {
     [Serializable]
-    public class BeatTrackDefinition
+    public class NoteTrackDefinition
     {
         public string name;
     }

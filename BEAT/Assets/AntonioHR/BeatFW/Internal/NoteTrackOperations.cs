@@ -11,7 +11,7 @@ namespace AntonioHR.BeatFW.Internal
         {
             foreach (var note in track.notes)
             {
-                float noteEnd = note.GetEnd();
+                float noteEnd = note.End;
 
                 bool startsBefore = eventStart < note.start;
                 bool startsAfter = eventStart > noteEnd;
@@ -49,11 +49,6 @@ namespace AntonioHR.BeatFW.Internal
                     }
                 }
             }
-        }
-
-        public static float GetEnd(this Note note)
-        {
-            return note.start + note.duration;
         }
     }
 }

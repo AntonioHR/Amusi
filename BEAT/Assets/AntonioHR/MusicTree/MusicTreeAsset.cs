@@ -14,7 +14,9 @@ namespace AntonioHR.MusicTree
 
         public List<ConditionVariable> vars;
 
-        public List<BeatTrackDefinition> trackDefinitions;
+        public List<NoteTrackDefinition> trackDefinitions;
+
+        public int MaxSubTrack { get { throw new NotImplementedException(); } }
 
         protected override MusicTreeNode InstantiateRoot()
         {

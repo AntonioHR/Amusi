@@ -8,10 +8,10 @@ namespace AntonioHR.MusicTree.Internal
 {
     public interface MusicNodeVisitor
     {
-        void Visit(CueMusicTreeNode n, PlayableMusicTreeNode container);
-        void Visit(ConditionMusicTreeNode n, PlayableMusicTreeNode container);
-        void Visit(SelectorMusicTreeNode n, PlayableMusicTreeNode container);
-        void Visit(SequenceMusicTreeNode n, PlayableMusicTreeNode container);
+        void Visit(CueMusicTreeNode n, PlayableRuntimeMusicTreeNode container);
+        void Visit(ConditionMusicTreeNode n, PlayableRuntimeMusicTreeNode container);
+        void Visit(SelectorMusicTreeNode n, PlayableRuntimeMusicTreeNode container);
+        void Visit(SequenceMusicTreeNode n, PlayableRuntimeMusicTreeNode container);
 
     }
 

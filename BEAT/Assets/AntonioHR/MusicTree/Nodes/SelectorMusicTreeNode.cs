@@ -14,7 +14,7 @@ namespace AntonioHR.MusicTree.Nodes
             get { return ChildrenPolicy.Multiple; }
         }
 
-        public override void Accept(MusicNodeVisitor vis, PlayableMusicTreeNode container)
+        public override void Accept(MusicNodeVisitor vis, PlayableRuntimeMusicTreeNode container)
         {
             vis.Visit(this, container);
         }
