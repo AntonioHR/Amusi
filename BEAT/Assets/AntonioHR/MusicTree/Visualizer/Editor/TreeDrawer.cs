@@ -1,4 +1,5 @@
-﻿using AntonioHR.MusicTree.Nodes;
+﻿using AntonioHR.MusicTree.BeatSync.Editor;
+using AntonioHR.MusicTree.Nodes;
 using AntonioHR.MusicTree.Visualizer.Internal;
 using AntonioHR.TreeAsset;
 using AntonioHR.TreeAsset.Internal;
@@ -115,6 +116,11 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
             if (GUI.Button(bounds, GUIContent.none, GUIStyle.none))
             {
                 Selection.activeObject = node;
+                var cue = node as CueMusicTreeNode;
+                if(cue != null)
+                {
+                    NoteSheetEditorWindow.SetSheet(cue.sheet);
+                }
             }
         }
 

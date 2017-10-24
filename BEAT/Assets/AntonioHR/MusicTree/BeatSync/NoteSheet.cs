@@ -6,6 +6,12 @@ using System.Text;
 namespace AntonioHR.MusicTree.BeatSync
 {
     [Serializable]
+    public class NoteSheet
+    {
+        public List<NoteTrack> tracks;
+    }
+
+    [Serializable]
     public class NoteTrack
     {
         public List<Note> notes;

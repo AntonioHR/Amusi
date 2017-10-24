@@ -17,7 +17,9 @@ namespace AntonioHR.MusicTree.Nodes
         }
         public AudioClip clip;
 
-        public List<NoteTrack> Tracks;
+        public List<NoteTrack> Tracks { get { return sheet.tracks; } }
+
+        public NoteSheet sheet;
 
         public override void Accept(MusicNodeVisitor vis, PlayableRuntimeMusicTreeNode container)
         {
