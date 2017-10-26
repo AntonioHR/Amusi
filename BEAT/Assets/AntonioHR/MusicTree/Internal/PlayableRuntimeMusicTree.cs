@@ -9,7 +9,8 @@ using AntonioHR.MusicTree.Internal;
 
 namespace AntonioHR.MusicTree.Internal
 {
-    public class PlayableRuntimeMusicTree : RuntimeTree<MusicTreeAsset, MusicTreeNode, PlayableRuntimeMusicTreeNode>
+    public class PlayableRuntimeMusicTree : 
+        RuntimeTree<PlayableRuntimeMusicTree, MusicTreeAsset, MusicTreeNode, PlayableRuntimeMusicTreeNode>
     {
 
         private CueMusicTreeNode currentlyPlayedNode;
@@ -74,9 +75,20 @@ namespace AntonioHR.MusicTree.Internal
         #endregion
     }
 
-    public class PlayableRuntimeMusicTreeNode : RuntimeTreeNode<MusicTreeNode, PlayableRuntimeMusicTreeNode>
+    public class PlayableRuntimeMusicTreeNode : RuntimeTreeNode<PlayableRuntimeMusicTree, MusicTreeAsset, MusicTreeNode, PlayableRuntimeMusicTreeNode>
     {
         internal bool isRunning { get { return ExecutionState == State.Running; } }
+
+        public PlayableRuntimeMusicTree TreeAsPlayable { get { return Tree; } }
+
+        //public int BPM
+        //{
+        //    get
+        //    {
+        //        var cueNode = Asset as CueMusicTreeNode;
+        //        return cueNode == null ? 0 : cueNode.
+        //    }
+        //}
 
         public enum State { Idle, Running, Failed, Complete }
         public State ExecutionState { get; set; }

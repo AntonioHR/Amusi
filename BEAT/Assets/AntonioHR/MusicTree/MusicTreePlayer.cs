@@ -73,7 +73,7 @@ namespace AntonioHR.MusicTree
             musicController.OnClipCloseToEnd += Controller_OnClipCloseToEnd;
             musicController.OnNewClipStart += MusicController_OnNewClipStarted;
             counter = new BeatCounter();
-            musicTreeRuntime = PlayableRuntimeMusicTree.CreateTreeFrom<PlayableRuntimeMusicTree>(musicTree);
+            musicTreeRuntime = PlayableRuntimeMusicTree.CreateFrom(musicTree);
             checker = new NoteEventManager(musicTree);
 
             nextCueNode = musicTreeRuntime.SelectNextPatch();

@@ -45,7 +45,7 @@ namespace AntonioHR.MusicTree.Editor
         void UpdateTreeCache()
         {
 
-            cachedTree = RuntimeTree<MusicTreeNode>.CreateTreeFrom(tree);
+            cachedTree = RuntimeTree<MusicTreeNode>.CreateFrom(tree);
             cachedPositioning = TreeNodePositioning<MusicTreeNode>.CreateFrom(cachedTree);
         }
 

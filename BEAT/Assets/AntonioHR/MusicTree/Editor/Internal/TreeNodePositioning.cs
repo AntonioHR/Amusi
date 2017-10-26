@@ -40,7 +40,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
         #endregion
 
         private NodePositioning[] nodePositionings;
-        private RuntimeTree<TreeAsset<T>, T, RuntimeTreeNode<T>> tree;
+        private RuntimeTree<T> tree;
         private TreePositionParameters positionParams;
 
         private Rect baseRect;
@@ -63,7 +63,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
 
 
-        public static TreeNodePositioning<T> CreateFrom(RuntimeTree<TreeAsset<T>, T, RuntimeTreeNode<T>> t)
+        public static TreeNodePositioning<T> CreateFrom(RuntimeTree<T> t)
         {
             return CreateFrom(t, DefaultPosParameters());
         }
@@ -73,7 +73,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
             return new TreePositionParameters();
         }
 
-        public static TreeNodePositioning<T> CreateFrom(RuntimeTree<TreeAsset<T>, T, RuntimeTreeNode<T>> t, TreePositionParameters posParameters)
+        public static TreeNodePositioning<T> CreateFrom(RuntimeTree<T> t, TreePositionParameters posParameters)
         {
             TreeNodePositioning<T> result = new TreeNodePositioning<T>()
                 {

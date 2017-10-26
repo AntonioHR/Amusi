@@ -7,15 +7,16 @@ using System.Text;
 
 namespace AntonioHR.TreeAsset
 {
-    public class RuntimeTree<TA, A, N>
-        where TA : TreeAsset<A>
-        where A:TreeNodeAsset
-        where N: RuntimeTreeNode<A, N>, new()
+    public class RuntimeTree<RT, TA, TNA, RTN>
+        where RT : RuntimeTree<RT, TA, TNA, RTN>, new()
+        where TA : TreeAsset<TNA>
+        where TNA:TreeNodeAsset
+        where RTN: RuntimeTreeNode<RT, TA, TNA, RTN>, new()
     {
         public TA Asset { get; private set; }
-        public N Root { get; private set; }
+        public RTN Root { get; private set; }
         public int NodeCount { get; private set; }
-        public IEnumerable<N> AllNodes { get { return Root.Preorder(); } }
+        public IEnumerable<RTN> AllNodes { get { return Root.Preorder(); } }
 
 
         public RuntimeTree()
@@ -23,7 +24,7 @@ namespace AntonioHR.TreeAsset
 
         }
 
-        public void Init(TA treeAsset, N root, int nodeCount)
+        public void Init(TA treeAsset, RTN root, int nodeCount)
         {
             this.Asset = treeAsset;
             this.Root = root;
@@ -34,43 +35,42 @@ namespace AntonioHR.TreeAsset
         {
 
         }
+        
 
-        public static RT CreateTreeFrom<RT>(TA treeAsset) where RT:RuntimeTree<TA, A, N>, new()
+        public static RT CreateFrom(TA treeAsset)
         {
+            RT result = new RT();
             var rootAsset = treeAsset.Root;
-            RuntimeTreeNode<A, N>.NodeHierarchy hierarchy;
+            RuntimeTreeNode<RT, TA, TNA, RTN>.NodeHierarchy hierarchy;
             int nextNodeId = 0;
-            var root = CreateNodeRecursively(rootAsset, 0, ref nextNodeId, out hierarchy);
+            var root = CreateNodeRecursively(result, rootAsset, 0, ref nextNodeId, out hierarchy);
 
             root.InitializeHierarchy(hierarchy);
-
-            RT result = new RT();
             result.Init(treeAsset, root, nextNodeId);
             return result;
         }
-        public static RuntimeTree<TA, A, N> CreateTreeFrom(TA treeAsset)
+
+        private static RTN CreateNodeRecursively(RT tree, TreeNodeAsset nodeAsset, int height, ref int nextNodeId, out RuntimeTreeNode<RT, TA, TNA, RTN>.NodeHierarchy myData)
         {
-            return CreateTreeFrom<RuntimeTree<TA, A, N>>(treeAsset);
-        }
-        private static N CreateNodeRecursively(TreeNodeAsset nodeAsset, int height, ref int nextNodeId, out RuntimeTreeNode<A, N>.NodeHierarchy myData)
-        {
-            var childrenList = new List<N>();
-            myData = new RuntimeTreeNode<A, N>.NodeHierarchy();
-            var me = new N();
+            var childrenList = new List<RTN>();
+            myData = new RuntimeTreeNode<RT, TA, TNA, RTN>.NodeHierarchy();
+            var me = new RTN();
             myData.Depth = height;
             myData.NodeId = nextNodeId;
-            myData.Asset = (A)nodeAsset;
+            myData.Asset = (TNA)nodeAsset;
             myData.SibilingIndex = 0;
             myData.SubtreeDepth = myData.Depth;
+            myData.Tree = tree;
             nextNodeId++;
 
-            N prev = null;
-            RuntimeTreeNode<A, N>.NodeHierarchy prevHierarchy = null;
+            RTN prev = null;
+            RuntimeTreeNode<RT, TA, TNA, RTN>.NodeHierarchy prevHierarchy = null;
             int index = 0;
             foreach (var child in nodeAsset._hierarchy.Children)
             {
-                RuntimeTreeNode<A, N>.NodeHierarchy childHierarchy;
-                N node = CreateNodeRecursively(child._content, height + 1, ref nextNodeId, out childHierarchy);
+                RuntimeTreeNode<RT, TA, TNA, RTN>.NodeHierarchy childHierarchy;
+                RTN node = CreateNodeRecursively(tree, child._content, height + 1, ref nextNodeId, out childHierarchy);
+                
                 childHierarchy.Parent = me;
                 childHierarchy.Left = prev;
                 childHierarchy.SibilingIndex = index;
@@ -97,12 +97,8 @@ namespace AntonioHR.TreeAsset
         }
     }
 
-    public class RuntimeTree<A> : RuntimeTree<TreeAsset<A>, A, RuntimeTreeNode<A>>
+    public class RuntimeTree<A> : RuntimeTree<RuntimeTree<A>, TreeAsset<A>, A, RuntimeTreeNode<A>>
         where A : TreeNodeAsset
     {
-        public static new RuntimeTree<A> CreateTreeFrom(TreeAsset<A> treeAsset)
-        {
-            return CreateTreeFrom<RuntimeTree<A>>(treeAsset);
-        }
     }
 }

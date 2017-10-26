@@ -7,41 +7,45 @@ using System.Text;
 namespace AntonioHR.TreeAsset.Internal
 {
 
-    public class RuntimeTreeNode<A, N> : ITreeNode<N> 
-        where A : TreeNodeAsset
-        where N : RuntimeTreeNode<A, N>
+    public class RuntimeTreeNode<RT, TA, TNA, RTN> : ITreeNode<RTN> 
+        where RT : RuntimeTree<RT, TA, TNA, RTN>, new()
+        where TA : TreeAsset<TNA>
+        where TNA : TreeNodeAsset
+        where RTN : RuntimeTreeNode<RT, TA, TNA, RTN>, new()
     {
         public class NodeHierarchy
         {
-            public N Right;
-            public N Left;
-            public N Parent;
+            public RTN Right;
+            public RTN Left;
+            public RTN Parent;
             public int Depth;
             public int SibilingIndex;
             public int NodeId;
             public int SubtreeDepth;
-            public A Asset;
-            public ReadOnlyCollection<N> Children;
+            public TNA Asset;
+            public RT Tree;
+            public ReadOnlyCollection<RTN> Children;
         }
 
         #region Data Accessors
 
 
-        public N RightSibiling { get { return _hierarchy.Right; } }
-        public N LeftSibiling { get { return _hierarchy.Left; } }
-        public N Parent { get { return _hierarchy.Parent; } }
+        public RTN RightSibiling { get { return _hierarchy.Right; } }
+        public RTN LeftSibiling { get { return _hierarchy.Left; } }
+        public RTN Parent { get { return _hierarchy.Parent; } }
         public int Depth { get { return _hierarchy.Depth; } }
         public int SibilingIndex { get { return _hierarchy.SibilingIndex; } }
         public int NodeId { get { return _hierarchy.NodeId; } }
         public int SubtreeDepth { get { return _hierarchy.SubtreeDepth; } }
-        public A Asset { get { return _hierarchy.Asset; } }
+        public TNA Asset { get { return _hierarchy.Asset; } }
+        public RT Tree { get { return _hierarchy.Tree; } }
         public int ChildCount { get { return Children.Count; } }
 
-        public N LeftmostDescendantOfDepth(int d)
+        public RTN LeftmostDescendantOfDepth(int d)
         {
             if(d == Depth)
             {
-                return (N)this;
+                return (RTN)this;
             }
             foreach (var item in Children)
             {
@@ -52,11 +56,11 @@ namespace AntonioHR.TreeAsset.Internal
             }
             return null;
         }
-        public N RightmostDescendantOfDepth(int d)
+        public RTN RightmostDescendantOfDepth(int d)
         {
             if (d == Depth)
             {
-                return (N)this;
+                return (RTN)this;
             }
             foreach (var item in Children.Reverse())
             {
@@ -68,7 +72,7 @@ namespace AntonioHR.TreeAsset.Internal
             return null;
         }
 
-        public N LeftmostChild
+        public RTN LeftmostChild
         {
             get
             {
@@ -77,7 +81,7 @@ namespace AntonioHR.TreeAsset.Internal
             }
         }
 
-        public N RightmostChild
+        public RTN RightmostChild
         {
             get
             {
@@ -102,21 +106,21 @@ namespace AntonioHR.TreeAsset.Internal
         }
 
 
-        public ReadOnlyCollection<N> Children
+        public ReadOnlyCollection<RTN> Children
         {
             get
             {
                 return _hierarchy.Children;
             }
         }
-        public IEnumerable<N> ChildrenStartingAt(N child)
+        public IEnumerable<RTN> ChildrenStartingAt(RTN child)
         {
             return Children.SkipWhile(x => x != child);
         }
         #endregion Data Accessors
 
         #region ITreeNode Implementation
-        public IEnumerable<N> SibilingsAfter
+        public IEnumerable<RTN> SibilingsAfter
         {
             get
             {
@@ -124,7 +128,7 @@ namespace AntonioHR.TreeAsset.Internal
             }
         }
 
-        public IEnumerable<N> SibilingsBefore
+        public IEnumerable<RTN> SibilingsBefore
         {
             get
             {
@@ -140,7 +144,7 @@ namespace AntonioHR.TreeAsset.Internal
             }
         }
 
-        IEnumerable<N> ITreeNode<N>.Children
+        IEnumerable<RTN> ITreeNode<RTN>.Children
         {
             get
             {
@@ -148,7 +152,7 @@ namespace AntonioHR.TreeAsset.Internal
             }
         }
 
-        ITreeNode<N> ITreeNode<N>.Parent
+        ITreeNode<RTN> ITreeNode<RTN>.Parent
         {
             get
             {
@@ -157,7 +161,7 @@ namespace AntonioHR.TreeAsset.Internal
         }
         #endregion
 
-
+        
 
         private NodeHierarchy _hierarchy;
         public RuntimeTreeNode()
@@ -174,7 +178,8 @@ namespace AntonioHR.TreeAsset.Internal
 
         }
     }
-    public class RuntimeTreeNode<A> : RuntimeTreeNode<A, RuntimeTreeNode<A>> where A: TreeNodeAsset
+    public class RuntimeTreeNode<TNA> : RuntimeTreeNode<RuntimeTree<TNA>, TreeAsset<TNA>, TNA, RuntimeTreeNode<TNA>> 
+        where TNA : TreeNodeAsset
     {
 
     }
