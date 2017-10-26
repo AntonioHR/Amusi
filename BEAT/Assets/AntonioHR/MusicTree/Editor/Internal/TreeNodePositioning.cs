@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace AntonioHR.MusicTree.Visualizer.Internal
+namespace AntonioHR.MusicTree.Editor.Internal
 {
     public class TreeNodePositioning<T> where T:TreeNodeAsset
     {

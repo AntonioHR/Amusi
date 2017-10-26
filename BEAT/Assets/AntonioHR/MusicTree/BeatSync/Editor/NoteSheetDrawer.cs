@@ -5,33 +5,30 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEditor;
+using AntonioHR.MusicTree.Editor;
 
 namespace AntonioHR.MusicTree.BeatSync.Editor
 {
     public class NoteSheetDrawer
     {
         public NoteSheet sheet;
-
-        public int beatsPerMeasure;
-
-        public int subTrackCount;
-        public int measureCount;
         
 
-        public int Height { get { return NoteSheetEditorWindow.configs.SubTrackHeight * subTrackCount; } }
+        public int Height { get { return NoteSheetEditorWindow.configs.SubTrackHeight * SubtrackCount; } }
 
         public int Width { get { return BeatCount * NoteSheetEditorWindow.configs.BeatWidth; } }
-        public int BeatCount { get { return beatsPerMeasure * measureCount; } }
+        public int BeatCount { get { return BeatsPerMeasure * MeasureCount; } }
+        public int BeatsPerMeasure { get { return MusicTreeEditorManager.Instance.BeatsPerMeasure; } }
+
+        public int MeasureCount { get { return MusicTreeEditorManager.Instance.MeasureCount; } }
+        public int SubtrackCount { get { return MusicTreeEditorManager.Instance.SubtrackCount; } }
 
         public Texture BG { get { return NoteSheetEditorWindow.configs.BgTexture; } }
 
 
-        public NoteSheetDrawer(NoteSheet sheet, int beatsPerMeasure)
+        public NoteSheetDrawer(NoteSheet sheet)
         {
             this.sheet = sheet;
-            this.beatsPerMeasure = beatsPerMeasure;
-            measureCount = 3;
-            subTrackCount = 2;
         }
 
         public void Draw()

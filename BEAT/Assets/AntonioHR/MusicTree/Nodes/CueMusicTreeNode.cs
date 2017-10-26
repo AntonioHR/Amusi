@@ -17,6 +17,13 @@ namespace AntonioHR.MusicTree.Nodes
         }
         public AudioClip clip;
 
+        [SerializeField]
+        bool useCustomBPM;
+        [SerializeField]
+        int customBPM;
+        
+
+
         public List<NoteTrack> Tracks { get { return sheet.tracks; } }
 
         public NoteSheet sheet;

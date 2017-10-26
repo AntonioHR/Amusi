@@ -17,6 +17,8 @@ namespace AntonioHR.MusicTree
 
         public List<NoteTrackDefinition> trackDefinitions;
 
+        public int defaultBPM;
+
         [SerializeField]
         private int maxSubTrack;
 

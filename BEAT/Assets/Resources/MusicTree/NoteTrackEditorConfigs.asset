@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9795a8ed77f6afc46bb3a39cc7c08757, type: 3}
   m_Name: NoteTrackEditorConfigs
   m_EditorClassIdentifier: 
-  subTrackHeight: 0
-  beatWidth: 0
-  bgTexture: {fileID: 0}
+  subTrackHeight: 50
+  beatWidth: 40
+  bgTexture: {fileID: 2800000, guid: 66c9b199d3530314cbaa02793d2e6207, type: 3}
+  noteTextureInactive: {fileID: 0}
+  noteTextureActive: {fileID: 0}

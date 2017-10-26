@@ -1,6 +1,6 @@
 ﻿using AntonioHR.MusicTree.BeatSync.Editor;
 using AntonioHR.MusicTree.Nodes;
-using AntonioHR.MusicTree.Visualizer.Internal;
+using AntonioHR.MusicTree.Editor.Internal;
 using AntonioHR.TreeAsset;
 using AntonioHR.TreeAsset.Internal;
 using System;
@@ -10,7 +10,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace AntonioHR.MusicTree.Visualizer.Editor
+namespace AntonioHR.MusicTree.Editor
 {
     public class TreeDrawer
     {
@@ -119,7 +119,7 @@ namespace AntonioHR.MusicTree.Visualizer.Editor
                 var cue = node as CueMusicTreeNode;
                 if(cue != null)
                 {
-                    NoteSheetEditorWindow.SetSheet(cue.sheet);
+                    MusicTreeEditorManager.Instance.OnNodeSelected((MusicTreeNode)node);
                 }
             }
         }

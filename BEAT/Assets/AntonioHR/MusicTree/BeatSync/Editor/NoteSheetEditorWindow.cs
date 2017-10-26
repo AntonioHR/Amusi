@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using AntonioHR.MusicTree.BeatSync;
 using AntonioHR.MusicTree.BeatSync.Editor;
+using AntonioHR.MusicTree.Editor;
+using AntonioHR.MusicTree.Nodes;
 
 namespace AntonioHR.MusicTree.BeatSync.Editor
 {
@@ -14,26 +16,34 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
 
         public static NoteSheetEditorWindow Instance { get; private set; }
 
-        static NoteSheetDrawer drawer;
-        static NoteSheet noteSheet;
+        NoteSheetDrawer drawer;
 
-        public static void SetSheet(NoteSheet sheet)
-        {
-            noteSheet = sheet;
-            drawer = new NoteSheetDrawer(sheet, 4);
-            if (Instance != null)
-                Instance.Repaint();
-        }
 
         [MenuItem("Window/Note Sheet Editor")]
         public static void ShowWindow()
         {
-            Instance = GetWindow<NoteSheetEditorWindow>(typeof(NoteSheetEditorWindow));
+            Instance = GetWindow<NoteSheetEditorWindow>();
+            MusicTreeEditorManager.Instance.OnNoteSheetEditorOpened(Instance);
         }
         
         private void OnEnable()
         {
             InitializeConfigs();
+            MusicTreeEditorManager.Instance.SelectedNodeChanged += Instance_SelectedNodeChanged;
+        }
+
+        private void Instance_SelectedNodeChanged(MusicTreeNode obj)
+        {
+            var cueNode = obj as CueMusicTreeNode;
+            if(cueNode != null)
+            {
+                drawer = new NoteSheetDrawer(cueNode.sheet);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            
         }
 
         private static void InitializeConfigs()
