@@ -14,7 +14,13 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         private NoteTrack noteTrack;
         private NoteSheetDrawer parent;
 
-        public int Width { get { return 800; } }
+        public int Width
+        {
+            get
+            {
+                return (int)(parent.CueLengthInBeats * NoteSheetEditorWindow.configs.BeatWidth);
+            }
+        }
         public int Height
         {
             get
@@ -46,8 +52,11 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
                 return NoteSheetEditorWindow.configs.SubTrackSpacing;
             }
         }
+        public float BeatWidth { get { return NoteSheetEditorWindow.configs.BeatWidth; } }
+
 
         public Texture BG { get { return NoteSheetEditorWindow.configs.BgTexture; } }
+        public Texture NoteTexture { get { return NoteSheetEditorWindow.configs.NoteTextureActive; } }
 
         public GUIStyle BGStyle { get { return NoteSheetEditorWindow.configs.Skin.box; } }
         public GUIStyle SubtrackStyle { get { return NoteSheetEditorWindow.configs.Skin.box; } }
@@ -69,16 +78,31 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
             GUI.Label(new Rect(cursor, labelSize), noteTrack.name);
             cursor.y += labelSize.y;
 
-            var notesBySbutrack = noteTrack.BySubtrack();
-            for (int i = 0; i < notesBySbutrack.Count; i++)
+            var notesBySubtrack = noteTrack.BySubtrack();
+            for (int i = 0; i < notesBySubtrack.Count; i++)
             {
                 var subtrackRect = new Rect(cursor, new Vector2(Width, SubtrackHeight));
                 GUI.Box(subtrackRect, GUIContent.none, SubtrackStyle);
+
+                for (int j = 0; j < notesBySubtrack[i].Count; j++)
+                {
+                    DrawNote(notesBySubtrack[i][j], cursor);
+                }
+
+
                 cursor.y += subtrackRect.height + SubtrackSpacing;
             }
 
 
             
+        }
+
+        private void DrawNote(Note note, Vector2 cursor)
+        {
+            int width = (int)(note.duration * BeatWidth);
+            Vector2 start = cursor + Vector2.right * (BeatWidth * note.start);
+            var drawRect = new Rect(start, new Vector2(width, SubtrackHeight));
+            GUI.DrawTexture(drawRect, NoteTexture);
         }
     }
 }

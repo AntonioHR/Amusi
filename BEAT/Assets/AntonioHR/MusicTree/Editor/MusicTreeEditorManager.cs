@@ -5,6 +5,8 @@ using AntonioHR.MusicTree.Nodes;
 using AntonioHR.MusicTree.BeatSync.Editor;
 using System;
 using AntonioHR.MusicTree.BeatSync;
+using AntonioHR.MusicTree.Internal;
+using UnityEditor;
 
 namespace AntonioHR.MusicTree.Editor
 {
@@ -18,42 +20,24 @@ namespace AntonioHR.MusicTree.Editor
                 return instance;
             }
         }
-        public int BeatsPerMeasure
-        {
-            get
-            {
-                Debug.LogWarning("No Beats Per Measure Calculated");
-                return 4;
-            }
-        }
-        public int SubtrackCount
-        {
-            get
-            {
-                Debug.LogWarning("No Beats Per Measure Calculated");
-                return 5;
-            }
-        }
-        public int MeasureCount
-        {
-            get
-            {
-                Debug.LogWarning("No Beats Per Measure Calculated");
-                return 4;
-            }
-        }
+        
 
         public NoteSheetEditorWindow NoteSheetEditor { get; private set; }
         public MusicTreeVisualizerWindow MusicTreeEditor { get; private set; }
         public MusicTreeAsset TreeAsset { get; private set; }
-        public MusicTreeNode SelectedNode { get; private set; }
+        public PlayableRuntimeMusicTreeNode SelectedNode { get; private set; }
+        public PlayableRuntimeMusicTreeNode NodeOfSelectedCue { get; private set; }
         public NoteSheet NoteSheet { get; private set; }
+        public PlayableRuntimeMusicTree CachedTree { get; private set; }
 
         private static MusicTreeEditorManager instance;
 
         public event Action NoteTrackDefinitionsChanged;
-        public event Action<MusicTreeAsset> SelectedTreeChanged;
-        public event Action<MusicTreeNode> SelectedNodeChanged;
+        public event Action<MusicTreeAsset> SelectedTreeAssetChanged;
+        public event Action<PlayableRuntimeMusicTree> TreeHierarchyChanged;
+        public event Action<PlayableRuntimeMusicTreeNode> SelectedNodeChanged;
+
+        public event Action<CueMusicTreeNode, PlayableRuntimeMusicTreeNode> SelectedCueChanged;
         public event Action<NoteSheetEditorWindow> NoteSheetEditorOpened;
         public event Action<MusicTreeVisualizerWindow> MusicTreeEditorOpened;
         
@@ -64,18 +48,47 @@ namespace AntonioHR.MusicTree.Editor
 
         }
         
-        public void OnTreeChanged(MusicTreeAsset a)
+        public void OnSelectedTreeChanged(MusicTreeAsset a)
         {
             TreeAsset = a;
-            if (SelectedTreeChanged != null)
-                SelectedTreeChanged(TreeAsset);
+            if (SelectedTreeAssetChanged != null)
+                SelectedTreeAssetChanged(TreeAsset);
+            OnChangesToTreeHierarchy();
         }
 
-        public void OnNodeSelected(MusicTreeNode n)
+        private void OnChangesToTreeHierarchy()
+        {
+            if(TreeAsset != null)
+            {
+                CachedTree = PlayableRuntimeMusicTree.CreateFrom(TreeAsset);
+            } else
+            {
+                CachedTree = null;
+            }
+            TreeHierarchyChanged(CachedTree);
+        }
+
+        public void OnNodeSelected(PlayableRuntimeMusicTreeNode n)
         {
             SelectedNode = n;
-            if(SelectedNodeChanged != null)
+            if(n != null)
+                Selection.activeObject = n.Asset;
+            if (SelectedNodeChanged != null)
                 SelectedNodeChanged(SelectedNode);
+
+            var cue = n.Asset as CueMusicTreeNode;
+            if(cue != null)
+            {
+                OnCueSelected(cue, n);
+            }
+        }
+
+        private void OnCueSelected(CueMusicTreeNode cue, PlayableRuntimeMusicTreeNode owner)
+        {
+            if(SelectedCueChanged != null)
+            {
+                SelectedCueChanged(cue, owner);
+            }
         }
 
         public void OnNoteSheetEditorOpened(NoteSheetEditorWindow e)

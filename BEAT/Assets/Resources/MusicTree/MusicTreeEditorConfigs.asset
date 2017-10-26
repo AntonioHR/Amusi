@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a20266b5f793544b9b8233a8714bc7, type: 3}
+  m_Name: MusicTreeEditorConfigs
+  m_EditorClassIdentifier: 
+  conditionIcon: {fileID: 2800000, guid: c8c15548fedbaa94fbfd120e41ccff85, type: 3}
+  cueIcon: {fileID: 2800000, guid: e0676fca9866e6a4b865a332bc7316e0, type: 3}
+  selectorIcon: {fileID: 2800000, guid: 60c94ca5dbd57f54eaae0d095d741fe5, type: 3}
+  sequenceIcon: {fileID: 2800000, guid: 4fb8c7c8e6f41ed44bb7c7f4e311cad4, type: 3}

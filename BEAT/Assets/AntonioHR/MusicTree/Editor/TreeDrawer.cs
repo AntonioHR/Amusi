@@ -9,46 +9,33 @@ using System.Linq;
 using System.Text;
 using UnityEditor;
 using UnityEngine;
+using AntonioHR.MusicTree.Internal;
 
 namespace AntonioHR.MusicTree.Editor
 {
+    public class MusicTreeNodePositioning : TreeNodePositioning<MusicTreeNodePositioning, PlayableRuntimeMusicTree, MusicTreeAsset, MusicTreeNode, PlayableRuntimeMusicTreeNode> { }
     public class TreeDrawer
     {
 
-        public MusicTreeAsset tree;
-
         #region Drawing Parameters
 
-        Texture sequence_icon;
-        Texture selector_icon;
-        Texture cue_icon;
-        Texture condition_icon;
+        Texture SequenceIcon { get { return MusicTreeVisualizerWindow.configs.SequenceIcon; } }
+        Texture SelectorIcon { get { return MusicTreeVisualizerWindow.configs.SelectorIcon; } }
+        Texture CueIcon { get { return MusicTreeVisualizerWindow.configs.CueIcon; } }
+        Texture ConditionIcon { get { return MusicTreeVisualizerWindow.configs.ConditionIcon; } }
         #endregion
-        
 
-        RuntimeTree<MusicTreeNode> cachedTree;
-        TreeNodePositioning<MusicTreeNode> cachedPositioning;
+
+        PlayableRuntimeMusicTree tree;
+        MusicTreeNodePositioning cachedPositioning;
         
-        public TreeDrawer(MusicTreeAsset tree)
+        public TreeDrawer(PlayableRuntimeMusicTree tree)
         {
             this.tree = tree;
-
-            UpdateTreeCache();
-
-
-            selector_icon = Resources.Load<Texture>("icon_selector");
-            sequence_icon = Resources.Load<Texture>("icon_sequence");
-            cue_icon = Resources.Load<Texture>("icon_music");
-            condition_icon = Resources.Load<Texture>("icon_condition");
+            
+            cachedPositioning = MusicTreeNodePositioning.CreateFrom(tree);
         }
-
-        void UpdateTreeCache()
-        {
-
-            cachedTree = RuntimeTree<MusicTreeNode>.CreateFrom(tree);
-            cachedPositioning = TreeNodePositioning<MusicTreeNode>.CreateFrom(cachedTree);
-        }
-
+        
         public void DrawTree()
         {
 
@@ -59,7 +46,7 @@ namespace AntonioHR.MusicTree.Editor
 
         private void DrawNodes()
         {
-            foreach (var node in cachedTree.AllNodes)
+            foreach (var node in tree.AllNodes)
             {
                 if (!node.IsRoot)
                 {
@@ -67,14 +54,13 @@ namespace AntonioHR.MusicTree.Editor
                 }
             }
 
-            foreach (var node in cachedTree.AllNodes)
+            foreach (var node in tree.AllNodes)
             {
-                DrawNode(cachedPositioning.GetBoundsFor(node), node.Asset);
-
+                DrawNode(cachedPositioning.GetBoundsFor(node), node);
             }
         }
 
-        private void DrawLineToParent(RuntimeTreeNode<MusicTreeNode> node, MusicTreeNode musicTreeNode)
+        private void DrawLineToParent(PlayableRuntimeMusicTreeNode node, MusicTreeNode musicTreeNode)
         {
             var parentBounds = cachedPositioning.GetBoundsFor(node.Parent);
             var myBounds = cachedPositioning.GetBoundsFor(node);
@@ -83,29 +69,29 @@ namespace AntonioHR.MusicTree.Editor
         }
 
 
-        private void DrawNode(Rect bounds, TreeNodeAsset node)
+        private void DrawNode(Rect bounds, PlayableRuntimeMusicTreeNode node)
         {
             Color color = Color.gray;
 
             Texture tex = null;
 
-            if (node is CueMusicTreeNode)
+            if (node.Asset is CueMusicTreeNode)
             {
                 //color = Color.red;
-                tex = cue_icon;
+                tex = CueIcon;
             }
-            else if (node is SelectorMusicTreeNode)
+            else if (node.Asset is SelectorMusicTreeNode)
             {
                 //color = Color.green;
-                tex = selector_icon;
+                tex = SelectorIcon;
             }
-            else if (node is SequenceMusicTreeNode)
+            else if (node.Asset is SequenceMusicTreeNode)
             {
                 //color = Color.cyan;
-                tex = sequence_icon;
-            } else if(node is ConditionMusicTreeNode)
+                tex = SequenceIcon;
+            } else if(node.Asset is ConditionMusicTreeNode)
             {
-                tex = condition_icon;
+                tex = ConditionIcon;
             }
 
 
@@ -115,12 +101,7 @@ namespace AntonioHR.MusicTree.Editor
 
             if (GUI.Button(bounds, GUIContent.none, GUIStyle.none))
             {
-                Selection.activeObject = node;
-                var cue = node as CueMusicTreeNode;
-                if(cue != null)
-                {
-                    MusicTreeEditorManager.Instance.OnNodeSelected((MusicTreeNode)node);
-                }
+                MusicTreeEditorManager.Instance.OnNodeSelected(node);
             }
         }
 

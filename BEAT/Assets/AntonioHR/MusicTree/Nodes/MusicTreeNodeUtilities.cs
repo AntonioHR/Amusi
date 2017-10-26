@@ -7,7 +7,7 @@ using System.Text;
 
 namespace AntonioHR.MusicTree.Nodes
 {
-    public static class MusicTreeNodeUitilities
+    public static class MusicTreeNodeUtilities
     {
         public static int BPMFor(CueMusicTreeNode node, MusicTreeAsset tree)
         {
@@ -17,7 +17,7 @@ namespace AntonioHR.MusicTree.Nodes
         public static float DurationInBeats(CueMusicTreeNode node, MusicTreeAsset tree)
         {
             int bpm = BPMFor(node, tree);
-            float result = node.clip.length / 60 * bpm;
+            float result = node.clip == null ? 0 : node.clip.length / 60 * bpm;
             float f = result % .25f;
             result -= f;
             if (f > .2)

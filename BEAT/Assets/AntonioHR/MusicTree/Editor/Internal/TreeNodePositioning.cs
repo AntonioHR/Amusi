@@ -8,7 +8,12 @@ using UnityEngine;
 
 namespace AntonioHR.MusicTree.Editor.Internal
 {
-    public class TreeNodePositioning<T> where T:TreeNodeAsset
+    public class TreeNodePositioning<TNP, RT, TA, TNA, RTN>
+        where TNP : TreeNodePositioning<TNP, RT, TA, TNA, RTN>, new()
+        where RT : RuntimeTree<RT, TA, TNA, RTN>, new()
+        where TA : TreeAsset<TNA>
+        where TNA : TreeNodeAsset
+        where RTN : RuntimeTreeNode<RT, TA, TNA, RTN>, new()
     {
         #region Data Structures
         public class TreePositionParameters
@@ -26,7 +31,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
         public class NodePositioning
         {
-            public RuntimeTreeNode<T> node;
+            public RTN node;
 
             public float localX;
             public float mod;
@@ -40,18 +45,18 @@ namespace AntonioHR.MusicTree.Editor.Internal
         #endregion
 
         private NodePositioning[] nodePositionings;
-        private RuntimeTree<T> tree;
+        private RT tree;
         private TreePositionParameters positionParams;
 
         private Rect baseRect;
        
 
-        private TreeNodePositioning()
+        protected TreeNodePositioning()
         {
 
         }
 
-        public Rect GetBoundsFor(RuntimeTreeNode<T> node)
+        public Rect GetBoundsFor(RTN node)
         {
             return nodePositionings[node.NodeId].bounds;
         }
@@ -63,7 +68,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
 
 
-        public static TreeNodePositioning<T> CreateFrom(RuntimeTree<T> t)
+        public static TNP CreateFrom(RT t)
         {
             return CreateFrom(t, DefaultPosParameters());
         }
@@ -73,9 +78,9 @@ namespace AntonioHR.MusicTree.Editor.Internal
             return new TreePositionParameters();
         }
 
-        public static TreeNodePositioning<T> CreateFrom(RuntimeTree<T> t, TreePositionParameters posParameters)
+        public static TNP CreateFrom(RT t, TreePositionParameters posParameters)
         {
-            TreeNodePositioning<T> result = new TreeNodePositioning<T>()
+            TNP result = new TNP()
                 {
                     tree = t,
                     baseRect = new Rect(0, 0, posParameters.nodeSize, posParameters.nodeSize),
@@ -101,7 +106,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
             }
         }
 
-        private void InitializeNodeWithBasePositions(RuntimeTreeNode<T> n)
+        private void InitializeNodeWithBasePositions(RTN n)
         {
             nodePositionings[n.NodeId] = new NodePositioning()
             {
@@ -142,7 +147,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
         }
 
 
-        void PositionNodeOverChildren(RuntimeTreeNode<T> node)
+        void PositionNodeOverChildren(RTN node)
         {
             float desiredValue = getPosDataFor(node).localX;
             var childCount = node.Children.Count;
@@ -171,7 +176,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
 
 
-        private void HandleOverlapsFor(RuntimeTreeNode<T> node)
+        private void HandleOverlapsFor(RTN node)
         {
 
             var nodePos = getPosDataFor(node);
@@ -201,7 +206,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
         }
 
-        private void UpdateLeftContour(RuntimeTreeNode<T> node)
+        private void UpdateLeftContour(RTN node)
         {
             var nodePos = getPosDataFor(node);
             nodePos.leftContour.Add(nodePos.localX);
@@ -213,7 +218,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
             }
         }
 
-        private void UpdateRightContour(RuntimeTreeNode<T> node)
+        private void UpdateRightContour(RTN node)
         {
             var nodePos = getPosDataFor(node);
             nodePos.rightContour.Add(nodePos.localX);
@@ -248,7 +253,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
             CalculateRectsRecursion(tree.Root);
         }
 
-        private void CalculateRectsRecursion(RuntimeTreeNode<T> node, float mod = 0)
+        private void CalculateRectsRecursion(RTN node, float mod = 0)
         {
             var p = getPosDataFor(node);
             p.bounds = baseRect.At(new Vector2(p.localX + mod, p.h));
@@ -263,7 +268,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
 
 
-        private NodePositioning getPosDataFor(RuntimeTreeNode<T> node)
+        private NodePositioning getPosDataFor(RTN node)
         {
             return nodePositionings[node.NodeId];
         }

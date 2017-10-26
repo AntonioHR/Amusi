@@ -6,12 +6,16 @@ using System.Text;
 using UnityEngine;
 using UnityEditor;
 using AntonioHR.MusicTree.Editor;
+using AntonioHR.MusicTree.Internal;
+using AntonioHR.MusicTree.Nodes;
 
 namespace AntonioHR.MusicTree.BeatSync.Editor
 {
     public class NoteSheetDrawer
     {
-        private NoteSheet sheet;
+        private NoteSheet Sheet { get { return cue.sheet; } }
+        private PlayableRuntimeMusicTreeNode owner;
+        private CueMusicTreeNode cue;
         private List<NoteTrackDrawer> trackDrawers;
         private Vector2 scroll;
 
@@ -19,9 +23,10 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         public event Action DataUpdated;
 
 
-        public NoteSheetDrawer(NoteSheet sheet)
+        public NoteSheetDrawer(CueMusicTreeNode cue, PlayableRuntimeMusicTreeNode owner)
         {
-            this.sheet = sheet;
+            this.cue = cue;
+            this.owner = owner;
             trackDrawers = new List<NoteTrackDrawer>();
             MusicTreeEditorManager.Instance.NoteTrackDefinitionsChanged += Instance_NoteTrackDefinitionsChanged;
             UpdateTrackDrawers();
@@ -55,6 +60,8 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
                 return new Vector2(10, 10);
             }
         }
+
+        public float CueLengthInBeats { get { return owner.LengthInBeats; } }
 
         public void Draw(Rect windowPos)
         {
@@ -99,7 +106,7 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         private void UpdateTrackDrawers()
         {
             trackDrawers.Clear();
-            foreach (var track in sheet.tracks)
+            foreach (var track in Sheet.tracks)
             {
                 trackDrawers.Add(new NoteTrackDrawer(track, this));
             }

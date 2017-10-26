@@ -81,14 +81,23 @@ namespace AntonioHR.MusicTree.Internal
 
         public PlayableRuntimeMusicTree TreeAsPlayable { get { return Tree; } }
 
-        //public int BPM
-        //{
-        //    get
-        //    {
-        //        var cueNode = Asset as CueMusicTreeNode;
-        //        return cueNode == null ? 0 : cueNode.
-        //    }
-        //}
+        public int BPM
+        {
+            get
+            {
+                var cueNode = Asset as CueMusicTreeNode;
+                return cueNode == null ? 0 : MusicTreeNodeUtilities.BPMFor(cueNode, Tree.Asset);
+            }
+        }
+
+        public float LengthInBeats
+        {
+            get
+            {
+                var cueNode = Asset as CueMusicTreeNode;
+                return cueNode == null ? 0 : MusicTreeNodeUtilities.DurationInBeats(cueNode, Tree.Asset);
+            }
+        }
 
         public enum State { Idle, Running, Failed, Complete }
         public State ExecutionState { get; set; }

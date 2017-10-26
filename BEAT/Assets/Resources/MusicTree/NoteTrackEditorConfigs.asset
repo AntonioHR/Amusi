@@ -14,7 +14,8 @@ MonoBehaviour:
   subTrackHeight: 20
   beatWidth: 30
   bgTexture: {fileID: 2800000, guid: 7f3d600bb950d2d42920ec7d5ea3de0f, type: 3}
-  noteTextureInactive: {fileID: 0}
-  noteTextureActive: {fileID: 0}
+  noteTextureInactive: {fileID: 2800000, guid: 7f3d600bb950d2d42920ec7d5ea3de0f, type: 3}
+  noteTextureActive: {fileID: 2800000, guid: 7f3d600bb950d2d42920ec7d5ea3de0f, type: 3}
   trackSpacing: 10
   skin: {fileID: 11400000, guid: eea5440002eb0584bacc2549dcb8da43, type: 2}
+  subTrackSpacing: 0

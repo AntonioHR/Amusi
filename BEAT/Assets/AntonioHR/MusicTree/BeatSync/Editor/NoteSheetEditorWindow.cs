@@ -6,6 +6,7 @@ using AntonioHR.MusicTree.BeatSync;
 using AntonioHR.MusicTree.BeatSync.Editor;
 using AntonioHR.MusicTree.Editor;
 using AntonioHR.MusicTree.Nodes;
+using AntonioHR.MusicTree.Internal;
 
 namespace AntonioHR.MusicTree.BeatSync.Editor
 {
@@ -14,23 +15,20 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         public static NoteSheetEditorConfigs configs;
         public static string configsAssetName = "NoteTrackEditorConfigs";
 
-        public static NoteSheetEditorWindow Instance { get; private set; }
-
         private NoteSheetDrawer drawer;
-
 
 
         [MenuItem("Window/Note Sheet Editor")]
         public static void ShowWindow()
         {
-            Instance = GetWindow<NoteSheetEditorWindow>();
-            MusicTreeEditorManager.Instance.OnNoteSheetEditorOpened(Instance);
+            var window = GetWindow<NoteSheetEditorWindow>();
+            MusicTreeEditorManager.Instance.OnNoteSheetEditorOpened(window);
         }
         
         private void OnEnable()
         {
             InitializeConfigs();
-            MusicTreeEditorManager.Instance.SelectedNodeChanged += Instance_SelectedNodeChanged;
+            MusicTreeEditorManager.Instance.SelectedCueChanged += Manager_SelectedCueChanged;
         }
         private void OnDestroy()
         {
@@ -44,23 +42,19 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
 
 
 
-        private void Instance_SelectedNodeChanged(MusicTreeNode obj)
+        private void Manager_SelectedCueChanged(CueMusicTreeNode node, PlayableRuntimeMusicTreeNode owner)
         {
-            var cueNode = obj as CueMusicTreeNode;
-            if(cueNode != null)
-            {
-                UpdateDrawer(cueNode);
-            }
+            UpdateDrawer(node, owner);
         }
 
-        private void UpdateDrawer(CueMusicTreeNode cueNode)
+        private void UpdateDrawer(CueMusicTreeNode cue, PlayableRuntimeMusicTreeNode owner)
         {
             if (drawer != null)
             {
                 drawer.DataUpdated -= Repaint;
                 drawer.OnReplaced();
             }
-            drawer = new NoteSheetDrawer(cueNode.sheet);
+            drawer = new NoteSheetDrawer(cue, owner);
             drawer.DataUpdated += Repaint;
             Repaint();
         }
