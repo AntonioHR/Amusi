@@ -50,5 +50,36 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
                 }
             }
         }
+
+        public static int SubtrackCount(this NoteTrack track)
+        {
+            try
+            {
+                return track.notes.Max(x => x.subTrack) + 1;
+            }
+            catch (InvalidOperationException e)
+            {
+                return 0;
+            }
+            
+        }
+
+        public static List<List<Note>> BySubtrack(this NoteTrack track)
+        {
+            int count = track.SubtrackCount();
+
+            var result = new List<List<Note>>();
+
+            for (int i = 0; i < count; i++)
+            {
+                result.Add(NotesOnSubtrack(track, i));
+            }
+            return result;
+        }
+
+        private static List<Note> NotesOnSubtrack(this NoteTrack track, int i)
+        {
+            return new List<Note>(track.notes.Where(x => x.subTrack == i));
+        }
     }
 }

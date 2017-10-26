@@ -32,8 +32,9 @@ MonoBehaviour:
       boolValue: 0
       floatValue: 0
   trackDefinitions:
-  - name: bg
-  - name: voice
+  - name: trck1
+  - name: trck2
+  defaultBPM: 196
   maxSubTrack: 2
 --- !u!114 &114033144550501360
 MonoBehaviour:
@@ -48,7 +49,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114661695978593270}
   clip: {fileID: 8300000, guid: bebe688629953fe4481a6b458f11da6f, type: 3}
-  Tracks: []
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: trck1
+    - notes: []
+      name: trck2
+    - notes: []
+      name: trck3
 --- !u!114 &114123915654942688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,32 +135,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114134434110645798}
   clip: {fileID: 8300000, guid: 80876aaec8f5f0149a63bd0b3e6eace2, type: 3}
-  Tracks:
-  - notes:
-    - start: 8
-      duration: 1
-      subTrack: 0
-    - start: 9
-      duration: 1
-      subTrack: 0
-    - start: 10
-      duration: 1
-      subTrack: 0
-    - start: 11
-      duration: 1
-      subTrack: 0
-    - start: 12
-      duration: 1
-      subTrack: 0
-    - start: 13
-      duration: 1
-      subTrack: 0
-    - start: 14
-      duration: 2
-      subTrack: 0
-    name: bg
-  - notes: []
-    name: voice
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: trck1
+    - notes: []
+      name: trck2
 --- !u!114 &114469791945131186
 MonoBehaviour:
   m_ObjectHideFlags: 0

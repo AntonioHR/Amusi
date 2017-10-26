@@ -16,12 +16,9 @@ namespace AntonioHR.MusicTree.Nodes
             get { return ChildrenPolicy.None; }
         }
         public AudioClip clip;
-
-        [SerializeField]
-        bool useCustomBPM;
-        [SerializeField]
-        int customBPM;
         
+        public bool useCustomBPM;
+        public int customBPM;
 
 
         public List<NoteTrack> Tracks { get { return sheet.tracks; } }

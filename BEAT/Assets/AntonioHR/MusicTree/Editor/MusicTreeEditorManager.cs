@@ -4,11 +4,20 @@ using UnityEngine;
 using AntonioHR.MusicTree.Nodes;
 using AntonioHR.MusicTree.BeatSync.Editor;
 using System;
+using AntonioHR.MusicTree.BeatSync;
 
 namespace AntonioHR.MusicTree.Editor
 {
     public class MusicTreeEditorManager {
-        public static MusicTreeEditorManager Instance { get; private set; }
+        public static MusicTreeEditorManager Instance { get
+            {
+                if(instance == null)
+                {
+                    instance = new MusicTreeEditorManager();
+                }
+                return instance;
+            }
+        }
         public int BeatsPerMeasure
         {
             get
@@ -34,44 +43,55 @@ namespace AntonioHR.MusicTree.Editor
             }
         }
 
-        NoteSheetEditorWindow noteSheetEditor;
-        MusicTreeVisualizerWindow musicTreeEditor;
-        MusicTreeAsset treeAsset;
-        MusicTreeNode selectedNode;
+        public NoteSheetEditorWindow NoteSheetEditor { get; private set; }
+        public MusicTreeVisualizerWindow MusicTreeEditor { get; private set; }
+        public MusicTreeAsset TreeAsset { get; private set; }
+        public MusicTreeNode SelectedNode { get; private set; }
+        public NoteSheet NoteSheet { get; private set; }
 
+        private static MusicTreeEditorManager instance;
+
+        public event Action NoteTrackDefinitionsChanged;
         public event Action<MusicTreeAsset> SelectedTreeChanged;
         public event Action<MusicTreeNode> SelectedNodeChanged;
         public event Action<NoteSheetEditorWindow> NoteSheetEditorOpened;
         public event Action<MusicTreeVisualizerWindow> MusicTreeEditorOpened;
+        
+        
 
-
-        public void OnTreeChanged(MusicTreeAsset asset)
+        private MusicTreeEditorManager()
         {
-            treeAsset = asset;
-            if (SelectedTreeChanged != null)
-                SelectedTreeChanged(treeAsset);
-        }
 
-        public void OnNodeSelected(MusicTreeNode node)
-        {
-            node = selectedNode;
-            if(SelectedNodeChanged != null)
-                SelectedNodeChanged(node);
-        }
-
-        public void OnNoteSheetEditorOpened(NoteSheetEditorWindow editor)
-        {
-            noteSheetEditor = editor;
-            if(NoteSheetEditorOpened != null)
-                NoteSheetEditorOpened(editor);
         }
         
-        public void OnMusicTreeEditorOpened(MusicTreeVisualizerWindow editor)
+        public void OnTreeChanged(MusicTreeAsset a)
         {
-            musicTreeEditor = editor;
-            if(MusicTreeEditorOpened != null)
-                MusicTreeEditorOpened(editor);
+            TreeAsset = a;
+            if (SelectedTreeChanged != null)
+                SelectedTreeChanged(TreeAsset);
         }
+
+        public void OnNodeSelected(MusicTreeNode n)
+        {
+            SelectedNode = n;
+            if(SelectedNodeChanged != null)
+                SelectedNodeChanged(SelectedNode);
+        }
+
+        public void OnNoteSheetEditorOpened(NoteSheetEditorWindow e)
+        {
+            NoteSheetEditor = e;
+            if(NoteSheetEditorOpened != null)
+                NoteSheetEditorOpened(NoteSheetEditor);
+        }
+        
+        public void OnMusicTreeEditorOpened(MusicTreeVisualizerWindow e)
+        {
+            MusicTreeEditor = e;
+            if(MusicTreeEditorOpened != null)
+                MusicTreeEditorOpened(MusicTreeEditor);
+        }
+        
 
 
     }

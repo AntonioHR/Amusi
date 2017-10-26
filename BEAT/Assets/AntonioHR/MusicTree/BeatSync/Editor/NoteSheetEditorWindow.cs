@@ -16,7 +16,8 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
 
         public static NoteSheetEditorWindow Instance { get; private set; }
 
-        NoteSheetDrawer drawer;
+        private NoteSheetDrawer drawer;
+
 
 
         [MenuItem("Window/Note Sheet Editor")]
@@ -31,19 +32,37 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
             InitializeConfigs();
             MusicTreeEditorManager.Instance.SelectedNodeChanged += Instance_SelectedNodeChanged;
         }
+        private void OnDestroy()
+        {
+
+        }
+        void OnGUI()
+        {
+            if (drawer != null)
+                drawer.Draw(position);
+        }
+
+
 
         private void Instance_SelectedNodeChanged(MusicTreeNode obj)
         {
             var cueNode = obj as CueMusicTreeNode;
             if(cueNode != null)
             {
-                drawer = new NoteSheetDrawer(cueNode.sheet);
+                UpdateDrawer(cueNode);
             }
         }
 
-        private void OnDestroy()
+        private void UpdateDrawer(CueMusicTreeNode cueNode)
         {
-            
+            if (drawer != null)
+            {
+                drawer.DataUpdated -= Repaint;
+                drawer.OnReplaced();
+            }
+            drawer = new NoteSheetDrawer(cueNode.sheet);
+            drawer.DataUpdated += Repaint;
+            Repaint();
         }
 
         private static void InitializeConfigs()
@@ -64,10 +83,5 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
             }
         }
 
-        void OnGUI()
-        {
-            if (drawer != null)
-                drawer.Draw();
-        }
     }
 }

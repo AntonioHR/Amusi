@@ -6,7 +6,7 @@ using AntonioHR.MusicTree.Nodes;
 using AntonioHR.MusicTree.Internal;
 using AntonioHR.TreeAsset.Internal;
 
-namespace AntonioHR.MusicTree
+namespace AntonioHR.MusicTree.Nodes
 {
     public abstract class MusicTreeNode : TreeNodeAsset
     {

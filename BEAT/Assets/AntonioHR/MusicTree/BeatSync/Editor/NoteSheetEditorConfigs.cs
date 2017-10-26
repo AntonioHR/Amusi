@@ -9,7 +9,7 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
     public class NoteSheetEditorConfigs : ScriptableObject
     {
         [SerializeField]
-        private int subTrackHeight;
+        private int subTrackHeight = 50;
         [SerializeField]
         private int beatWidth;
         [SerializeField]
@@ -18,6 +18,12 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         private Texture noteTextureInactive;
         [SerializeField]
         private Texture noteTextureActive;
+        [SerializeField]
+        private int trackSpacing = 5;
+        [SerializeField]
+        private GUISkin skin;
+        [SerializeField]
+        private int subTrackSpacing;
 
         public int SubTrackHeight
         {
@@ -82,6 +88,27 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
             {
                 noteTextureActive = value;
             }
+        }
+
+        public int TrackSpacing
+        {
+            get
+            {
+                return trackSpacing;
+            }
+        }
+
+        public GUISkin Skin
+        {
+            get
+            {
+                return skin;
+            }
+        }
+
+        public int SubTrackSpacing
+        {
+            get { return subTrackSpacing; }
         }
     }
 }
