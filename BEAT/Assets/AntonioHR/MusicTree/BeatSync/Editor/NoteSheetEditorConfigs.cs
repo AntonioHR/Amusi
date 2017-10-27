@@ -24,6 +24,10 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         private GUISkin skin;
         [SerializeField]
         private int subTrackSpacing;
+        [SerializeField]
+        private float noteInsertionSnap = .5f;
+        [SerializeField]
+        private float defaultNoteSize = 1.0f;
 
         public int SubTrackHeight
         {
@@ -109,6 +113,22 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         public int SubTrackSpacing
         {
             get { return subTrackSpacing; }
+        }
+
+        public float NoteInsertionSnap
+        {
+            get
+            {
+                return noteInsertionSnap;
+            }
+        }
+
+        public float DefaultNoteSize
+        {
+            get
+            {
+                return defaultNoteSize;
+            }
         }
     }
 }

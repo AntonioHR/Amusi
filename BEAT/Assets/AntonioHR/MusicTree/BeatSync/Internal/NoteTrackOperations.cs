@@ -64,6 +64,29 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
             
         }
 
+        public static bool TryAddNote(this NoteTrack track, int subtrackIndex, float pos, float duration)
+        {
+            var newNote = new Note() { subTrack = subtrackIndex, duration = duration, start = pos };
+            var subtrack = track.NotesOnSubtrack(subtrackIndex);
+            var posInSubtrack = subtrack.FindIndex(x => x.End > pos);
+            posInSubtrack = posInSubtrack == -1 ? subtrack.Count : posInSubtrack;
+
+            if(subtrack.Skip(posInSubtrack).All(x => x.start >= newNote.End))
+            {
+                AddNote(track, newNote);
+                return true;
+            }
+            return false;
+        }
+        public static void AddNote(this NoteTrack track, Note note)
+        {
+            var pos = track.notes.FindIndex(x => x.End > note.End);
+            if (pos == -1)
+                track.notes.Add(note);
+            else
+                track.notes.Insert(pos, note);
+        }
+
         public static List<List<Note>> BySubtrack(this NoteTrack track)
         {
             int count = track.SubtrackCount();

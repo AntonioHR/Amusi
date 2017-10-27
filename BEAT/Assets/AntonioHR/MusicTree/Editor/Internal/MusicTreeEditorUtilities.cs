@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Assets.AntonioHR.MusicTree.Editor.Internal
 {
-    public static class MusicTreeEditorUitilities
+    public static class MusicTreeEditorUtilities
     {
         public static int BPMFor(CueMusicTreeNode node, MusicTreeAsset tree)
         {
@@ -18,10 +18,16 @@ namespace Assets.AntonioHR.MusicTree.Editor.Internal
         {
             int bpm = BPMFor(node, tree);
             float result = node.clip.length / 60 * bpm;
-            float f = result % .25f;
+            result = RoundToBeat(result);
+            return result;
+        }
+
+        public static float RoundToBeat(float result, float minBeat = .25f, float threshold = .2f)
+        {
+            float f = result % minBeat;
             result -= f;
-            if (f > .2)
-                result += .25f;
+            if (f > threshold)
+                result += minBeat;
             return result;
         }
     }

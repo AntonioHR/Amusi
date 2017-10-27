@@ -43,7 +43,7 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         {
             get
             {
-                return trackDrawers.Max(drawer => drawer.Width);
+                return trackDrawers.Count == 0? 0: trackDrawers.Max(drawer => drawer.Width);
             }
         }
         public int TrackSpacing
@@ -105,13 +105,26 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
 
         private void UpdateTrackDrawers()
         {
+            foreach (var dr in trackDrawers)
+            {
+
+                dr.DataUpdated -= TrackDrawer_DataUpdated;
+            }
+
             trackDrawers.Clear();
             foreach (var track in Sheet.tracks)
             {
-                trackDrawers.Add(new NoteTrackDrawer(track, this));
+                var dr = new NoteTrackDrawer(track, this);
+                dr.DataUpdated += TrackDrawer_DataUpdated;
+                trackDrawers.Add(dr);
             }
             if (DataUpdated != null)
                 DataUpdated();
+        }
+
+        private void TrackDrawer_DataUpdated()
+        {
+            DataUpdated();
         }
 
 
