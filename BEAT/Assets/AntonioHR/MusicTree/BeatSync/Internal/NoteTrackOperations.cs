@@ -11,6 +11,11 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
         {
             foreach (var note in track.notes)
             {
+                if(!isNoteValid(note, track))
+                {
+                    continue;
+                }
+
                 float noteEnd = note.End;
 
                 bool startsBefore = eventStart < note.start;
@@ -51,27 +56,25 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
             }
         }
 
-        public static int SubtrackCount(this NoteTrack track)
+        private static bool isNoteValid(Note note, NoteTrack track)
         {
-            try
-            {
-                return track.notes.Max(x => x.subTrack) + 1;
-            }
-            catch (InvalidOperationException e)
-            {
-                return 0;
-            }
-            
+            return note.subTrack < track.subtrackCount;
         }
 
-        public static bool TryAddNote(this NoteTrack track, int subtrackIndex, float pos, float duration)
+        public static int SubtrackCount(this NoteTrack track)
+        {
+            return track.subtrackCount;
+        }
+
+        public static bool TryAddNote(this NoteTrack track, int subtrackIndex, float pos, float duration, out int posInSubtrack, out Note resultNote)
         {
             var newNote = new Note() { subTrack = subtrackIndex, duration = duration, start = pos };
+            resultNote = newNote;
             var subtrack = track.NotesOnSubtrack(subtrackIndex);
-            var posInSubtrack = subtrack.FindIndex(x => x.End > pos);
+            posInSubtrack = subtrack.FindIndex(x => x.End > pos);
             posInSubtrack = posInSubtrack == -1 ? subtrack.Count : posInSubtrack;
 
-            if(subtrack.Skip(posInSubtrack).All(x => x.start >= newNote.End))
+            if (subtrack.Skip(posInSubtrack).All(x => x.start >= newNote.End))
             {
                 AddNote(track, newNote);
                 return true;

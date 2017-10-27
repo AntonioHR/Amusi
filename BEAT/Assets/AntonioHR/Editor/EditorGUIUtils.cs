@@ -20,7 +20,7 @@ namespace AntonioHR.Editor
         {
             int id = GUIUtility.GetControlID(FocusType.Passive);
 
-            var stateObj = (DoubleClickStateObj)GUIUtility.GetStateObject(typeof(DoubleClickStateObj), id);
+                var stateObj = (DoubleClickStateObj)GUIUtility.GetStateObject(typeof(DoubleClickStateObj), id);
 
             if (GUI.Button(bounds, GUIContent.none, GUIStyle.none))
             {

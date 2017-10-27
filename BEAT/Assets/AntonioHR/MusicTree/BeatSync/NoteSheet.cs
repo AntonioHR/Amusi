@@ -16,7 +16,7 @@ namespace AntonioHR.MusicTree.BeatSync
     {
         public List<Note> notes;
         public string name;
-
+        public int subtrackCount;
     }
     [Serializable]
     public struct Note

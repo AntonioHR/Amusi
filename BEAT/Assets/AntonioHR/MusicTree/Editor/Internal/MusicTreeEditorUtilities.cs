@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.AntonioHR.MusicTree.Editor.Internal
+namespace AntonioHR.MusicTree.Editor.Internal
 {
     public static class MusicTreeEditorUtilities
     {
@@ -30,5 +30,6 @@ namespace Assets.AntonioHR.MusicTree.Editor.Internal
                 result += minBeat;
             return result;
         }
+
     }
 }

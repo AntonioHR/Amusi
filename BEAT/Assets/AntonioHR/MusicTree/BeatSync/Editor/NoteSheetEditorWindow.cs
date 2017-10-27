@@ -7,6 +7,7 @@ using AntonioHR.MusicTree.BeatSync.Editor;
 using AntonioHR.MusicTree.Editor;
 using AntonioHR.MusicTree.Nodes;
 using AntonioHR.MusicTree.Internal;
+using System;
 
 namespace AntonioHR.MusicTree.BeatSync.Editor
 {
@@ -51,11 +52,21 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         {
             if (drawer != null)
             {
-                drawer.DataUpdated -= Repaint;
+                drawer.DataUpdated -= Drawer_DataUpdated;
                 drawer.OnReplaced();
             }
             drawer = new NoteSheetDrawer(cue, owner);
-            drawer.DataUpdated += Repaint;
+            drawer.DataUpdated += Drawer_DataUpdated;
+            OnDataUpdated();
+        }
+
+        private void Drawer_DataUpdated()
+        {
+            OnDataUpdated();
+        }
+
+        private void OnDataUpdated()
+        {
             Repaint();
         }
 
