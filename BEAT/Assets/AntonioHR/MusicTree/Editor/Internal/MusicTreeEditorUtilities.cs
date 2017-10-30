@@ -18,11 +18,11 @@ namespace Assets.AntonioHR.MusicTree.Editor.Internal
         {
             int bpm = BPMFor(node, tree);
             float result = node.clip.length / 60 * bpm;
-            result = RoundToBeat(result);
+            result = RoundBeat(result);
             return result;
         }
 
-        public static float RoundToBeat(float result, float minBeat = .25f, float threshold = .2f)
+        public static float RoundBeat(float result, float minBeat = .25f, float threshold = .2f)
         {
             float f = result % minBeat;
             result -= f;

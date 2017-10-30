@@ -56,25 +56,31 @@ MonoBehaviour:
     - notes:
       - start: 0
         duration: 1
+        subTrack: 3
+      - start: 0
+        duration: 0
         subTrack: 0
-      - start: 1
+      - start: 0
+        duration: 0
+        subTrack: 0
+      - start: 1.5
         duration: 1
         subTrack: 1
-      - start: 2
+      - start: 1.5
         duration: 1
-        subTrack: 0
+        subTrack: 2
       - start: 3
         duration: 1
         subTrack: 1
       - start: 4
         duration: 1
-        subTrack: 0
-      - start: 5
-        duration: 1
         subTrack: 1
-      - start: 6
-        duration: 2
+      - start: 4
+        duration: 1
         subTrack: 2
+      - start: 6
+        duration: 1
+        subTrack: 0
       name: trck1
     - notes:
       - start: 0

@@ -57,7 +57,7 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
             {
                 return track.notes.Max(x => x.subTrack) + 1;
             }
-            catch (InvalidOperationException e)
+            catch (InvalidOperationException)
             {
                 return 0;
             }
@@ -85,6 +85,27 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
                 track.notes.Add(note);
             else
                 track.notes.Insert(pos, note);
+        }
+
+        public static bool IsUpdateValid(this NoteTrack track, int noteIndex, Note note)
+        {
+            return !track.notes.SkipIndex(noteIndex).Any(x => x.subTrack == note.subTrack && x.TimeOverlaps(note));
+        }
+
+        public static bool TryUpdate(this NoteTrack track, int noteIndex, Note note)
+        {
+            if(IsUpdateValid(track, noteIndex, note))
+            {
+                Update(track, noteIndex, note);
+                return true;
+            }
+            return false;
+        }
+
+        private static void Update(this NoteTrack track, int noteIndex, Note note)
+        {
+            track.notes.RemoveAt(noteIndex);
+            track.notes.Add(note);
         }
 
         public static List<List<Note>> BySubtrack(this NoteTrack track)

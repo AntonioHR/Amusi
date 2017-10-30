@@ -37,14 +37,32 @@ namespace AntonioHR
             return new Rect(r.position + Vector2.right * r.width * (1- ratio), new Vector2(r.width * ratio, r.height));
         }
 
+        public static Rect ShrinkToLeftAbsolute(this Rect r, float offset)
+        {
+            return new Rect(r.position, new Vector2(r.width - offset, r.height));
+        }
         public static Rect ShrinkToRightAbsolute(this Rect r, float offset)
         {
             return new Rect(r.position + Vector2.right * offset, new Vector2(r.width - offset, r.height));
         }
 
-        public static Rect ShrinkToLeftAbsolute(this Rect r, float offset)
+        public static Rect[] HorizontalBorders(this Rect r, float width)
         {
-            return new Rect(r.position, new Vector2(r.width - offset, r.height));
+            var leftBrdr = r.ShrinkToLeftAbsolute(r.width - width);
+            var rightBrdr= r.ShrinkToRightAbsolute(r.width - width);
+            return new Rect[] { leftBrdr, rightBrdr };
+        }
+        public static Rect LeftBorder(this Rect r, float width)
+        {
+            return r.ShrinkToLeftAbsolute(r.width - width);
+        }
+        public static Rect RightBorder(this Rect r, float width)
+        {
+            return r.ShrinkToRightAbsolute(r.width - width);
+        }
+        public static Rect MinusHorizontalBorders(this Rect r, float borderWidth)
+        {
+            return r.ShrinkToLeftAbsolute(borderWidth).ShrinkToRightAbsolute(borderWidth);
         }
 
         public static Rect Translated(this Rect r, Vector2 position)

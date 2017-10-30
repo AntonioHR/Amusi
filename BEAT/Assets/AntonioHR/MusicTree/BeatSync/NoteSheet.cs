@@ -26,5 +26,15 @@ namespace AntonioHR.MusicTree.BeatSync
         public int subTrack;
 
         public float End { get { return start + duration; } }
+        public bool Contains(float beat)
+        {
+            return beat >= start && beat < End;
+        }
+
+        public bool TimeOverlaps(Note other)
+        {
+            bool isEqualMatch = other.start == this.start && other.End == this.End;
+            return !(this.End <= other.start || this.start >= other.End) || isEqualMatch;
+        }
     }
 }

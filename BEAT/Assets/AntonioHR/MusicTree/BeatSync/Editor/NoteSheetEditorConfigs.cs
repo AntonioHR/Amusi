@@ -19,6 +19,8 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         [SerializeField]
         private Texture noteTextureActive;
         [SerializeField]
+        private Texture ghostNoteTexture;
+        [SerializeField]
         private int trackSpacing = 5;
         [SerializeField]
         private GUISkin skin;
@@ -27,7 +29,13 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         [SerializeField]
         private float noteInsertionSnap = .5f;
         [SerializeField]
+        private float noteResizeSnap = .25f;
+        [SerializeField]
+        private float noteMoveSnap = .25f;
+        [SerializeField]
         private float defaultNoteSize = 1.0f;
+        [SerializeField]
+        private int noteResizeBorderWidth = 5;
 
         public int SubTrackHeight
         {
@@ -94,6 +102,14 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
             }
         }
 
+        public Texture GhostNoteTexture
+        {
+            get
+            {
+                return ghostNoteTexture;
+            }
+        }
+
         public int TrackSpacing
         {
             get
@@ -122,6 +138,20 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
                 return noteInsertionSnap;
             }
         }
+        public float NoteResizeSnap
+        {
+            get
+            {
+                return noteResizeSnap;
+            }
+        }
+        public float NoteMoveSnap
+        {
+            get
+            {
+                return noteMoveSnap;
+            }
+        }
 
         public float DefaultNoteSize
         {
@@ -130,5 +160,13 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
                 return defaultNoteSize;
             }
         }
+        public int NoteResizeBorderWidth
+        {
+            get
+            {
+                return noteResizeBorderWidth;
+            }
+        }
+
     }
 }

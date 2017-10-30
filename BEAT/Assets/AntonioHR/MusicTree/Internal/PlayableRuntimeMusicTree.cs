@@ -89,6 +89,7 @@ namespace AntonioHR.MusicTree.Internal
                 return cueNode == null ? 0 : MusicTreeNodeUtilities.BPMFor(cueNode, Tree.Asset);
             }
         }
+        
 
         public float LengthInBeats
         {

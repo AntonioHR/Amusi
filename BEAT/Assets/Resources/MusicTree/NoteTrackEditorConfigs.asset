@@ -16,6 +16,10 @@ MonoBehaviour:
   bgTexture: {fileID: 2800000, guid: 7f3d600bb950d2d42920ec7d5ea3de0f, type: 3}
   noteTextureInactive: {fileID: 2800000, guid: 7f3d600bb950d2d42920ec7d5ea3de0f, type: 3}
   noteTextureActive: {fileID: 2800000, guid: 7f3d600bb950d2d42920ec7d5ea3de0f, type: 3}
+  ghostNoteTexture: {fileID: 2800000, guid: 1b32bad1c065e754fa48d1aaac3c47b7, type: 3}
   trackSpacing: 10
   skin: {fileID: 11400000, guid: eea5440002eb0584bacc2549dcb8da43, type: 2}
   subTrackSpacing: 0
+  noteInsertionSnap: 0.5
+  defaultNoteSize: 1
+  noteResizeBorderWidth: 5

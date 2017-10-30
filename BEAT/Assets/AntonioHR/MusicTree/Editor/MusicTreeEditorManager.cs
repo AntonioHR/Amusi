@@ -20,8 +20,10 @@ namespace AntonioHR.MusicTree.Editor
                 return instance;
             }
         }
-        
 
+        private static MusicTreeEditorManager instance;
+        
+        //Properties
         public NoteSheetEditorWindow NoteSheetEditor { get; private set; }
         public MusicTreeVisualizerWindow MusicTreeEditor { get; private set; }
         public MusicTreeAsset TreeAsset { get; private set; }
@@ -30,8 +32,8 @@ namespace AntonioHR.MusicTree.Editor
         public NoteSheet NoteSheet { get; private set; }
         public PlayableRuntimeMusicTree CachedTree { get; private set; }
 
-        private static MusicTreeEditorManager instance;
 
+        //Events
         public event Action NoteTrackDefinitionsChanged;
         public event Action<MusicTreeAsset> SelectedTreeAssetChanged;
         public event Action<PlayableRuntimeMusicTree> TreeHierarchyChanged;
@@ -48,6 +50,8 @@ namespace AntonioHR.MusicTree.Editor
 
         }
         
+
+
         public void OnSelectedTreeChanged(MusicTreeAsset a)
         {
             TreeAsset = a;
@@ -55,7 +59,6 @@ namespace AntonioHR.MusicTree.Editor
                 SelectedTreeAssetChanged(TreeAsset);
             OnChangesToTreeHierarchy();
         }
-
         private void OnChangesToTreeHierarchy()
         {
             if(TreeAsset != null)
@@ -67,7 +70,6 @@ namespace AntonioHR.MusicTree.Editor
             }
             TreeHierarchyChanged(CachedTree);
         }
-
         public void OnNodeSelected(PlayableRuntimeMusicTreeNode n)
         {
             SelectedNode = n;
@@ -82,7 +84,6 @@ namespace AntonioHR.MusicTree.Editor
                 OnCueSelected(cue, n);
             }
         }
-
         private void OnCueSelected(CueMusicTreeNode cue, PlayableRuntimeMusicTreeNode owner)
         {
             if(SelectedCueChanged != null)
@@ -90,20 +91,19 @@ namespace AntonioHR.MusicTree.Editor
                 SelectedCueChanged(cue, owner);
             }
         }
-
         public void OnNoteSheetEditorOpened(NoteSheetEditorWindow e)
         {
             NoteSheetEditor = e;
             if(NoteSheetEditorOpened != null)
                 NoteSheetEditorOpened(NoteSheetEditor);
         }
-        
         public void OnMusicTreeEditorOpened(MusicTreeVisualizerWindow e)
         {
             MusicTreeEditor = e;
             if(MusicTreeEditorOpened != null)
                 MusicTreeEditorOpened(MusicTreeEditor);
         }
+
         
 
 

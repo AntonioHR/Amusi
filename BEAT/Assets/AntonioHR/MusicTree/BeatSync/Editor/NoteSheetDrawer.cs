@@ -23,10 +23,10 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         public event Action DataUpdated;
 
 
-        public NoteSheetDrawer(CueMusicTreeNode cue, PlayableRuntimeMusicTreeNode owner)
+        public NoteSheetDrawer(CueMusicTreeNode cue, PlayableRuntimeMusicTreeNode cueOwner)
         {
             this.cue = cue;
-            this.owner = owner;
+            this.owner = cueOwner;
             trackDrawers = new List<NoteTrackDrawer>();
             MusicTreeEditorManager.Instance.NoteTrackDefinitionsChanged += Instance_NoteTrackDefinitionsChanged;
             UpdateTrackDrawers();
@@ -63,7 +63,7 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
 
         public float CueLengthInBeats { get { return owner.LengthInBeats; } }
 
-        public void Draw(Rect windowPos)
+        public void Update(Rect windowPos)
         {
             if (trackDrawers.Count == 0)
             {
@@ -97,7 +97,7 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
                 
                 using (var groupScope = new GUI.GroupScope(rect))
                 {
-                    drawer.Draw();
+                    drawer.Update();
                 }
                 cursor += new Vector2(0, rect.height + TrackSpacing);
             }

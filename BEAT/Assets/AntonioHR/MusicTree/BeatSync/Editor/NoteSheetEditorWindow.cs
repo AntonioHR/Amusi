@@ -14,8 +14,10 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
     {
         public static NoteSheetEditorConfigs configs;
         public static string configsAssetName = "NoteTrackEditorConfigs";
+        
 
         private NoteSheetDrawer drawer;
+        private bool repaintRequired;
 
 
         [MenuItem("Window/Note Sheet Editor")]
@@ -37,7 +39,16 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         void OnGUI()
         {
             if (drawer != null)
-                drawer.Draw(position);
+                drawer.Update(position);
+            if (repaintRequired)
+            {
+                repaintRequired = false;
+                Repaint();
+            }
+        }
+        public void RequireRepaint()
+        {
+            repaintRequired = true;
         }
 
 
