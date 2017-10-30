@@ -45,15 +45,21 @@ namespace AntonioHR.MusicTree.Editor
                 MusicTreeEditorManager.Instance.OnSelectedTreeChanged(treeFieldValue);
             }
 
+            if (drawer == null)
+                return;
 
-            using(var scrollview = new EditorGUILayout.ScrollViewScope(scrollPos))
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.BeginVertical(BeatSync.Editor.NoteSheetEditorWindow.configs.Skin.box, GUILayout.ExpandHeight(true));
+            EditorGUILayout.LabelField("ha");
+            EditorGUILayout.LabelField("he");
+            EditorGUILayout.LabelField("hi");
+            EditorGUILayout.EndVertical();
+            using (var scrollview = new EditorGUILayout.ScrollViewScope(scrollPos))
             {
-                if(drawer != null)
-                {
-                    drawer.DrawTree();
-                }
+                drawer.DrawTree();
                 scrollPos = scrollview.scrollPosition;
             }
+            EditorGUILayout.EndHorizontal();
         }
         private static void InitializeConfigs()
         {
