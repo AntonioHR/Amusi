@@ -10,6 +10,8 @@ using System;
 
 namespace AntonioHR.MusicTree
 {
+
+    public enum BarType { FourFour, ThreeFour}
     public class MusicTreeAsset : TreeAsset<MusicTreeNode>
     {
 
@@ -23,6 +25,26 @@ namespace AntonioHR.MusicTree
         private int maxSubTrack;
 
         public int MaxSubTrack { get { return maxSubTrack; } }
+
+        public int NotesPerBar
+        {
+            get
+            {
+                switch (barType)
+                {
+                    case BarType.FourFour:
+                        return 4;
+                    case BarType.ThreeFour:
+                        return 3;
+                    default:
+                        break;
+                }
+                throw new NotImplementedException();
+            }
+        }
+
+        public BarType barType;
+
 
         protected override MusicTreeNode InstantiateRoot()
         {

@@ -20,7 +20,7 @@ namespace AntonioHR.MusicTree.Nodes
             float result = node.clip == null ? 0 : node.clip.length / 60 * bpm;
             float f = result % .25f;
             result -= f;
-            if (f > .2)
+            if (f > .125)
                 result += .25f;
             return result;
         }

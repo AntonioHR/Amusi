@@ -13,21 +13,40 @@ public class InterpolatePosition : MonoBehaviour, INoteEventListener {
     public string track;
     public int subtrack;
     public float lerp;
+    public bool yoyo = true;
+
+    private bool goingBack = false;
 
     public void OnNoteEnd()
     {
-        transform.position = pos2;
+        Debug.Log("Note end!");
+        if (!yoyo)
+        {
+            transform.localPosition = pos2;
+        } else
+        {
+            transform.localPosition = goingBack? pos1: pos2;
+            goingBack = !goingBack;
+        }
     }
 
     public void OnNoteStart()
     {
-        transform.position = pos1;
+        Debug.Log("Note start!");
+        if (!yoyo)
+        {
+            transform.localPosition = pos1;
+        } else
+        {
+            transform.localPosition = goingBack ? pos2 : pos1;
+        }
     }
 
     public void OnNoteUpdate(float i)
     {
-        lerp = i;
-        transform.position = Vector3.Lerp(pos1, pos2, i);
+        Debug.Log(i);
+        lerp = yoyo && goingBack?(1-i) : i;
+        transform.localPosition = Vector3.Lerp(pos1, pos2, lerp);
     }
 
     void Start () {

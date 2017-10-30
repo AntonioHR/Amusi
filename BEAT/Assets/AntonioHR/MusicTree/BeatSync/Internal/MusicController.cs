@@ -10,7 +10,6 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
         [Serializable]
         public class Settings
         {
-            public float bpm;
             public float updateRatio = 30f;
             public float closeToEndMargin = 5;
         }
@@ -23,8 +22,6 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
 
         #region public Properties
         public bool IsPlaying { get { return State == ControllerState.PLAYING || State == ControllerState.START; } }
-        public float BPM { get { return settings.bpm; } }
-		public float BPS { get { return settings.bpm/ 60; } }
         public int Frequency { get { return CurrentClip.frequency; } }
         public AudioSource CurrentAudioSource{ get { return audioSources [audioSourceIndex]; } }
 		public AudioSource NextAudioSource{ get { return audioSources [(audioSourceIndex + 1) % audioSources.Length]; } }
@@ -70,7 +67,7 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
             State = ControllerState.IDLE;
         }
         
-		public double Init(AudioClip startPatch, int beatsToStart = 4)
+		public double Init(AudioClip startPatch, float timeToStart = 3)
 		{
 			Debug.Assert (State != ControllerState.START);
 
@@ -79,7 +76,7 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
 			double initTime = AudioSettings.dspTime;
 			CurrentClip = startPatch;
             CurrentAudioSource.clip = CurrentClip;
-			firstClipStartTime = initTime + beatsToStart / BPS;
+            firstClipStartTime = initTime + timeToStart;
 
 			CurrentAudioSource.PlayScheduled (firstClipStartTime);
             return firstClipStartTime;
@@ -121,6 +118,7 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
             {
                 State = ControllerState.PLAYING;
                 currentClipEndTime = firstClipStartTime + CurrentClip.length;
+                CurrentClipStartDSPTme = firstClipStartTime;
 
                 if (OnFirstClipStart != null)
                     OnFirstClipStart();

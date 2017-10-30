@@ -20,14 +20,12 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
                 bool endsBefore = eventEnd < note.start;
                 bool endsAfter = eventEnd > noteEnd;
                 bool endsInside = !endsBefore && !endsAfter;
-                
 
-                if(endsBefore)
-                    return;
-                if(startsAfter)
+                
+                if (startsAfter)
                     continue;
 
-                if(startsBefore)
+                if (startsBefore)
                 {
                     if(endsAfter)
                     {
@@ -105,7 +103,7 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
         private static void Update(this NoteTrack track, int noteIndex, Note note)
         {
             track.notes.RemoveAt(noteIndex);
-            track.notes.Add(note);
+            track.AddNote(note);
         }
 
         public static List<List<Note>> BySubtrack(this NoteTrack track)

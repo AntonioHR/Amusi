@@ -7,14 +7,14 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
 	public class BeatCounter
     {
         
-        private float clipStart;
+        private double clipStart;
         private int clipFrequency;
         
-        private float currentSample;
-        private float beatSamplePeriod;
+        private double currentSample;
+        private double beatSamplePeriod;
 
         
-        public float Progress { get; private set; }
+        public double Progress { get; private set; }
 
         
 
@@ -24,16 +24,15 @@ namespace AntonioHR.MusicTree.BeatSync.Internal
 
         public void UpdateClipVariables(double syncTime, float bpm, int frequency)
         {
-            float beatSecondsPeriod = 60f / bpm;
+            double beatSecondsPeriod = 60.0 / bpm;
             beatSamplePeriod = beatSecondsPeriod * frequency;
-            clipStart = (float)(syncTime * frequency);
+            clipStart = (syncTime * frequency);
             clipFrequency = frequency;
         }
 
         public void Step()
         {
-            currentSample = (float)AudioSettings.dspTime * clipFrequency - clipStart;
-
+            currentSample = AudioSettings.dspTime * clipFrequency - clipStart;
             Progress = currentSample / beatSamplePeriod;
         }
 

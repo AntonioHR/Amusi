@@ -28,7 +28,8 @@ MonoBehaviour:
   trackDefinitions:
   - name: beat
   defaultBPM: 128
-  maxSubTrack: 2
+  maxSubTrack: 3
+  barType: 0
 --- !u!114 &114008438491580026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,6 +194,18 @@ MonoBehaviour:
       - start: 0
         duration: 0
         subTrack: 0
+      - start: 0
+        duration: 1
+        subTrack: 0
+      - start: 1
+        duration: 1
+        subTrack: 1
+      - start: 2
+        duration: 1
+        subTrack: 0
+      - start: 3
+        duration: 1
+        subTrack: 1
       name: beat
 --- !u!114 &114249440608563276
 MonoBehaviour:
@@ -223,7 +236,130 @@ MonoBehaviour:
   customBPM: 0
   sheet:
     tracks:
-    - notes: []
+    - notes:
+      - start: 0
+        duration: 0
+        subTrack: 0
+      - start: 0
+        duration: 0.75
+        subTrack: 1
+      - start: 0
+        duration: 1
+        subTrack: 0
+      - start: 1
+        duration: 1
+        subTrack: 0
+      - start: 1
+        duration: 1
+        subTrack: 2
+      - start: 0.75
+        duration: 1.25
+        subTrack: 1
+      - start: 2
+        duration: 0.5
+        subTrack: 1
+      - start: 2
+        duration: 1
+        subTrack: 0
+      - start: 3
+        duration: 1
+        subTrack: 0
+      - start: 2.5
+        duration: 1.5
+        subTrack: 1
+      - start: 4
+        duration: 0.5
+        subTrack: 1
+      - start: 4
+        duration: 1
+        subTrack: 0
+      - start: 4.5
+        duration: 0.5
+        subTrack: 1
+      - start: 5
+        duration: 0.5
+        subTrack: 1
+      - start: 5
+        duration: 1
+        subTrack: 0
+      - start: 5.5
+        duration: 1
+        subTrack: 1
+      - start: 6
+        duration: 1
+        subTrack: 0
+      - start: 7
+        duration: 1
+        subTrack: 0
+      - start: 6.5
+        duration: 1.5
+        subTrack: 1
+      - start: 8
+        duration: 0.75
+        subTrack: 1
+      - start: 8
+        duration: 1
+        subTrack: 0
+      - start: 8.75
+        duration: 0.75
+        subTrack: 1
+      - start: 9
+        duration: 1
+        subTrack: 0
+      - start: 9.5
+        duration: 0.5
+        subTrack: 1
+      - start: 10
+        duration: 0.5
+        subTrack: 1
+      - start: 10
+        duration: 1
+        subTrack: 0
+      - start: 10.5
+        duration: 0.5
+        subTrack: 1
+      - start: 11
+        duration: 0.5
+        subTrack: 1
+      - start: 11.5
+        duration: 0.25
+        subTrack: 1
+      - start: 11
+        duration: 1
+        subTrack: 0
+      - start: 11.75
+        duration: 0.25
+        subTrack: 1
+      - start: 12
+        duration: 0.25
+        subTrack: 1
+      - start: 12.25
+        duration: 0.5
+        subTrack: 1
+      - start: 12
+        duration: 1
+        subTrack: 0
+      - start: 12.75
+        duration: 0.25
+        subTrack: 1
+      - start: 13
+        duration: 0.5
+        subTrack: 1
+      - start: 13.5
+        duration: 0.25
+        subTrack: 1
+      - start: 13
+        duration: 1
+        subTrack: 0
+      - start: 14
+        duration: 1
+        subTrack: 0
+      - start: 15
+        duration: 1
+        subTrack: 0
+      - start: 13.75
+        duration: 2.25
+        subTrack: 1
       name: beat
 --- !u!114 &114308051869420768
 MonoBehaviour:

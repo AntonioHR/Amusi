@@ -94,7 +94,6 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
             int subTrack;
             if (BeatAtPosition(mousePos, out beat) && SubtrackAtPosition(mousePos, out subTrack))
             {
-                Debug.Log(beat);
                 int noteIndex = noteTrack.notes.FindIndex(x => x.subTrack == subTrack && x.Contains(beat));
                 if (noteIndex != -1)
                 {
@@ -259,7 +258,32 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
                 GUI.DrawTexture(BoundsForNote(ghostNote), GhostNoteTexture);
             }
 
+            DrawBars();
+
         }
+
+        private void DrawBars()
+        {
+            for (int i = 0; i < (int)owner.CueLengthInBeats; i++)
+            {
+                var size = new Vector2(2, SubtrackHeight * SubtracksToShow);
+                var rect = new Rect(NoteTracksStart + Vector2.right * (i * BeatWidth - size.x / 2), size);
+                GUI.DrawTexture(rect, BG);
+            }
+
+
+
+
+            int barCount = (int)(owner.CueLengthInBeats / owner.NotesPerBar);
+            for (int i = 1; i < barCount; i++)
+            {
+                var size = new Vector2(5, SubtrackHeight * SubtracksToShow);
+                var measureSize = owner.NotesPerBar * BeatWidth;
+                var rect = new Rect(NoteTracksStart +  Vector2.right * (i * measureSize - size.x/2) , size);
+                GUI.DrawTexture(rect, BG);
+            }
+        }
+
         private void DrawBackground()
         {
             GUI.Box(TrackBounds, GUIContent.none, BGStyle);

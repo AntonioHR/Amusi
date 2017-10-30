@@ -78,7 +78,8 @@ namespace AntonioHR.MusicTree
 
             nextCueNode = musicTreeRuntime.SelectNextPatch();
             double initTime = musicController.Init(nextCueNode.clip);
-            counter.UpdateClipVariables(initTime, musicController.BPM, musicController.Frequency);
+            Debug.LogFormat("init: {0}", initTime);
+            counter.UpdateClipVariables(initTime, musicTree.defaultBPM, musicController.Frequency);
         }
 
 
@@ -88,14 +89,15 @@ namespace AntonioHR.MusicTree
             if (musicController.HasStarted)
             {
                 counter.Step();
-                checker.PerformChecks(counter.Progress);
+                checker.PerformChecks((float)counter.Progress);
             }
         }
 
 
         private void MusicController_OnNewClipStarted()
         {
-            counter.UpdateClipVariables(musicController.CurrentClipStartDSPTme, musicController.BPM, musicController.Frequency);
+            float bpm = MusicTreeNodeUtilities.BPMFor(nextCueNode, musicTree);
+            counter.UpdateClipVariables(musicController.CurrentClipStartDSPTme, bpm, musicController.Frequency);
             checker.SwitchCue(nextCueNode);
         }
 

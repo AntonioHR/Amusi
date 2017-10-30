@@ -60,6 +60,7 @@ namespace AntonioHR.MusicTree.BeatSync
 
         public void SwitchCue(CueMusicTreeNode newCue)
         {
+            UnityEngine.Debug.Log("started new cue");
             PerformChecks(float.PositiveInfinity);
             currentCue = newCue;
             lastTime = float.NegativeInfinity;

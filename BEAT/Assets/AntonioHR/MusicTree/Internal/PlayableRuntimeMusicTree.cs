@@ -17,6 +17,7 @@ namespace AntonioHR.MusicTree.Internal
         private MusicTreeEnvironment env;
 
         public CueMusicTreeNode CurrentlyPlayedNode { get { return currentlyPlayedNode; } }
+        
 
         protected override void AfterInit()
         {
