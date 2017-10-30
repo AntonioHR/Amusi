@@ -25,7 +25,10 @@ MonoBehaviour:
       intValue: 0
       boolValue: 0
       floatValue: 0
-  trackDefinitions: []
+  trackDefinitions:
+  - name: beat
+  defaultBPM: 128
+  maxSubTrack: 2
 --- !u!114 &114008438491580026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +185,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114008438491580026}
   clip: {fileID: 8300000, guid: 3ebb72025145a7a40b8cd5d1181ede76, type: 3}
-  pattern: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes:
+      - start: 0
+        duration: 0
+        subTrack: 0
+      name: beat
 --- !u!114 &114249440608563276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,7 +219,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114068833726587736}
   clip: {fileID: 8300000, guid: c8e4a7a2a4f343145ab367da8101e6ef, type: 3}
-  pattern: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
 --- !u!114 &114308051869420768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +322,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114090487508971886}
   clip: {fileID: 8300000, guid: f9ffd67ca307fad489885a0f3be23cac, type: 3}
-  pattern: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
 --- !u!114 &114690494829753724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +361,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114473538558975044}
   clip: {fileID: 8300000, guid: c1feb4969720a5b46b8aa688f0cbbf04, type: 3}
-  pattern: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
 --- !u!114 &114960822603188072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,7 +392,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114974626058441236}
   clip: {fileID: 8300000, guid: 2c113a99fc6915949b41a2f0025fc4a7, type: 3}
-  pattern: {fileID: 11400000, guid: b39793780c1434f46833ca8857ac3226, type: 2}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes:
+      - start: 0
+        duration: 0
+        subTrack: 0
+      name: beat
 --- !u!114 &114974626058441236
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -34,6 +34,7 @@ MonoBehaviour:
   trackDefinitions:
   - name: trck1
   - name: trck2
+  - name: trck3
   defaultBPM: 196
   maxSubTrack: 2
 --- !u!114 &114033144550501360
@@ -139,13 +140,12 @@ MonoBehaviour:
   customBPM: 0
   sheet:
     tracks:
-    - notes:
-      - start: 0
-        duration: 1
-        subTrack: 0
+    - notes: []
       name: trck1
     - notes: []
       name: trck2
+    - notes: []
+      name: trck3
 --- !u!114 &114469791945131186
 MonoBehaviour:
   m_ObjectHideFlags: 0
