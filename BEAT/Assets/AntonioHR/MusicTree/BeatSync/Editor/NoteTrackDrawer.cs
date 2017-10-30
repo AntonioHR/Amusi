@@ -106,16 +106,23 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
                     grabOffset = mousePos - bounds.position;
 
                     grabbedNoteIndex = noteIndex;
-                    if (bounds.RightBorder(NoteResizeBorderWidth).Contains(mousePos))
+                    if (Event.current.button == 0)
                     {
-                        currentActionTarget = ActionTarget.NoteCornerRight;
-                    } else if (bounds.LeftBorder(NoteResizeBorderWidth).Contains(mousePos))
+                        if (bounds.RightBorder(NoteResizeBorderWidth).Contains(mousePos))
+                        {
+                            currentActionTarget = ActionTarget.NoteCornerRight;
+                        }
+                        else if (bounds.LeftBorder(NoteResizeBorderWidth).Contains(mousePos))
+                        {
+                            currentActionTarget = ActionTarget.NoteCornerLeft;
+                        }
+                        else
+                        {
+                            currentActionTarget = ActionTarget.Note;
+                        }
+                    } else if(Event.current.button == 2)
                     {
-                        currentActionTarget = ActionTarget.NoteCornerLeft;
-                    }
-                    else
-                    {
-                        currentActionTarget = ActionTarget.Note;
+                        noteTrack.notes.RemoveAt(noteIndex);
                     }
                 }
                 else
@@ -130,36 +137,6 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
                 }
                 Event.current.Use();
             }
-        }
-        private void OnMouseUp()
-        {
-            //Try to execute whichever action is being performed
-            //Button click
-            switch (currentActionTarget)
-            {
-                case ActionTarget.NoteCornerLeft:
-                    TryApplyGhostNote();
-                    break;
-                case ActionTarget.NoteCornerRight:
-                    TryApplyGhostNote();
-                    break;
-                case ActionTarget.Note:
-                    TryApplyGhostNote();
-                    break;
-                case ActionTarget.Empty:
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void TryApplyGhostNote()
-        {
-            if (noteTrack.TryUpdate(grabbedNoteIndex, ghostNote))
-            {
-                Event.current.Use();
-            }
-            currentActionTarget = ActionTarget.Empty;
         }
 
         private void OnMouseDrag()
@@ -236,6 +213,36 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
             }
         }
 
+        private void OnMouseUp()
+        {
+            //Try to execute whichever action is being performed
+            //Button click
+            switch (currentActionTarget)
+            {
+                case ActionTarget.NoteCornerLeft:
+                    TryApplyGhostNote();
+                    break;
+                case ActionTarget.NoteCornerRight:
+                    TryApplyGhostNote();
+                    break;
+                case ActionTarget.Note:
+                    TryApplyGhostNote();
+                    break;
+                case ActionTarget.Empty:
+                    break;
+                default:
+                    break;
+            }
+        }
+        private void TryApplyGhostNote()
+        {
+            if (noteTrack.TryUpdate(grabbedNoteIndex, ghostNote))
+            {
+                Event.current.Use();
+            }
+            currentActionTarget = ActionTarget.Empty;
+        }
+
         private void OnRepaint()
         {
             cursor = Vector2.zero;
@@ -294,7 +301,7 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
             var drawRect = new Rect(start, new Vector2(width, SubtrackHeight));
             GUI.DrawTexture(drawRect, NoteTexture);
         }
-
+        
         
         private bool TryCreateNoteAtMousePosition()
         {

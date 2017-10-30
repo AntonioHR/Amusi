@@ -53,60 +53,9 @@ MonoBehaviour:
   customBPM: 0
   sheet:
     tracks:
-    - notes:
-      - start: 0
-        duration: 1
-        subTrack: 3
-      - start: 0
-        duration: 0
-        subTrack: 0
-      - start: 0
-        duration: 0
-        subTrack: 0
-      - start: 1.5
-        duration: 1
-        subTrack: 1
-      - start: 1.5
-        duration: 1
-        subTrack: 2
-      - start: 3
-        duration: 1
-        subTrack: 1
-      - start: 4
-        duration: 1
-        subTrack: 1
-      - start: 4
-        duration: 1
-        subTrack: 2
-      - start: 6
-        duration: 1
-        subTrack: 0
+    - notes: []
       name: trck1
-    - notes:
-      - start: 0
-        duration: 0.25
-        subTrack: 1
-      - start: 0.25
-        duration: 0.75
-        subTrack: 0
-      - start: 1
-        duration: 0.25
-        subTrack: 1
-      - start: 1.25
-        duration: 0.75
-        subTrack: 0
-      - start: 2
-        duration: 0.25
-        subTrack: 1
-      - start: 2.25
-        duration: 0.75
-        subTrack: 0
-      - start: 3
-        duration: 0.25
-        subTrack: 1
-      - start: 3.25
-        duration: 0.75
-        subTrack: 0
+    - notes: []
       name: trck2
     - notes: []
       name: trck3
@@ -190,7 +139,10 @@ MonoBehaviour:
   customBPM: 0
   sheet:
     tracks:
-    - notes: []
+    - notes:
+      - start: 0
+        duration: 1
+        subTrack: 0
       name: trck1
     - notes: []
       name: trck2
