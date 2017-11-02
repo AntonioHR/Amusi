@@ -15,3 +15,4 @@ MonoBehaviour:
   cueIcon: {fileID: 2800000, guid: e0676fca9866e6a4b865a332bc7316e0, type: 3}
   selectorIcon: {fileID: 2800000, guid: 60c94ca5dbd57f54eaae0d095d741fe5, type: 3}
   sequenceIcon: {fileID: 2800000, guid: 4fb8c7c8e6f41ed44bb7c7f4e311cad4, type: 3}
+  skin: {fileID: 11400000, guid: eea5440002eb0584bacc2549dcb8da43, type: 2}

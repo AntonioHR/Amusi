@@ -1,5 +1,4 @@
-﻿using AntonioHR.Editor;
-using Assets.AntonioHR.MusicTree.Editor.Internal;
+﻿using Assets.AntonioHR.MusicTree.Editor.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;

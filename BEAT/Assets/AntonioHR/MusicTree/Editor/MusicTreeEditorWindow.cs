@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using AntonioHR.MusicTree.Editor.Internal;
+using AntonioHR.MusicTree.ConditionVariables;
+using System;
 
 namespace AntonioHR.MusicTree.Editor
 {
@@ -18,6 +20,8 @@ namespace AntonioHR.MusicTree.Editor
 
         public static MusicTreeEditorConfigs configs { get; private set; }
         public static string configsAssetName = "MusicTreeEditorConfigs";
+
+        public static string tempVarName = "";
 
         [MenuItem("Window/MusicTree Visualizer")]
         public static void ShowWindow()
@@ -50,11 +54,9 @@ namespace AntonioHR.MusicTree.Editor
                 return;
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.BeginVertical(BeatSync.Editor.NoteSheetEditorWindow.configs.Skin.box, GUILayout.ExpandHeight(true));
-            EditorGUILayout.LabelField("ha");
-            EditorGUILayout.LabelField("he");
-            EditorGUILayout.LabelField("hi");
-            EditorGUILayout.EndVertical();
+            
+            DrawVarsEditor();
+
             using (var scrollview = new EditorGUILayout.ScrollViewScope(scrollPos))
             {
                 drawer.DrawTree();
@@ -62,6 +64,101 @@ namespace AntonioHR.MusicTree.Editor
             }
             EditorGUILayout.EndHorizontal();
         }
+
+        private static void DrawVarsEditor()
+        {
+            using (var vertScope = new GUILayout.VerticalScope(configs.Skin.window, GUILayout.ExpandHeight(true)))
+            { 
+                foreach (var treeVar in MusicTreeEditorManager.Instance.TreeAsset.vars)
+                {
+                    bool deletedAny = false;
+                    DrawVarEditor(treeVar, out deletedAny);
+                    if (deletedAny)
+                        break;
+                }
+
+
+                using (var hor = new GUILayout.HorizontalScope(configs.Skin.box))
+                {
+                    tempVarName = GUILayout.TextField(tempVarName);
+                    EditorGUI.BeginDisabledGroup(tempVarName.Length == 0);
+                    if (GUILayout.Button("+", GUILayout.Width(20)))
+                    {
+                        OpenNewVarMenu();
+                    }
+                    EditorGUI.EndDisabledGroup();
+                }
+            }
+        }
+        private static void DrawVarEditor(ConditionVariables.ConditionVariable treeVar, out bool deletedAny)
+        {
+            EditorGUILayout.BeginHorizontal(configs.Skin.box);
+            GUILayout.Label(treeVar.name);
+            GUILayout.FlexibleSpace();
+            deletedAny = false;
+
+            var valueDescripton = treeVar.value;
+            switch (valueDescripton.type)
+            {
+                case ConditionVariables.ConditionVariableValue.Type.Integer:
+                    valueDescripton.intValue = EditorGUILayout.IntField(valueDescripton.intValue, GUILayout.Width(50));
+                    break;
+                case ConditionVariables.ConditionVariableValue.Type.Boolean:
+                    valueDescripton.boolValue = EditorGUILayout.Toggle(valueDescripton.boolValue, GUILayout.Width(50));
+                    break;
+                case ConditionVariables.ConditionVariableValue.Type.Float:
+                    valueDescripton.floatValue = EditorGUILayout.FloatField(valueDescripton.floatValue, GUILayout.Width(50));
+                    break;
+                default:
+                    break;
+            }
+            if(GUILayout.Button("x", GUILayout.Width(20)))
+            {
+                DeleteVar(treeVar);
+                deletedAny = true;
+            }
+            EditorGUILayout.EndHorizontal();
+            var varArea = GUILayoutUtility.GetLastRect();
+
+            if(Event.current.button == 1 && varArea.Contains(Event.current.mousePosition))
+            {
+                OpenVarMenu(treeVar);
+            }
+        }
+        private static void OpenVarMenu(ConditionVariables.ConditionVariable treeVar)
+        {
+            GenericMenu menu = new GenericMenu();
+            menu.AddItem(new GUIContent(string.Format("Delete {0}", treeVar.name)), false, () =>DeleteVar(treeVar));
+            menu.ShowAsContext();
+        }
+        private static void OpenNewVarMenu()
+        {
+            GenericMenu menu = new GenericMenu();
+            menu.AddItem(new GUIContent("Boolean"), false, () => CreateVar(ConditionVariableValue.Type.Boolean));
+            menu.AddItem(new GUIContent("Integer"), false, () => CreateVar(ConditionVariableValue.Type.Integer));
+            menu.AddItem(new GUIContent("Float"), false, () => CreateVar(ConditionVariableValue.Type.Float));
+            menu.ShowAsContext();
+        }
+
+        private static void CreateVar(ConditionVariableValue.Type type)
+        {
+            var newVar = new ConditionVariable
+            {
+                name = tempVarName,
+                value = new ConditionVariableValue()
+                {
+                    type = type
+                }
+            };
+            tempVarName = "";
+            MusicTreeEditorManager.Instance.TreeAsset.vars.Add(newVar);
+        }
+        private static void DeleteVar(ConditionVariable treeVar)
+        {
+            MusicTreeEditorManager.Instance.TreeAsset.vars.Remove(treeVar);
+        }
+
+
         private static void InitializeConfigs()
         {
             if (configs == null)

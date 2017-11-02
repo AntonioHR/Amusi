@@ -16,10 +16,13 @@ namespace AntonioHR.MusicTree.Editor
         private Texture selectorIcon;
         [SerializeField]
         private Texture sequenceIcon;
+        [SerializeField]
+        private GUISkin skin;
 
         public Texture ConditionIcon { get { return conditionIcon; } }
         public Texture CueIcon { get { return cueIcon; } }
         public Texture SelectorIcon { get { return selectorIcon; } }
         public Texture SequenceIcon { get { return sequenceIcon; } }
+        public GUISkin Skin { get { return skin; } }
     }
 }
