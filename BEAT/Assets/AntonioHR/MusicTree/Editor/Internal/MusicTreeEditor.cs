@@ -11,25 +11,26 @@ using UnityEditor;
 using UnityEngine;
 using AntonioHR.MusicTree.Internal;
 
-namespace AntonioHR.MusicTree.Editor
+
+namespace AntonioHR.MusicTree.Editor.Internal
 {
     public class MusicTreeNodePositioning : TreeNodePositioning<MusicTreeNodePositioning, PlayableRuntimeMusicTree, MusicTreeAsset, MusicTreeNode, PlayableRuntimeMusicTreeNode> { }
-    public class TreeDrawer
+    public class MusicTreeEditor
     {
 
         #region Drawing Parameters
 
-        Texture SequenceIcon { get { return MusicTreeVisualizerWindow.configs.SequenceIcon; } }
-        Texture SelectorIcon { get { return MusicTreeVisualizerWindow.configs.SelectorIcon; } }
-        Texture CueIcon { get { return MusicTreeVisualizerWindow.configs.CueIcon; } }
-        Texture ConditionIcon { get { return MusicTreeVisualizerWindow.configs.ConditionIcon; } }
+        Texture SequenceIcon { get { return MusicTreeEditorWindow.configs.SequenceIcon; } }
+        Texture SelectorIcon { get { return MusicTreeEditorWindow.configs.SelectorIcon; } }
+        Texture CueIcon { get { return MusicTreeEditorWindow.configs.CueIcon; } }
+        Texture ConditionIcon { get { return MusicTreeEditorWindow.configs.ConditionIcon; } }
         #endregion
 
 
         PlayableRuntimeMusicTree tree;
         MusicTreeNodePositioning cachedPositioning;
         
-        public TreeDrawer(PlayableRuntimeMusicTree tree)
+        public MusicTreeEditor(PlayableRuntimeMusicTree tree)
         {
             this.tree = tree;
             

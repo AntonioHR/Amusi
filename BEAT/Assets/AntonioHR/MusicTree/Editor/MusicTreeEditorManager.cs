@@ -25,7 +25,7 @@ namespace AntonioHR.MusicTree.Editor
         
         //Properties
         public NoteSheetEditorWindow NoteSheetEditor { get; private set; }
-        public MusicTreeVisualizerWindow MusicTreeEditor { get; private set; }
+        public MusicTreeEditorWindow MusicTreeEditor { get; private set; }
         public MusicTreeAsset TreeAsset { get; private set; }
         public PlayableRuntimeMusicTreeNode SelectedNode { get; private set; }
         public PlayableRuntimeMusicTreeNode NodeOfSelectedCue { get; private set; }
@@ -41,7 +41,7 @@ namespace AntonioHR.MusicTree.Editor
 
         public event Action<CueMusicTreeNode, PlayableRuntimeMusicTreeNode> SelectedCueChanged;
         public event Action<NoteSheetEditorWindow> NoteSheetEditorOpened;
-        public event Action<MusicTreeVisualizerWindow> MusicTreeEditorOpened;
+        public event Action<MusicTreeEditorWindow> MusicTreeEditorOpened;
         
         
 
@@ -97,7 +97,7 @@ namespace AntonioHR.MusicTree.Editor
             if(NoteSheetEditorOpened != null)
                 NoteSheetEditorOpened(NoteSheetEditor);
         }
-        public void OnMusicTreeEditorOpened(MusicTreeVisualizerWindow e)
+        public void OnMusicTreeEditorOpened(MusicTreeEditorWindow e)
         {
             MusicTreeEditor = e;
             if(MusicTreeEditorOpened != null)

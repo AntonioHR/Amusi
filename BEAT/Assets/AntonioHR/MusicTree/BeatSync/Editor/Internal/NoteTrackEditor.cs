@@ -1,5 +1,4 @@
 ﻿using AntonioHR.Editor;
-using AntonioHR.MusicTree.BeatSync.Internal;
 using Assets.AntonioHR.MusicTree.Editor.Internal;
 using System;
 using System.Collections.Generic;
@@ -8,14 +7,14 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 
-namespace AntonioHR.MusicTree.BeatSync.Editor
+namespace AntonioHR.MusicTree.BeatSync.Editor.Internal
 {
-    public class NoteTrackDrawer
+    public class NoteTrackEditor
     {
         public event Action DataUpdated;
 
         private NoteTrack noteTrack;
-        private NoteSheetDrawer owner;
+        private NoteSheetEditor owner;
 
         private Vector2 cursor;
         private int eventId;
@@ -47,7 +46,7 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         }
         
 
-        public NoteTrackDrawer(NoteTrack track, NoteSheetDrawer owner)
+        public NoteTrackEditor(NoteTrack track, NoteSheetEditor owner)
         {
             this.noteTrack = track;
             this.owner = owner;

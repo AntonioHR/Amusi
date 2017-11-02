@@ -9,14 +9,14 @@ using AntonioHR.MusicTree.Editor;
 using AntonioHR.MusicTree.Internal;
 using AntonioHR.MusicTree.Nodes;
 
-namespace AntonioHR.MusicTree.BeatSync.Editor
+namespace AntonioHR.MusicTree.BeatSync.Editor.Internal
 {
-    public class NoteSheetDrawer
+    public class NoteSheetEditor
     {
         private NoteSheet Sheet { get { return cue.sheet; } }
         private PlayableRuntimeMusicTreeNode cueOwner;
         private CueMusicTreeNode cue;
-        private List<NoteTrackDrawer> trackDrawers;
+        private List<NoteTrackEditor> trackDrawers;
         private Vector2 scroll;
         
         public int NotesPerBar { get { return cueOwner.Tree.Asset.NotesPerBar; } }
@@ -24,11 +24,11 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
         public event Action DataUpdated;
 
 
-        public NoteSheetDrawer(CueMusicTreeNode cue, PlayableRuntimeMusicTreeNode cueOwner)
+        public NoteSheetEditor(CueMusicTreeNode cue, PlayableRuntimeMusicTreeNode cueOwner)
         {
             this.cue = cue;
             this.cueOwner = cueOwner;
-            trackDrawers = new List<NoteTrackDrawer>();
+            trackDrawers = new List<NoteTrackEditor>();
             MusicTreeEditorManager.Instance.NoteTrackDefinitionsChanged += Instance_NoteTrackDefinitionsChanged;
             UpdateTrackDrawers();
         }
@@ -115,7 +115,7 @@ namespace AntonioHR.MusicTree.BeatSync.Editor
             trackDrawers.Clear();
             foreach (var track in Sheet.tracks)
             {
-                var dr = new NoteTrackDrawer(track, this);
+                var dr = new NoteTrackEditor(track, this);
                 dr.DataUpdated += TrackDrawer_DataUpdated;
                 trackDrawers.Add(dr);
             }

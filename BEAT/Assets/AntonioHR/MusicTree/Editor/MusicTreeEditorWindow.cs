@@ -4,16 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using AntonioHR.MusicTree.Editor.Internal;
 
 namespace AntonioHR.MusicTree.Editor
 {
-    public class MusicTreeVisualizerWindow : EditorWindow
+    public class MusicTreeEditorWindow : EditorWindow
     {
         public MusicTreeAsset treeFieldValue;
 
         public Vector2 scrollPos;
-
-        TreeDrawer drawer;
+        
+        MusicTree.Editor.Internal.MusicTreeEditor drawer;
 
         public static MusicTreeEditorConfigs configs { get; private set; }
         public static string configsAssetName = "MusicTreeEditorConfigs";
@@ -21,7 +22,7 @@ namespace AntonioHR.MusicTree.Editor
         [MenuItem("Window/MusicTree Visualizer")]
         public static void ShowWindow()
         {
-            var window = GetWindow<MusicTreeVisualizerWindow>();
+            var window = GetWindow<MusicTreeEditorWindow>();
             MusicTreeEditorManager.Instance.OnMusicTreeEditorOpened(window);
         }
 
@@ -33,7 +34,7 @@ namespace AntonioHR.MusicTree.Editor
 
         private void TreeHierarchyChanged(MusicTree.Internal.PlayableRuntimeMusicTree tree)
         {
-            drawer = treeFieldValue != null ? new TreeDrawer(tree) : null;
+            drawer = treeFieldValue != null ? new MusicTreeEditor(tree) : null;
         }
         void OnGUI()
         {
