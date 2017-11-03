@@ -28,6 +28,8 @@ namespace AntonioHR.MusicTree.Editor
         private Texture nodeSelected;
         [SerializeField]
         private Texture nodeDropTarget;
+        [SerializeField]
+        private Texture nodeDropTargetUnable;
 
         [Space()]
         [SerializeField]
@@ -43,6 +45,7 @@ namespace AntonioHR.MusicTree.Editor
         public Texture NodeUnselected { get { return nodeUnselected; } }
         public Texture NodeSelected { get { return nodeSelected; } }
         public Texture NodeDropTarget { get { return nodeDropTarget; } }
+        public Texture NodeDropTargetUnable { get { return nodeDropTargetUnable; } }
 
         public GUISkin Skin { get { return skin; } }
     }

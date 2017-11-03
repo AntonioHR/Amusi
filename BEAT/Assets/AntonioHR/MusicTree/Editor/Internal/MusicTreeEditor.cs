@@ -38,6 +38,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
         PlayableRuntimeMusicTreeNode dropTarget;
         int dropIndex;
+        bool isDropValid;
 
         public MusicTreeEditor(PlayableRuntimeMusicTree tree)
         {
@@ -77,7 +78,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
         private void OnMouseUp()
         {
             Event.current.Use();
-            if(dropTarget != null && selection != null)
+            if(dropTarget != null && selection != null && isDropValid)
             {
                 MoveNode(selection, dropTarget, dropIndex);
             }
@@ -93,9 +94,11 @@ namespace AntonioHR.MusicTree.Editor.Internal
         private void OnMouseDrag()
         {
             dropTarget = null;
+            if (selection == null)
+                return;
             foreach (var node in tree.AllNodes)
             {
-                if (node == selection || !node.CanBeParentOf(selection))
+                if (node == selection)
                     continue;
 
                 var bounds = cachedPositioning.GetBoundsFor(node);
@@ -103,6 +106,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
                 {
                     dropTarget = node;
                     dropIndex = dropTarget.ChildCount;
+                    isDropValid = node.CanBeParentOf(selection);
                     break;
                 }
                 var childrenBounds = cachedPositioning.GetDropBoundsFor(node);
@@ -112,6 +116,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
                     {
                         dropTarget = node;
                         dropIndex = i;
+                        isDropValid = node.CanBeParentOf(selection);
                         break;
                     }
                 }
@@ -121,17 +126,33 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
         private void OnMouseDown()
         {
-
+            PlayableRuntimeMusicTreeNode hitNode = null;
             foreach (var node in tree.AllNodes)
             {
                 var bounds = cachedPositioning.GetBoundsFor(node);
                 if(bounds.Contains(Event.current.mousePosition))
                 {
-                    selection = node;
-                    MusicTreeEditorManager.Instance.OnNodeSelected(node);
+                    hitNode = node;
+                    break;
                 }
             }
+            if(Event.current.button == 0)
+            {
+                if (hitNode != null)
+                {
+                    selection = hitNode;
+                    MusicTreeEditorManager.Instance.OnNodeSelected(hitNode);
+                }
+            } else
+            {
+                OpenNodeContextMenu();
+            }
             Event.current.Use();
+        }
+
+        private void OpenNodeContextMenu()
+        {
+            throw new NotImplementedException();
         }
 
         private void OnRepaint()
@@ -149,7 +170,7 @@ namespace AntonioHR.MusicTree.Editor.Internal
                 DrawNode(cachedPositioning.GetBoundsFor(node), node);
             }
 
-            if(dropTarget != null)
+            if(dropTarget != null && isDropValid)
             {
                 DrawDropTarget();
             }
@@ -224,7 +245,12 @@ namespace AntonioHR.MusicTree.Editor.Internal
             if (selection == node)
                 return MusicTreeEditorWindow.configs.NodeSelected;
             else if (dropTarget == node)
-                return MusicTreeEditorWindow.configs.NodeDropTarget;
+            {
+                if(isDropValid)
+                    return MusicTreeEditorWindow.configs.NodeDropTarget;
+                else
+                    return MusicTreeEditorWindow.configs.NodeDropTargetUnable;
+            }
             else
                 return MusicTreeEditorWindow.configs.NodeUnselected;
         }

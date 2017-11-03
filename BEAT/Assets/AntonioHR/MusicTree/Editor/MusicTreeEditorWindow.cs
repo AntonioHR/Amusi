@@ -69,7 +69,7 @@ namespace AntonioHR.MusicTree.Editor
 
         private static void DrawSidebar()
         {
-            using (var vertScope = new GUILayout.VerticalScope(configs.Skin.window, GUILayout.ExpandHeight(true)))
+            using (var vertScope = new GUILayout.VerticalScope(configs.Skin.window, GUILayout.ExpandHeight(true), GUILayout.MaxWidth(200)))
             {
                 toolbarSelection = GUILayout.Toolbar(toolbarSelection, toolbarOptions);
                 if (toolbarSelection == 0)
