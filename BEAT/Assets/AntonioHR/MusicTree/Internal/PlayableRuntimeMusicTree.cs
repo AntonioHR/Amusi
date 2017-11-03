@@ -107,17 +107,24 @@ namespace AntonioHR.MusicTree.Internal
         {
             if (this.IsDescendantOf(other))
                 return false;
-
-            switch (Asset.Policy)
+            else
+                return AllowsMoreChildren;
+        }
+        public bool AllowsMoreChildren
+        {
+            get
             {
-                case MusicTreeNode.ChildrenPolicy.None:
-                    return false;
-                case MusicTreeNode.ChildrenPolicy.Single:
-                    return ChildCount == 0;
-                case MusicTreeNode.ChildrenPolicy.Multiple:
-                    return true;
-                default:
-                    throw new NotImplementedException();
+                switch (Asset.Policy)
+                {
+                    case MusicTreeNode.ChildrenPolicy.None:
+                        return false;
+                    case MusicTreeNode.ChildrenPolicy.Single:
+                        return ChildCount == 0;
+                    case MusicTreeNode.ChildrenPolicy.Multiple:
+                        return true;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
         }
 

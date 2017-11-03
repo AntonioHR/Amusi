@@ -57,7 +57,7 @@ namespace AntonioHR.TreeAsset
 
             hierarchy.AddAsFloatingNode(newNode);
             newNode.ChangeParentTo(parent);
-
+            
             return newNode;
         }
         public subT CreateChildFor<subT>(T parent, string name = "Node") where subT : T
@@ -68,10 +68,9 @@ namespace AntonioHR.TreeAsset
 
             hierarchy.AddAsFloatingNode(newNode);
             newNode.ChangeParentTo(parent);
-
+            
             return newNode;
         }
-
 
         public void DeleteNodeAndAllChildren(T node)
         {

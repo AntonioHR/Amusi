@@ -145,14 +145,36 @@ namespace AntonioHR.MusicTree.Editor.Internal
                 }
             } else
             {
-                OpenNodeContextMenu();
+                if (hitNode != null)
+                    OpenNodeContextMenu(hitNode);
             }
             Event.current.Use();
         }
 
-        private void OpenNodeContextMenu()
+        private void OpenNodeContextMenu(PlayableRuntimeMusicTreeNode node)
         {
-            throw new NotImplementedException();
+            GenericMenu menu = new GenericMenu();
+            if(node.AllowsMoreChildren)
+            {
+                menu.AddItem(new GUIContent("Add Cue Node"), false, () =>AddChild<CueMusicTreeNode>(node));
+                menu.AddItem(new GUIContent("Add Selector Node"), false, () => AddChild<SelectorMusicTreeNode>(node));
+                menu.AddItem(new GUIContent("Add Sequence Node"), false, () => AddChild<SequenceMusicTreeNode>(node));
+                menu.AddItem(new GUIContent("Add Condition Node"), false, () => AddChild<ConditionMusicTreeNode>(node));
+            }
+            menu.AddItem(new GUIContent("Delete"), false, () => TryRemoveNode(node));
+            menu.ShowAsContext();
+        }
+
+        private void AddChild<T>(PlayableRuntimeMusicTreeNode node) where T: MusicTreeNode
+        {
+            node.Tree.Asset.CreateChildFor<T>(node.Asset);
+            MusicTreeEditorManager.Instance.OnChangesToTreeHierarchy();
+        }
+
+        private void TryRemoveNode(PlayableRuntimeMusicTreeNode node)
+        {
+            node.Tree.Asset.DeleteNodeAndAllChildren(node.Asset);
+            MusicTreeEditorManager.Instance.OnChangesToTreeHierarchy();
         }
 
         private void OnRepaint()

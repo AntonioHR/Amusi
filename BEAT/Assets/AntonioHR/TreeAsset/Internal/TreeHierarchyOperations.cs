@@ -79,7 +79,7 @@ namespace AntonioHR.TreeAsset.Internal
             }
             foreach (var node in self.Postorder())
             {
-                GameObject.DestroyImmediate(self);
+                GameObject.DestroyImmediate(self, true);
             }
         }
 

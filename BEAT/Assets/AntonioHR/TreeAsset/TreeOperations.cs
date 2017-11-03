@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using AntonioHR.MusicTree.Internal;
 using AntonioHR.TreeAsset.Internal;
+using UnityEngine;
 
 namespace AntonioHR.TreeAsset
 {
@@ -26,7 +27,7 @@ namespace AntonioHR.TreeAsset
   
         public static void DeleteNodeAndChildren(this TreeNodeAsset self)
         {
-            self.UnattachFromParent();
+            //self.UnattachFromParent();
 
             var removedContent = self.Preorder();
 
@@ -34,7 +35,6 @@ namespace AntonioHR.TreeAsset
 
             foreach (var node in removedContent)
             {
-                
             }
         }
         #endregion

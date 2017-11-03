@@ -63,10 +63,20 @@ namespace AntonioHR.MusicTree
         {
             var result = ScriptableObject.CreateInstance<subT>();
             result.name = "Node(Selector)";
+
+            var cue = result as CueMusicTreeNode;
+            if(cue != null)
+            {
+                for (int i = 0; i < trackDefinitions.Count; i++)
+                {
+                    cue.Tracks.Add(new BeatSync.NoteTrack() {name = trackDefinitions[i].name, notes = new List<BeatSync.Note>()});
+                }
+            }
+
             return result;
         }
-
         
+
 
 
         #region Debug Examples
@@ -132,6 +142,7 @@ namespace AntonioHR.MusicTree
             tree.CreateChildFor<CueMusicTreeNode>(cond2, "Music 4");
             tree.CreateChildFor<CueMusicTreeNode>(sel2, "Music 5");
         }
+
         #endregion
     }
 }

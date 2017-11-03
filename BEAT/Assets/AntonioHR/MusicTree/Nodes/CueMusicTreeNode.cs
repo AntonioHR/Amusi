@@ -25,6 +25,14 @@ namespace AntonioHR.MusicTree.Nodes
 
         public NoteSheet sheet;
 
+        public CueMusicTreeNode()
+        {
+            sheet = new NoteSheet
+            {
+                tracks = new List<NoteTrack>()
+            };
+        }
+
         public override void Accept(MusicNodeVisitor vis, PlayableRuntimeMusicTreeNode container)
         {
             vis.Visit(this, container);

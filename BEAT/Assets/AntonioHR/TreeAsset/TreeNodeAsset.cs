@@ -48,8 +48,6 @@ namespace AntonioHR.TreeAsset
             get { return _hierarchy.IsRoot; }
         }
 
-
-
     }
     public interface ITreeNode<T> where T : ITreeNode<T>
     {

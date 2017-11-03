@@ -19,4 +19,6 @@ MonoBehaviour:
   nodeUnselected: {fileID: 2800000, guid: 1dcd687058aaf274798aef54190adbdb, type: 3}
   nodeSelected: {fileID: 2800000, guid: c3521e5abfaa8624ea02f29878299e96, type: 3}
   nodeDropTarget: {fileID: 2800000, guid: 8126ee62024fe4549bf6ff93440e20e9, type: 3}
+  nodeDropTargetUnable: {fileID: 2800000, guid: e6102f413831ebc42a8d118bc53b0c05,
+    type: 3}
   skin: {fileID: 11400000, guid: eea5440002eb0584bacc2549dcb8da43, type: 2}
