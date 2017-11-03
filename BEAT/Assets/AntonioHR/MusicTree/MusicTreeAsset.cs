@@ -42,6 +42,7 @@ namespace AntonioHR.MusicTree
                 throw new NotImplementedException();
             }
         }
+        
 
         public BarType barType;
 

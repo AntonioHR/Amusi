@@ -7,6 +7,7 @@ using UnityEngine;
 using AntonioHR.MusicTree.Editor.Internal;
 using AntonioHR.MusicTree.ConditionVariables;
 using System;
+using AntonioHR.MusicTree.Internal;
 
 namespace AntonioHR.MusicTree.Editor
 {
@@ -20,8 +21,10 @@ namespace AntonioHR.MusicTree.Editor
 
         public static MusicTreeEditorConfigs configs { get; private set; }
         public static string configsAssetName = "MusicTreeEditorConfigs";
+        public static string[] toolbarOptions = { "Variables", "Tracks" };
 
         public static string tempVarName = "";
+        public static int toolbarSelection = 0;
 
         [MenuItem("Window/MusicTree Visualizer")]
         public static void ShowWindow()
@@ -54,8 +57,7 @@ namespace AntonioHR.MusicTree.Editor
                 return;
 
             EditorGUILayout.BeginHorizontal();
-            
-            DrawVarsEditor();
+            DrawSidebar();
 
             using (var scrollview = new EditorGUILayout.ScrollViewScope(scrollPos))
             {
@@ -65,29 +67,86 @@ namespace AntonioHR.MusicTree.Editor
             EditorGUILayout.EndHorizontal();
         }
 
-        private static void DrawVarsEditor()
+        private static void DrawSidebar()
         {
             using (var vertScope = new GUILayout.VerticalScope(configs.Skin.window, GUILayout.ExpandHeight(true)))
-            { 
-                foreach (var treeVar in MusicTreeEditorManager.Instance.TreeAsset.vars)
+            {
+                toolbarSelection = GUILayout.Toolbar(toolbarSelection, toolbarOptions);
+                if (toolbarSelection == 0)
+                    DrawVarsEditor();
+                else
+                    DrawTracksEditor();
+            }
+        }
+
+        private static void DrawTracksEditor()
+        {
+            foreach (var trackDef in MusicTreeEditorManager.Instance.TreeAsset.trackDefinitions)
+            {
+                bool deleted = false;
+                DrawTrackDefEditor(trackDef, out deleted);
+                if (deleted)
+                    break;
+            }
+
+            using (var hor = new GUILayout.HorizontalScope(configs.Skin.box))
+            {
+                tempVarName = GUILayout.TextField(tempVarName);
+                EditorGUI.BeginDisabledGroup(tempVarName.Length == 0);
+                if (GUILayout.Button("+", GUILayout.Width(20)))
                 {
-                    bool deletedAny = false;
-                    DrawVarEditor(treeVar, out deletedAny);
-                    if (deletedAny)
-                        break;
+                    CreateTrack();
                 }
+                EditorGUI.EndDisabledGroup();
+            }
+        }
 
 
-                using (var hor = new GUILayout.HorizontalScope(configs.Skin.box))
+        private static void DrawTrackDefEditor(NoteTrackDefinition trackDef, out bool deleted)
+        {
+            deleted = false;
+            using (var hor = new GUILayout.HorizontalScope(configs.Skin.box))
+            {
+                GUILayout.Label(trackDef.name);
+                if (GUILayout.Button("x", GUILayout.Width(20)))
                 {
-                    tempVarName = GUILayout.TextField(tempVarName);
-                    EditorGUI.BeginDisabledGroup(tempVarName.Length == 0);
-                    if (GUILayout.Button("+", GUILayout.Width(20)))
-                    {
-                        OpenNewVarMenu();
-                    }
-                    EditorGUI.EndDisabledGroup();
+                    DeleteTrack(trackDef);
+                    deleted = true;
                 }
+            }
+        }
+
+        private static void CreateTrack()
+        {
+            MusicTreeEditorManager.Instance.CachedTree.CreateTrack(tempVarName);
+            tempVarName = "";
+        }
+
+        private static void DeleteTrack(NoteTrackDefinition trackDef)
+        {
+            MusicTreeEditorManager.Instance.CachedTree.DeleteTrack(trackDef);
+        }
+
+        private static void DrawVarsEditor()
+        {
+            foreach (var treeVar in MusicTreeEditorManager.Instance.TreeAsset.vars)
+            {
+                bool deletedAny = false;
+                DrawVarEditor(treeVar, out deletedAny);
+                if (deletedAny)
+                    break;
+            }
+
+
+            using (var hor = new GUILayout.HorizontalScope(configs.Skin.box))
+            {
+                tempVarName = GUILayout.TextField(tempVarName);
+                EditorGUI.BeginDisabledGroup(tempVarName.Length == 0);
+                if (GUILayout.Button("+", GUILayout.Width(20)))
+                {
+                    OpenNewVarMenu();
+                }
+                EditorGUI.EndDisabledGroup();
             }
         }
         private static void DrawVarEditor(ConditionVariables.ConditionVariable treeVar, out bool deletedAny)

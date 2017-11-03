@@ -17,7 +17,9 @@ namespace AntonioHR.MusicTree.Internal
         private MusicTreeEnvironment env;
 
         public CueMusicTreeNode CurrentlyPlayedNode { get { return currentlyPlayedNode; } }
-        
+
+        public IEnumerable<CueMusicTreeNode> AllCues { get { return Root.Preorder().Where(x => x.Asset is CueMusicTreeNode).Select(x=>x.Asset as CueMusicTreeNode); } }
+
 
         protected override void AfterInit()
         {

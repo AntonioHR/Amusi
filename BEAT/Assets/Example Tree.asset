@@ -25,18 +25,12 @@ MonoBehaviour:
       intValue: 0
       boolValue: 1
       floatValue: 0
-  - name: 
-    value:
-      type: 0
-      intValue: 0
-      boolValue: 0
-      floatValue: 0
   trackDefinitions:
-  - name: trck1
-  - name: trck2
-  - name: trck3
+  - name: Bass
+  - name: Voice
   defaultBPM: 196
   maxSubTrack: 2
+  barType: 0
 --- !u!114 &114033144550501360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,11 +49,9 @@ MonoBehaviour:
   sheet:
     tracks:
     - notes: []
-      name: trck1
+      name: Bass
     - notes: []
-      name: trck2
-    - notes: []
-      name: trck3
+      name: Voice
 --- !u!114 &114123915654942688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,11 +133,9 @@ MonoBehaviour:
   sheet:
     tracks:
     - notes: []
-      name: trck1
+      name: Bass
     - notes: []
-      name: trck2
-    - notes: []
-      name: trck3
+      name: Voice
 --- !u!114 &114469791945131186
 MonoBehaviour:
   m_ObjectHideFlags: 0
