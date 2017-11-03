@@ -35,7 +35,14 @@ namespace AntonioHR.TreeAsset.Internal
         #region TreeHierarchyNode
         public static void ChangeParentTo(this TreeHierarchyNodeAsset child, TreeHierarchyNodeAsset newParent)
         {
+            ChangeParentTo(child, newParent, newParent._children.Count);
+        }
+
+        public static void ChangeParentTo(this TreeHierarchyNodeAsset child, TreeHierarchyNodeAsset newParent, int index)
+        {
             Debug.Assert(newParent._tree == child._tree);
+            if (child._parent == newParent && index > newParent._children.IndexOf(child))
+                index--;
 
             if (child._parent != null)
             {
@@ -43,7 +50,7 @@ namespace AntonioHR.TreeAsset.Internal
             }
 
             child._parent = newParent;
-            newParent._children.Add(child);
+            newParent._children.Insert(index, child);
             child._isFloating = false;
             child._tree._floaters.Remove(child);
         }

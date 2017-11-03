@@ -18,15 +18,15 @@ namespace AntonioHR.MusicTree.Editor.Internal
         #region Data Structures
         public class TreePositionParameters
         {
-            public int sibilingSeparation = 120;
-            public int subTreeSeparation = 140;
+            public int sibilingSeparation = 80;
+            public int subTreeSeparation = 100;
 
-            public int levelSeparation = 100;
+            public int levelSeparation = 50;
 
-            public int yStart = 100;
-            public int xStart = 100;
+            public int yStart = 20;
+            public int xStart = 20;
 
-            public int nodeSize = 50;
+            public int nodeSize = 40;
         }
 
         public class NodePositioning
@@ -61,9 +61,81 @@ namespace AntonioHR.MusicTree.Editor.Internal
             return nodePositionings[node.NodeId].bounds;
         }
 
+        public Rect[] GetDropBoundsFor(RTN node)
+        {
+            if (node.ChildCount == 0)
+            {
+                var b = GetBoundsFor(node);
+                var pos = b.position + new Vector2(0, b.height);
+                var size = new Vector2(positionParams.nodeSize, positionParams.subTreeSeparation);
+                return new Rect[1] { new Rect(pos, size) };
+            }
+
+            var child = node.LeftmostChild;
+            Rect[] result = new Rect[node.ChildCount + 1];
+
+            Vector2 offset = new Vector2(-positionParams.subTreeSeparation / 2, -positionParams.levelSeparation);
+
+            float defaultWidth = positionParams.subTreeSeparation / 2;
+            float height = positionParams.nodeSize + positionParams.levelSeparation;
+
+            for (int i = 0; i < result.Length -1 ; i++)
+            {
+                Vector2 pos;
+                Vector2 size;
+                if (i == 0)
+                {
+                    size = new Vector2(defaultWidth, height - (positionParams.levelSeparation / 2));
+                    pos = GetBoundsFor(child).position + offset + new Vector2(0, positionParams.levelSeparation / 2);
+                }
+                else
+                {
+                    var prevChildBounds = GetBoundsFor(child.LeftSibiling);
+                    var l = prevChildBounds.position + Vector2.right * (prevChildBounds.width);
+                    var r = GetBoundsFor(child).position;
+                    size = new Vector2(r.x - l.x, height);
+                    pos = l + new Vector2(0, offset.y);
+                }
+
+                result[i] = new Rect(pos, size);
+
+                child = child.RightSibiling;
+            }
+
+            //Last one
+            var lastBounds = GetBoundsFor(node.RightmostChild);
+            result[result.Length - 1] = new Rect(
+                lastBounds.position + new Vector2(lastBounds.width, -positionParams.levelSeparation/2),
+                new Vector2(defaultWidth, height - positionParams.levelSeparation/2));
+
+
+            return result;
+        }
+
+        internal Vector2 GetDropIndicatorPosFor(RTN dropTarget, int dropIndex)
+        {
+            return GetDropBoundsFor(dropTarget)[dropIndex].center;
+        }
+
+
         public Vector2 GetTreeSize()
         {
-            return new Vector2(800, 900);
+            float height = positionParams.yStart +
+                tree.Root.SubtreeDepth * (positionParams.nodeSize + positionParams.subTreeSeparation);
+
+
+            var node = tree.Root;
+            while(node != null && node.RightmostChild != null)
+            {
+                node = node.RightmostChild;
+            }
+            float width;
+            if (node == null)
+                width = 0;
+            else
+                width = GetBoundsFor(node).xMax + positionParams.subTreeSeparation;
+            
+            return new Vector2(width, height);
         }
 
 

@@ -14,7 +14,9 @@ using AntonioHR.MusicTree.Internal;
 
 namespace AntonioHR.MusicTree.Editor.Internal
 {
-    public class MusicTreeNodePositioning : TreeNodePositioning<MusicTreeNodePositioning, PlayableRuntimeMusicTree, MusicTreeAsset, MusicTreeNode, PlayableRuntimeMusicTreeNode> { }
+    public class MusicTreeNodePositioning : TreeNodePositioning<MusicTreeNodePositioning, PlayableRuntimeMusicTree, MusicTreeAsset, MusicTreeNode, PlayableRuntimeMusicTreeNode>
+    {
+    }
     public class MusicTreeEditor
     {
 
@@ -29,7 +31,14 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
         PlayableRuntimeMusicTree tree;
         MusicTreeNodePositioning cachedPositioning;
-        
+
+
+        //State
+        PlayableRuntimeMusicTreeNode selection;
+
+        PlayableRuntimeMusicTreeNode dropTarget;
+        int dropIndex;
+
         public MusicTreeEditor(PlayableRuntimeMusicTree tree)
         {
             this.tree = tree;
@@ -37,15 +46,95 @@ namespace AntonioHR.MusicTree.Editor.Internal
             cachedPositioning = MusicTreeNodePositioning.CreateFrom(tree);
         }
         
-        public void DrawTree()
+        public void Update()
         {
+            int id = GUIUtility.GetControlID(FocusType.Passive);
 
-            ReserveLayoutSpace();
-
-            DrawNodes();
+            switch (Event.current.GetTypeForControl(id))
+            {
+                case EventType.MouseDown:
+                    OnMouseDown();
+                    break;
+                case EventType.MouseUp:
+                    OnMouseUp();
+                    break;
+                case EventType.MouseDrag:
+                    OnMouseDrag();
+                    break;
+                case EventType.Repaint:
+                    OnRepaint();
+                    break;
+                case EventType.Layout:
+                    OnLayout();
+                    break;
+                case EventType.ContextClick:
+                    break;
+                default:
+                    break;
+            }
         }
 
-        private void DrawNodes()
+        private void OnMouseUp()
+        {
+            Event.current.Use();
+            if(dropTarget != null && selection != null)
+            {
+                MoveNode(selection, dropTarget, dropIndex);
+            }
+            dropTarget = null;
+        }
+
+        private void MoveNode(PlayableRuntimeMusicTreeNode selection, PlayableRuntimeMusicTreeNode dropTarget, int dropIndex)
+        {
+            selection.Asset.ChangeParentTo(dropTarget.Asset, dropIndex);
+            MusicTreeEditorManager.Instance.OnChangesToTreeHierarchy();
+        }
+
+        private void OnMouseDrag()
+        {
+            dropTarget = null;
+            foreach (var node in tree.AllNodes)
+            {
+                if (node == selection || !node.CanBeParentOf(selection))
+                    continue;
+
+                var bounds = cachedPositioning.GetBoundsFor(node);
+                if (bounds.Contains(Event.current.mousePosition))
+                {
+                    dropTarget = node;
+                    dropIndex = dropTarget.ChildCount;
+                    break;
+                }
+                var childrenBounds = cachedPositioning.GetDropBoundsFor(node);
+                for (int i = 0; i < childrenBounds.Length; i++)
+                {
+                    if(childrenBounds[i].Contains(Event.current.mousePosition))
+                    {
+                        dropTarget = node;
+                        dropIndex = i;
+                        break;
+                    }
+                }
+            }
+            Event.current.Use();
+        }
+
+        private void OnMouseDown()
+        {
+
+            foreach (var node in tree.AllNodes)
+            {
+                var bounds = cachedPositioning.GetBoundsFor(node);
+                if(bounds.Contains(Event.current.mousePosition))
+                {
+                    selection = node;
+                    MusicTreeEditorManager.Instance.OnNodeSelected(node);
+                }
+            }
+            Event.current.Use();
+        }
+
+        private void OnRepaint()
         {
             foreach (var node in tree.AllNodes)
             {
@@ -59,6 +148,33 @@ namespace AntonioHR.MusicTree.Editor.Internal
             {
                 DrawNode(cachedPositioning.GetBoundsFor(node), node);
             }
+
+            if(dropTarget != null)
+            {
+                DrawDropTarget();
+            }
+        }
+
+        private void DrawDebugDropTargets()
+        {
+            Color c1 = new Color(0, 0, 1, .3f);
+            Color c2 = new Color(1, 0, 0, .3f);
+            int max = dropTarget.ChildCount;
+            int i = 0;
+            foreach (var rect in cachedPositioning.GetDropBoundsFor(dropTarget).Reverse())
+            {
+                EditorGUI.DrawRect(rect, Color.Lerp(c1, c2, i / (float)max));
+                i++;
+            }
+        }
+
+        private void DrawDropTarget()
+        {
+            var bounds = cachedPositioning.GetBoundsFor(dropTarget);
+            Vector2 indicatorPos = cachedPositioning.GetDropIndicatorPosFor(dropTarget, dropIndex);
+            
+
+            GUI.DrawTexture(bounds.CenteredAt(indicatorPos), MusicTreeEditorWindow.configs.DragIndicatorIcon);
         }
 
         private void DrawLineToParent(PlayableRuntimeMusicTreeNode node, MusicTreeNode musicTreeNode)
@@ -68,12 +184,17 @@ namespace AntonioHR.MusicTree.Editor.Internal
 
             Handles.DrawLine(parentBounds.center, myBounds.center);
         }
-
-
         private void DrawNode(Rect bounds, PlayableRuntimeMusicTreeNode node)
         {
-            Color color = Color.gray;
 
+            GUI.DrawTexture(bounds, BGTexFor(node));
+
+            Texture tex = IconTextFor(node);
+            if (tex != null)
+                GUI.DrawTexture(bounds.Resized(Vector2.one * 1), tex);
+        }
+        private Texture IconTextFor(PlayableRuntimeMusicTreeNode node)
+        {
             Texture tex = null;
 
             if (node.Asset is CueMusicTreeNode)
@@ -90,24 +211,25 @@ namespace AntonioHR.MusicTree.Editor.Internal
             {
                 //color = Color.cyan;
                 tex = SequenceIcon;
-            } else if(node.Asset is ConditionMusicTreeNode)
+            }
+            else if (node.Asset is ConditionMusicTreeNode)
             {
                 tex = ConditionIcon;
             }
 
-
-            EditorGUI.DrawRect(bounds, color);
-            if (tex != null)
-                GUI.DrawTexture(bounds.Resized(Vector2.one * 1), tex);
-
-            if (GUI.Button(bounds, GUIContent.none, GUIStyle.none))
-            {
-                MusicTreeEditorManager.Instance.OnNodeSelected(node);
-            }
+            return tex;
+        }
+        private Texture BGTexFor(PlayableRuntimeMusicTreeNode node)
+        {
+            if (selection == node)
+                return MusicTreeEditorWindow.configs.NodeSelected;
+            else if (dropTarget == node)
+                return MusicTreeEditorWindow.configs.NodeDropTarget;
+            else
+                return MusicTreeEditorWindow.configs.NodeUnselected;
         }
 
-
-        private void ReserveLayoutSpace()
+        private void OnLayout()
         {
             Vector2 size = cachedPositioning.GetTreeSize();
             GUILayoutUtility.GetRect(size.x, size.y);

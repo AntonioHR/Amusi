@@ -82,6 +82,16 @@ namespace AntonioHR.MusicTree.Internal
     {
         internal bool isRunning { get { return ExecutionState == State.Running; } }
 
+        public bool IsDescendantOf(PlayableRuntimeMusicTreeNode other)
+        {
+            if (IsRoot)
+                return false;
+            else if (Parent == other)
+                return true;
+            else
+                return Parent.IsDescendantOf(other);
+        }
+
         public PlayableRuntimeMusicTree TreeAsPlayable { get { return Tree; } }
 
         public int BPM
@@ -92,7 +102,24 @@ namespace AntonioHR.MusicTree.Internal
                 return cueNode == null ? 0 : MusicTreeNodeUtilities.BPMFor(cueNode, Tree.Asset);
             }
         }
-        
+
+        public bool CanBeParentOf(PlayableRuntimeMusicTreeNode other)
+        {
+            if (this.IsDescendantOf(other))
+                return false;
+
+            switch (Asset.Policy)
+            {
+                case MusicTreeNode.ChildrenPolicy.None:
+                    return false;
+                case MusicTreeNode.ChildrenPolicy.Single:
+                    return ChildCount == 0;
+                case MusicTreeNode.ChildrenPolicy.Multiple:
+                    return true;
+                default:
+                    throw new NotImplementedException();
+            }
+        }
 
         public float LengthInBeats
         {

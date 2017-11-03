@@ -15,4 +15,8 @@ MonoBehaviour:
   cueIcon: {fileID: 2800000, guid: e0676fca9866e6a4b865a332bc7316e0, type: 3}
   selectorIcon: {fileID: 2800000, guid: 60c94ca5dbd57f54eaae0d095d741fe5, type: 3}
   sequenceIcon: {fileID: 2800000, guid: 4fb8c7c8e6f41ed44bb7c7f4e311cad4, type: 3}
+  dragIndicatorIcon: {fileID: 2800000, guid: 055d0f272610bab44a1bac3c58d58cd5, type: 3}
+  nodeUnselected: {fileID: 2800000, guid: 1dcd687058aaf274798aef54190adbdb, type: 3}
+  nodeSelected: {fileID: 2800000, guid: c3521e5abfaa8624ea02f29878299e96, type: 3}
+  nodeDropTarget: {fileID: 2800000, guid: 8126ee62024fe4549bf6ff93440e20e9, type: 3}
   skin: {fileID: 11400000, guid: eea5440002eb0584bacc2549dcb8da43, type: 2}

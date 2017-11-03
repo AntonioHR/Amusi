@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AntonioHR.MusicTree.Internal;
 using AntonioHR.TreeAsset.Internal;
 
 namespace AntonioHR.TreeAsset
@@ -13,6 +14,11 @@ namespace AntonioHR.TreeAsset
         {
             node._hierarchy.ChangeParentTo(newParent._hierarchy);
         }
+        public static void ChangeParentTo(this TreeNodeAsset node, TreeNodeAsset newParent, int index)
+        {
+            node._hierarchy.ChangeParentTo(newParent._hierarchy, index);
+        }
+
         public static void UnattachFromParent(this TreeNodeAsset node)
         {
             node._hierarchy.UnattachFromParent();

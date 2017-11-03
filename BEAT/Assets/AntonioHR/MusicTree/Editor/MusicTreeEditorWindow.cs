@@ -61,7 +61,7 @@ namespace AntonioHR.MusicTree.Editor
 
             using (var scrollview = new EditorGUILayout.ScrollViewScope(scrollPos))
             {
-                drawer.DrawTree();
+                drawer.Update();
                 scrollPos = scrollview.scrollPosition;
             }
             EditorGUILayout.EndHorizontal();

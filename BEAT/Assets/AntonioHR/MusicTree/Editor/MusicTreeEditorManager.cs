@@ -59,7 +59,7 @@ namespace AntonioHR.MusicTree.Editor
                 SelectedTreeAssetChanged(TreeAsset);
             OnChangesToTreeHierarchy();
         }
-        private void OnChangesToTreeHierarchy()
+        public void OnChangesToTreeHierarchy()
         {
             if(TreeAsset != null)
             {
