@@ -21,7 +21,7 @@ namespace AntonioHR.MusicTree.Editor
 
         public static MusicTreeEditorConfigs configs { get; private set; }
         public static string configsAssetName = "MusicTreeEditorConfigs";
-        public static string[] toolbarOptions = { "Variables", "Tracks" };
+        public static string[] toolbarOptions = { "Tree", "Variables", "Tracks"};
 
         public static string tempVarName = "";
         public static int toolbarSelection = 0;
@@ -73,12 +73,19 @@ namespace AntonioHR.MusicTree.Editor
             {
                 toolbarSelection = GUILayout.Toolbar(toolbarSelection, toolbarOptions);
                 if (toolbarSelection == 0)
+                    DrawOptionsToolbar();
+                else if (toolbarSelection == 1)
                     VarsGUI.DrawVarsEditor();
                 else
                     TrackDefsGUI.DrawTracksEditor();
             }
         }
 
+        private static void DrawOptionsToolbar()
+        {
+            var ta = MusicTreeEditorManager.Instance.TreeAsset;
+            ta.defaultBPM = EditorGUILayout.IntField("Music BPM", ta.defaultBPM);
+        }
 
         private static void InitializeConfigs()
         {

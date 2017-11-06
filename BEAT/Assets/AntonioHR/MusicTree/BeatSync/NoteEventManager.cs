@@ -1,5 +1,6 @@
 ﻿using AntonioHR.MusicTree.BeatSync;
 using AntonioHR.MusicTree.BeatSync.Internal;
+using AntonioHR.MusicTree.Internal;
 using AntonioHR.MusicTree.Nodes;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,11 @@ namespace AntonioHR.MusicTree.BeatSync
         public CueMusicTreeNode currentCue;
 
 
-        public NoteEventManager(MusicTreeAsset asset)
+        public NoteEventManager(PlayableRuntimeMusicTree tree)
         {
+            var asset = tree.Asset;
             int trackCount = asset.trackDefinitions.Count;
-            int subTrackCount = asset.MaxSubTrack;
+            int subTrackCount = tree.MaxSubTrack;
             eventListeners = new List<INoteEventListener>[trackCount, subTrackCount];
 
             for (int i = 0; i < trackCount; i++)

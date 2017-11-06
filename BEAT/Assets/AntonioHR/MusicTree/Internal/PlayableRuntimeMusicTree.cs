@@ -20,6 +20,15 @@ namespace AntonioHR.MusicTree.Internal
 
         public IEnumerable<CueMusicTreeNode> AllCues { get { return Root.Preorder().Where(x => x.Asset is CueMusicTreeNode).Select(x=>x.Asset as CueMusicTreeNode); } }
 
+        public int MaxSubTrack {
+            get
+            {
+                return AllCues.Max(
+                    cue=>cue.sheet.tracks.Max(
+                        track=>track.notes.Max(
+                            note=>note.subTrack)));
+            }
+        }
 
         protected override void AfterInit()
         {

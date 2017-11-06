@@ -21,11 +21,6 @@ namespace AntonioHR.MusicTree
 
         public int defaultBPM;
 
-        [SerializeField]
-        private int maxSubTrack;
-
-        public int MaxSubTrack { get { return maxSubTrack; } }
-
         public int NotesPerBar
         {
             get
