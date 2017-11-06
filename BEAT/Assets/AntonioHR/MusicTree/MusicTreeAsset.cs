@@ -15,9 +15,9 @@ namespace AntonioHR.MusicTree
     public class MusicTreeAsset : TreeAsset<MusicTreeNode>
     {
 
-        public List<ConditionVariable> vars;
+        public List<ConditionVariable> vars = new List<ConditionVariable>();
 
-        public List<NoteTrackDefinition> trackDefinitions;
+        public List<NoteTrackDefinition> trackDefinitions = new List<NoteTrackDefinition>();
 
         public int defaultBPM;
 
@@ -70,12 +70,20 @@ namespace AntonioHR.MusicTree
 
             return result;
         }
-        
 
+        [MenuItem("Assets/Create/Music Tree")]
+        public static void CreateEmptyTree()
+        {
+            var tree = ScriptableObject.CreateInstance<MusicTreeAsset>();
 
+            AssetDatabase.CreateAsset(tree, EditorHelper.GetSelectedPathOrFallback() + "/Music Tree.asset");
+
+            AssetDatabase.SaveAssets();
+            tree.Init();
+        }
 
         #region Debug Examples
-        [MenuItem("Music Tree/Example Tree")]
+            //[MenuItem("Music Tree/Example Tree")]
         public static void CreateExampleTree()
         {
             var tree = ScriptableObject.CreateInstance<MusicTreeAsset>();
@@ -91,7 +99,7 @@ namespace AntonioHR.MusicTree
             tree.CreateChildFor<CueMusicTreeNode>(seq1, "Music 2");
 
         }
-        [MenuItem("Music Tree/Big Example Tree")]
+        //[MenuItem("Music Tree/Big Example Tree")]
         public static void CreateBigExampleTree()
         {
             var tree = ScriptableObject.CreateInstance<MusicTreeAsset>();
@@ -113,7 +121,7 @@ namespace AntonioHR.MusicTree
             tree.CreateChildFor<CueMusicTreeNode>(sel2, "Music 4");
             tree.CreateChildFor<CueMusicTreeNode>(sel2, "Music 5");
         }
-        [MenuItem("Music Tree/Big Example Tree with Conditions")]
+        //[MenuItem("Music Tree/Big Example Tree with Conditions")]
         public static void CreateBigExampleTreeWithConds()
         {
             var tree = ScriptableObject.CreateInstance<MusicTreeAsset>();

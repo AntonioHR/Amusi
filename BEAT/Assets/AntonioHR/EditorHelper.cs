@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -9,6 +10,21 @@ namespace AntonioHR
 {
     public class EditorHelper
     {
+        public static string GetSelectedPathOrFallback()
+        {
+            string path = "Assets";
+
+            foreach (UnityEngine.Object obj in Selection.GetFiltered(typeof(UnityEngine.Object), SelectionMode.Assets))
+            {
+                path = AssetDatabase.GetAssetPath(obj);
+                if (!string.IsNullOrEmpty(path) && File.Exists(path))
+                {
+                    path = Path.GetDirectoryName(path);
+                    break;
+                }
+            }
+            return path;
+        }
         public static object GetTargetObjectOfProperty(SerializedProperty prop)
         {
             var path = prop.propertyPath.Replace(".Array.data[", "[");

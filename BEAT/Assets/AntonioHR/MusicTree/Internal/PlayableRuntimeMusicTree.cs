@@ -23,10 +23,18 @@ namespace AntonioHR.MusicTree.Internal
         public int MaxSubTrack {
             get
             {
-                return AllCues.Max(
-                    cue=>cue.sheet.tracks.Max(
-                        track=>track.notes.Max(
-                            note=>note.subTrack)));
+                if (AllCues.Any())
+                    return AllCues.Max(
+                        cue => cue.sheet.tracks.Count == 0? 0:cue.sheet.tracks.Max(
+                            track =>
+                            {
+                                if (track.notes.Any())
+                                    return track.notes.Max(
+                                        note => note.subTrack);
+                                else
+                                    return 0;
+                            }));
+                else return 0;
             }
         }
 
