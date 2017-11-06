@@ -377,7 +377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &280959922
 Transform:
   m_ObjectHideFlags: 0
@@ -489,7 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fdf48b4a1c94364d8f6c2697f00a5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicTree: {fileID: 11400000, guid: ba50418ec82b27c4dbd97111bb3543bb, type: 2}
+  musicTree: {fileID: 11400000, guid: 976091714e9930f4ea64703ad7486489, type: 2}
   musicControllerSettings:
     updateRatio: 30
     closeToEndMargin: 5
@@ -916,7 +916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1121176580
 Transform:
   m_ObjectHideFlags: 0

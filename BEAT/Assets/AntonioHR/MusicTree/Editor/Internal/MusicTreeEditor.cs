@@ -264,6 +264,8 @@ namespace AntonioHR.MusicTree.Editor.Internal
         }
         private Texture BGTexFor(PlayableRuntimeMusicTreeNode node)
         {
+            if (node.Asset == MusicTreeEditorManager.Instance.PlayedNode)
+                return MusicTreeEditorWindow.configs.NodePlayed;
             if (selection == node)
                 return MusicTreeEditorWindow.configs.NodeSelected;
             else if (dropTarget == node)

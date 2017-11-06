@@ -25,16 +25,18 @@ namespace AntonioHR.MusicTree.Editor
 
         public static string tempVarName = "";
         public static int toolbarSelection = 0;
+        
 
         [MenuItem("Window/MusicTree Visualizer")]
         public static void ShowWindow()
         {
             var window = GetWindow<MusicTreeEditorWindow>();
-            MusicTreeEditorManager.Instance.OnMusicTreeEditorOpened(window);
+            //MusicTreeEditorManager.Instance.OnMusicTreeEditorOpened(window);
         }
 
         private void OnEnable()
         {
+            MusicTreeEditorManager.Instance.OnMusicTreeEditorOpened(this);
             MusicTreeEditorManager.Instance.TreeHierarchyChanged += TreeHierarchyChanged;
             InitializeConfigs();
         }
@@ -85,6 +87,7 @@ namespace AntonioHR.MusicTree.Editor
         {
             var ta = MusicTreeEditorManager.Instance.TreeAsset;
             ta.defaultBPM = EditorGUILayout.IntField("Music BPM", ta.defaultBPM);
+            ta.barType = (BarType) EditorGUILayout.EnumPopup("Measures type", (Enum) ta.barType);
         }
 
         private static void InitializeConfigs()

@@ -23,6 +23,7 @@ namespace AntonioHR.MusicTree.Nodes
 
         public List<NoteTrack> Tracks { get { return sheet.tracks; } }
 
+        [HideInInspector]
         public NoteSheet sheet;
 
         public CueMusicTreeNode()

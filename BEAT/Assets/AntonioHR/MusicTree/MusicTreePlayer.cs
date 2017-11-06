@@ -24,6 +24,11 @@ namespace AntonioHR.MusicTree
         PlayableRuntimeMusicTree musicTreeRuntime;
         private CueMusicTreeNode nextCueNode;
 
+        public static MusicTreePlayer Instance { get; private set; }
+        public static event Action InstanceChanged;
+        public event Action<CueMusicTreeNode> NewNodePlaying;
+        public CueMusicTreeNode CurrentNode { get; private set; }
+
 
         #region Tree Envionment Accessors
         public float GetFloatValue(string name)
@@ -68,6 +73,9 @@ namespace AntonioHR.MusicTree
 
         void Start()
         {
+            Instance = this;
+            if (InstanceChanged != null)
+                InstanceChanged();
             Debug.Log("Initializing");
             musicController = new MusicController(GetComponents<AudioSource>(), musicControllerSettings);
             musicController.OnClipCloseToEnd += Controller_OnClipCloseToEnd;
@@ -99,6 +107,9 @@ namespace AntonioHR.MusicTree
             float bpm = MusicTreeNodeUtilities.BPMFor(nextCueNode, musicTree);
             counter.UpdateClipVariables(musicController.CurrentClipStartDSPTme, bpm, musicController.Frequency);
             checker.SwitchCue(nextCueNode);
+            if (NewNodePlaying != null)
+                NewNodePlaying(nextCueNode);
+            CurrentNode = nextCueNode;
         }
 
         private void Controller_OnClipCloseToEnd()

@@ -12,6 +12,7 @@ namespace AntonioHR.TreeAsset
     {
 
         [SerializeField]
+        [HideInInspector]
         internal TreeHierarchyNodeAsset _hierarchy;
 
 

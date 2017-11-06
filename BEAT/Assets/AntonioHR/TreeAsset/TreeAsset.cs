@@ -11,6 +11,7 @@ namespace AntonioHR.TreeAsset
     public abstract class TreeAsset<T>: ScriptableObject where T: TreeNodeAsset
     {
         [SerializeField]
+        [HideInInspector]
         private TreeHierarchyAsset hierarchy;
 
         public T Root

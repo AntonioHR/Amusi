@@ -21,8 +21,20 @@ MonoBehaviour:
       floatValue: 0
   trackDefinitions:
   - name: track 1
-  defaultBPM: 0
+  defaultBPM: 128
   barType: 0
+--- !u!114 &114087105634832856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddcb9cbce767c6445ade3f93d0df87f7, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
 --- !u!114 &114100805234686254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +103,7 @@ MonoBehaviour:
     booleanCondition: 0
     intVal: 0
     floatVal: 0
-    boolVal: 0
+    boolVal: 1
     variableName: angry
 --- !u!114 &114347316125359500
 MonoBehaviour:
@@ -163,6 +175,7 @@ MonoBehaviour:
   _children:
   - {fileID: 114567227704632472}
   - {fileID: 114578379631306370}
+  - {fileID: 114776839624457382}
   _parent: {fileID: 114977886311727380}
   _isFloating: 0
   _content: {fileID: 114347316125359500}
@@ -224,6 +237,7 @@ MonoBehaviour:
   _root: {fileID: 114977886311727380}
   _floaters:
   - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114690797370432724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +290,7 @@ MonoBehaviour:
   _tree: {fileID: 114606410147419058}
   _children:
   - {fileID: 114100805234686254}
-  _parent: {fileID: 114977886311727380}
+  _parent: {fileID: 114562859249779466}
   _isFloating: 0
   _content: {fileID: 114329414728600116}
 --- !u!114 &114789808846039644
@@ -291,7 +305,7 @@ MonoBehaviour:
   m_Name: Node
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114578379631306370}
-  clip: {fileID: 8300000, guid: f9ffd67ca307fad489885a0f3be23cac, type: 3}
+  clip: {fileID: 8300000, guid: c1feb4969720a5b46b8aa688f0cbbf04, type: 3}
   useCustomBPM: 0
   customBPM: 0
   sheet:
@@ -312,7 +326,6 @@ MonoBehaviour:
   _tree: {fileID: 114606410147419058}
   _children:
   - {fileID: 114562859249779466}
-  - {fileID: 114776839624457382}
   _parent: {fileID: 0}
   _isFloating: 0
   _content: {fileID: 114550909610636212}

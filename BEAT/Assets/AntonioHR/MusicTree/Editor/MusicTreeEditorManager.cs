@@ -32,6 +32,9 @@ namespace AntonioHR.MusicTree.Editor
         public NoteSheet NoteSheet { get; private set; }
         public PlayableRuntimeMusicTree CachedTree { get; private set; }
 
+        public MusicTreePlayer Player { get; private set; }
+        public CueMusicTreeNode PlayedNode { get { return Player == null ? null : Player.CurrentNode; } }
+
 
         //Events
         public event Action NoteTrackDefinitionsChanged;
@@ -47,10 +50,25 @@ namespace AntonioHR.MusicTree.Editor
 
         private MusicTreeEditorManager()
         {
-
+            if (MusicTreePlayer.Instance != null)
+                OnTreePlayerChanged();
+            MusicTreePlayer.InstanceChanged += OnTreePlayerChanged;
         }
-        
 
+        private void OnTreePlayerChanged()
+        {
+            if(Player != null)
+                Player.NewNodePlaying -= OnNewNodePayingByPlayer;
+            Player = MusicTreePlayer.Instance;
+            if (Player != null)
+                Player.NewNodePlaying += OnNewNodePayingByPlayer;
+        }
+
+        private void OnNewNodePayingByPlayer(CueMusicTreeNode obj)
+        {
+            if (MusicTreeEditor != null)
+                MusicTreeEditor.Repaint();
+        }
 
         public void OnSelectedTreeChanged(MusicTreeAsset a)
         {

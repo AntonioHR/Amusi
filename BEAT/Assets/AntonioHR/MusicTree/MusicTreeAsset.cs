@@ -15,10 +15,13 @@ namespace AntonioHR.MusicTree
     public class MusicTreeAsset : TreeAsset<MusicTreeNode>
     {
 
+        [HideInInspector]
         public List<ConditionVariable> vars = new List<ConditionVariable>();
 
+        [HideInInspector]
         public List<NoteTrackDefinition> trackDefinitions = new List<NoteTrackDefinition>();
 
+        [HideInInspector]
         public int defaultBPM;
 
         public int NotesPerBar
