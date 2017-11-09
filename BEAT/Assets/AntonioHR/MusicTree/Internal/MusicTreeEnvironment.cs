@@ -1,4 +1,4 @@
-﻿using AntonioHR.MusicTree.ConditionVariables;
+﻿using AntonioHR.ConditionVariables;
 using System;
 using System.Collections.Generic;
 using System.Linq;

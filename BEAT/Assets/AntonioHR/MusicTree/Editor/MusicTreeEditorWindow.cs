@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using AntonioHR.MusicTree.Editor.Internal;
-using AntonioHR.MusicTree.ConditionVariables;
+using AntonioHR.ConditionVariables;
 using System;
 using AntonioHR.MusicTree.Internal;
 

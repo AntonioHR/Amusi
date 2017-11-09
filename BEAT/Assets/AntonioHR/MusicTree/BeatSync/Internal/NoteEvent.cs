@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AntonioHR.MusicTree.BeatSync
+namespace AntonioHR.MusicTree.BeatSync.Internal
 {
     public class NoteEvent
     {

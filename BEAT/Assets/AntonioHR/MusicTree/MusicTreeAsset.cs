@@ -4,7 +4,7 @@ using UnityEngine;
 using AntonioHR.TreeAsset;
 using UnityEditor;
 using AntonioHR.MusicTree.Nodes;
-using AntonioHR.MusicTree.ConditionVariables;
+using AntonioHR.ConditionVariables;
 using AntonioHR.MusicTree.Internal;
 using System;
 

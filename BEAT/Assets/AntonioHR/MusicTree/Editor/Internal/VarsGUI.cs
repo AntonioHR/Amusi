@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using AntonioHR.MusicTree.ConditionVariables;
+using AntonioHR.ConditionVariables;
 using UnityEngine;
 using UnityEditor;
 

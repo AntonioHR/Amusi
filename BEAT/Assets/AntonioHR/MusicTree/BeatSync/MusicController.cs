@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-namespace AntonioHR.MusicTree.BeatSync.Internal
+namespace AntonioHR.MusicTree.BeatSync
 {
     [System.Serializable]
 	public class MusicController

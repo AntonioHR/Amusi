@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace AntonioHR.MusicTree.BeatSync
+namespace AntonioHR.MusicTree.BeatSync.Internal
 {
     [Serializable]
     public class NoteEventBinding : INoteEventListener

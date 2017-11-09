@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace AntonioHR.MusicTree.ConditionVariables
+namespace AntonioHR.ConditionVariables
 {
     [Serializable]
     public class Condition

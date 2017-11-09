@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-namespace AntonioHR.MusicTree.BeatSync.Internal
+namespace AntonioHR.MusicTree.BeatSync
 {
 	public class BeatCounter
     {
