@@ -18,5 +18,16 @@ namespace AntonioHR
                 counter++;
             }
         }
+
+        public static TSource OnlyOrDefault<TSource>(this IEnumerable<TSource> source)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            var results = source.Take(2).ToArray();
+            return results.Length == 1 ? results[0] : default(TSource);
+        }
     }
 }

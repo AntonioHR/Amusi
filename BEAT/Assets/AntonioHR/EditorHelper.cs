@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEditor;
+using UnityEngine;
 
 namespace AntonioHR
 {
@@ -81,5 +82,99 @@ namespace AntonioHR
             }
             return enm.Current;
         }
+
+
+
+        #region Helpers from Zenject
+        public static string GetCurrentDirectoryAssetPathFromSelection()
+        {
+            return ConvertFullAbsolutePathToAssetPath(
+                GetCurrentDirectoryAbsolutePathFromSelection());
+        }
+
+        public static string ConvertFullAbsolutePathToAssetPath(string fullPath)
+        {
+            fullPath = Path.GetFullPath(fullPath);
+
+            var assetFolderFullPath = Path.GetFullPath(Application.dataPath);
+
+            if (fullPath.Length == assetFolderFullPath.Length)
+            {
+                return "Assets";
+            }
+
+            var assetPath = fullPath.Remove(0, assetFolderFullPath.Length + 1).Replace("\\", "/");
+            return "Assets/" + assetPath;
+        }
+        public static string GetCurrentDirectoryAbsolutePathFromSelection()
+        {
+            var folderPath = TryGetSelectedFolderPathInProjectsTab();
+
+            if (folderPath != null)
+            {
+                return folderPath;
+            }
+
+            var filePath = TryGetSelectedFilePathInProjectsTab();
+
+            if (filePath != null)
+            {
+                return Path.GetDirectoryName(filePath);
+            }
+
+            return Application.dataPath;
+        }
+
+        public static string TryGetSelectedFilePathInProjectsTab()
+        {
+            return GetSelectedFilePathsInProjectsTab().OnlyOrDefault();
+        }
+
+        public static List<string> GetSelectedFilePathsInProjectsTab()
+        {
+            return GetSelectedPathsInProjectsTab()
+                .Where(x => File.Exists(x)).ToList();
+        }
+
+        public static List<string> GetSelectedPathsInProjectsTab()
+        {
+            var paths = new List<string>();
+
+            UnityEngine.Object[] selectedAssets = Selection.GetFiltered(
+                typeof(UnityEngine.Object), SelectionMode.Assets);
+
+            foreach (var item in selectedAssets)
+            {
+                var relativePath = AssetDatabase.GetAssetPath(item);
+
+                if (!string.IsNullOrEmpty(relativePath))
+                {
+                    var fullPath = Path.GetFullPath(Path.Combine(
+                        Application.dataPath, Path.Combine("..", relativePath)));
+
+                    paths.Add(fullPath);
+                }
+            }
+
+            return paths;
+        }
+
+        // Note that the path is relative to the Assets folder
+        public static List<string> GetSelectedFolderPathsInProjectsTab()
+        {
+            return GetSelectedPathsInProjectsTab()
+                .Where(x => Directory.Exists(x)).ToList();
+        }
+
+        // Returns the best guess directory in projects pane
+        // Useful when adding to Assets -> Create context menu
+        // Returns null if it can't find one
+        // Note that the path is relative to the Assets folder for use in AssetDatabase.GenerateUniqueAssetPath etc.
+        public static string TryGetSelectedFolderPathInProjectsTab()
+        {
+            return GetSelectedFolderPathsInProjectsTab().OnlyOrDefault();
+        }
     }
+    #endregion
+
 }

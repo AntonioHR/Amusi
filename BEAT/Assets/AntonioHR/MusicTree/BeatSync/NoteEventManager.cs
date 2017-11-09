@@ -25,7 +25,7 @@ namespace AntonioHR.MusicTree.BeatSync
         {
             var asset = tree.Asset;
             int trackCount = asset.trackDefinitions.Count;
-            int subTrackCount = tree.MaxSubTrack;
+            int subTrackCount = tree.MaxSubTrack + 1;
             eventListeners = new List<INoteEventListener>[trackCount, subTrackCount];
 
             for (int i = 0; i < trackCount; i++)

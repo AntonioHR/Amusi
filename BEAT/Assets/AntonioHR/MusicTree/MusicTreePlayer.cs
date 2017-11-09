@@ -71,7 +71,7 @@ namespace AntonioHR.MusicTree
 
 
 
-        void Start()
+        void Awake()
         {
             Instance = this;
             if (InstanceChanged != null)
