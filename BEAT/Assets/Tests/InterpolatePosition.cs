@@ -16,6 +16,7 @@ public class InterpolatePosition : MonoBehaviour, INoteEventListener {
     public bool yoyo = true;
 
     private bool goingBack = false;
+    
 
     public void OnNoteEnd()
     {
