@@ -2,7 +2,7 @@
 
 namespace AntonioHR.Amusi
 {
-    public abstract class MonoNoteEventListener : MonoBehaviour
+    public abstract class MonoDancer : MonoBehaviour
     {
         [SerializeField]
         private NoteEventBinding binding;

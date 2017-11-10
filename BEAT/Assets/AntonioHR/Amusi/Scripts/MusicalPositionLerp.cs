@@ -2,7 +2,7 @@ using AntonioHR.Amusi;
 using UnityEngine;
 
 [AddComponentMenu("Amusic/Musical Position Lerp")]
-public class MusicalPositionLerp : MonoNoteEventListener
+public class MusicalPositionLerp : MonoDancer
 {
     public Vector3 pos1, pos2;
     public bool yoyo = true;

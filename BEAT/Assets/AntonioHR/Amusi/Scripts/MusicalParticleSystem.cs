@@ -4,7 +4,7 @@ using UnityEngine;
 
 [AddComponentMenu("Amusic/Musical Particle System")]
 [RequireComponent(typeof(ParticleSystem))]
-public class MusicalParticleSystem : MonoNoteEventListener
+public class MusicalParticleSystem : MonoDancer
 {
     private ParticleSystem particles;
     float dur;

@@ -7,7 +7,8 @@ namespace AntonioHR.Amusi.Editor
 {
     public static class MusicTreeEditorMenuItems
     {
-
+        public const string Packagename = "AntonioHR.Amusi";
+        public const string MonoEventListenerClass = "MonoDancer";
 
         [MenuItem("Amusi/Create/Music Tree Asset")]
         [MenuItem("Assets/Create/Music Tree")]
@@ -26,17 +27,16 @@ namespace AntonioHR.Amusi.Editor
             obj.AddComponent<MusicTreePlayer>();
         }
 
-        [MenuItem("Amusi/Create/Mono NoteEventListener Script")]
-        [MenuItem("Assets/Create/Mono NoteEventListener")]
+        [MenuItem("Amusi/Create/MonoDancer Script")]
+        [MenuItem("Assets/Create/MonoDancer")]
         public static void CreateMonoNoteListenerScript()
         {
-            AddCSharpClassTemplate("Editor Window", "NewMonoNoteEventListener", false,
+            AddCSharpClassTemplate("Editor Window", "NewMonoDancer", false,
                   "using UnityEngine;"
                 + "\nusing UnityEditor;"
-                + "\nusing AntonioHR.MusicTree;"
-                + "\nusing AntonioHR.MusicTree.BeatSync;"
+                + string.Format("\nusing {0};", Packagename)
                 + "\n"
-                + "\npublic class CLASS_NAME : MonoNoteEventListener"
+                + string.Format("\npublic class CLASS_NAME : {0}", MonoEventListenerClass)
                 + "\n{"
                 + "\n    //Use this instead of the MonoBehaviour Start Function"
                 + "\n    protected override void Init()"
