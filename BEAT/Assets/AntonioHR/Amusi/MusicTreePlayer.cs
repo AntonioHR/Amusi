@@ -10,20 +10,27 @@ namespace AntonioHR.Amusi
 {
     public class MusicTreePlayer : MonoBehaviour
     {
-        public MusicTreeAsset musicTree;
+        #region Inspector-Exposed Parameters
+        [SerializeField]
+        private MusicTreeAsset musicTree;
+        #endregion
 
-        BeatCounter counter;
-        MusicController musicController;
-        NoteEventChecker checker;
+        private BeatCounter counter;
+        private MusicController musicController;
+        private NoteEventChecker checker;
 
-        CachedMusicTree musicTreeRuntime;
+        private CachedMusicTree musicTreeRuntime;
         private CueMusicTreeNode nextCueNode;
+
+
 
         public static MusicTreePlayer Instance { get; private set; }
         public static event Action InstanceChanged;
+
         public event Action<CueMusicTreeNode> NewNodePlaying;
         public CueMusicTreeNode CurrentNode { get; private set; }
 
+        
 
         #region Tree Envionment Accessors
         public float GetFloatValue(string name)
@@ -54,6 +61,7 @@ namespace AntonioHR.Amusi
         }
         #endregion
 
+        #region EventChecker Acessors
         public void AddListener(string track, int subTrack, INoteEventListener listener)
         {
             checker.AddListener(track, subTrack, listener);
@@ -64,24 +72,29 @@ namespace AntonioHR.Amusi
             checker.RemoveListener(track, subTrack, listener);
         }
 
+        #endregion
 
 
+
+
+        #region Unity Messages
         void Awake()
         {
             Instance = this;
             if (InstanceChanged != null)
                 InstanceChanged();
-            Debug.Log("Initializing");
+
             musicController = new MusicController(GetComponents<AudioSource>());
-            musicController.OnClipCloseToEnd += Controller_OnClipCloseToEnd;
+            musicController.OnClipCloseToEnd += MusicController_OnClipCloseToEnd;
             musicController.OnNewClipStart += MusicController_OnNewClipStarted;
+
             counter = new BeatCounter();
             musicTreeRuntime = CachedMusicTree.CreateFrom(musicTree);
             checker = new NoteEventChecker(musicTreeRuntime);
 
             nextCueNode = musicTreeRuntime.SelectNextPatch();
             double initTime = musicController.Init(nextCueNode.clip);
-            Debug.LogFormat("init: {0}", initTime);
+
             counter.UpdateClipVariables(initTime, musicTree.defaultBPM, musicController.Frequency);
         }
 
@@ -95,8 +108,9 @@ namespace AntonioHR.Amusi
                 checker.PerformChecks((float)counter.Progress);
             }
         }
+        #endregion
 
-
+        #region MusicController Callbacks
         private void MusicController_OnNewClipStarted()
         {
             float bpm = MusicTreeNodeUtilities.BPMFor(nextCueNode, musicTree);
@@ -107,7 +121,7 @@ namespace AntonioHR.Amusi
             CurrentNode = nextCueNode;
         }
 
-        private void Controller_OnClipCloseToEnd()
+        private void MusicController_OnClipCloseToEnd()
         {
             try
             {
@@ -120,5 +134,6 @@ namespace AntonioHR.Amusi
                 throw;
             }
         }
+        #endregion
     }
 }

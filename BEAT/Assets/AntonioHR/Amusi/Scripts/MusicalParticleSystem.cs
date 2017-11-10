@@ -1,4 +1,4 @@
-using AntonioHR.Amusi.BeatSynchronization;
+using AntonioHR.Amusi;
 using UnityEngine;
 
 

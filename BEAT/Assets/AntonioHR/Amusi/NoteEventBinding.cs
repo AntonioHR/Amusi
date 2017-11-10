@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace AntonioHR.Amusi.BeatSynchronization.Internal
+namespace AntonioHR.Amusi
 {
     [Serializable]
     public class NoteEventBinding : INoteEventListener

@@ -1,7 +1,6 @@
-﻿using AntonioHR.Amusi.BeatSynchronization.Internal;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace AntonioHR.Amusi.BeatSynchronization
+namespace AntonioHR.Amusi
 {
     public abstract class MonoNoteEventListener : MonoBehaviour
     {
