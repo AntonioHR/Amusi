@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System;
-
-using AntonioHR.Amusi.Internal;
-using AntonioHR.Amusi.Data;
+﻿using AntonioHR.Amusi.Data;
 using AntonioHR.Amusi.Data.Nodes;
-using AntonioHR.Amusi.Editor.Windows.MusicTree;
 using AntonioHR.Amusi.Editor.Window.NoteSheet;
+using AntonioHR.Amusi.Editor.Windows.MusicTree;
+using AntonioHR.Amusi.Internal;
+using System;
+using UnityEditor;
 
 namespace AntonioHR.Amusi.Editor
 {

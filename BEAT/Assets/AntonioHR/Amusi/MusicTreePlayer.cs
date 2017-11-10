@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
-
-using AntonioHR.Amusi.BeatSynchronization;
-using AntonioHR.Amusi.Playback;
-using AntonioHR.Amusi.Internal;
+﻿using AntonioHR.Amusi.BeatSynchronization;
 using AntonioHR.Amusi.Data;
 using AntonioHR.Amusi.Data.Nodes;
+using AntonioHR.Amusi.Internal;
+using AntonioHR.Amusi.Playback;
+using System;
+using UnityEngine;
 
 namespace AntonioHR.Amusi
 {

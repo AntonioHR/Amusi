@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using AntonioHR.Amusi.Editor;
-using System.Linq;
+﻿using AntonioHR.Amusi.Data.Nodes;
 using System;
-using AntonioHR.Amusi.Data.Nodes;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
 
 namespace AntonioHR.Amusi.Editor
 {

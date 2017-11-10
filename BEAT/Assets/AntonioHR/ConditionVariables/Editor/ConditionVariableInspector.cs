@@ -1,9 +1,4 @@
-﻿using AntonioHR.ConditionVariables;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace AntonioHR.ConditionVariables.Editor

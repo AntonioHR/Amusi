@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using AntonioHR.Amusi.BeatSynchronization.Internal;
 using UnityEngine;
-using AntonioHR.Amusi.BeatSynchronization.Internal;
 
 namespace AntonioHR.Amusi.BeatSynchronization
 {

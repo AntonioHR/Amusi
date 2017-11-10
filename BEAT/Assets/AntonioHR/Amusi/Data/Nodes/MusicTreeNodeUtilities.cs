@@ -1,11 +1,4 @@
-﻿using AntonioHR.Amusi.Data;
-using AntonioHR.Amusi;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace AntonioHR.Amusi.Data.Nodes
+﻿namespace AntonioHR.Amusi.Data.Nodes
 {
     public static class MusicTreeNodeUtilities
     {

@@ -1,10 +1,5 @@
-﻿using AntonioHR.ConditionVariables;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AntonioHR.Amusi.Internal;
-using AntonioHR.TreeAsset.Internal;
+﻿using AntonioHR.Amusi.Internal;
+using AntonioHR.ConditionVariables;
 
 namespace AntonioHR.Amusi.Data.Nodes
 {

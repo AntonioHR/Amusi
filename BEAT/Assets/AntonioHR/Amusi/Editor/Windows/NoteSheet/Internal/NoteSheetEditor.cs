@@ -1,13 +1,9 @@
-﻿using System;
+﻿using AntonioHR.Amusi.Data.Nodes;
+using AntonioHR.Amusi.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using UnityEngine;
-using UnityEditor;
-using AntonioHR.Amusi.Editor;
-using AntonioHR.Amusi.Internal;
-using AntonioHR.Amusi.Data;
-using AntonioHR.Amusi.Data.Nodes;
 
 namespace AntonioHR.Amusi.Editor.Window.NoteSheet.Internal
 {

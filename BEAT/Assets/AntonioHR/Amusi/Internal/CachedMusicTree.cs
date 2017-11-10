@@ -1,12 +1,10 @@
-﻿using AntonioHR.TreeAsset;
+﻿using AntonioHR.Amusi.Data;
+using AntonioHR.Amusi.Data.Nodes;
+using AntonioHR.Amusi.Playback;
+using AntonioHR.TreeAsset;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using AntonioHR.Amusi.Data;
-using AntonioHR.Amusi.Data.Nodes;
-using AntonioHR.Amusi.Playback;
 
 namespace AntonioHR.Amusi.Internal
 {

@@ -1,8 +1,6 @@
 ﻿using AntonioHR.Amusi.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AntonioHR.Amusi.Internal
 {

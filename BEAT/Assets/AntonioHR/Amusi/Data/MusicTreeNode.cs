@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using AntonioHR.Amusi.Internal;
 using AntonioHR.TreeAsset;
-
-using AntonioHR.Amusi.Data;
-using AntonioHR.Amusi.Internal;
 
 namespace AntonioHR.Amusi.Data
 {

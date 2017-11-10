@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using AntonioHR.Amusi.Data;
+using AntonioHR.Amusi.Internal;
 using UnityEditor;
 using UnityEngine;
-using AntonioHR.Amusi.Internal;
-using AntonioHR.Amusi.Data;
 
 namespace AntonioHR.Amusi.Editor.Windows.MusicTree.Internal
 {

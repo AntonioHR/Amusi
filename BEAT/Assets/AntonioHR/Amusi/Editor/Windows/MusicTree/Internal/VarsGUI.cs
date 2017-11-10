@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AntonioHR.ConditionVariables;
-using UnityEngine;
+﻿using AntonioHR.ConditionVariables;
 using UnityEditor;
+using UnityEngine;
 
 namespace AntonioHR.Amusi.Editor.Windows.MusicTree.Internal
 {

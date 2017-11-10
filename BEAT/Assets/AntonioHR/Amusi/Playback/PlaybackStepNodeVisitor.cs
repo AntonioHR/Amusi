@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AntonioHR.Amusi.Data.Nodes;
+﻿using AntonioHR.Amusi.Data.Nodes;
 using AntonioHR.Amusi.Internal;
+using System;
 
 namespace AntonioHR.Amusi.Playback
 {

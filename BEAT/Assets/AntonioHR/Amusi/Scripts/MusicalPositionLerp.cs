@@ -1,7 +1,5 @@
-using UnityEngine;
-using UnityEditor;
-using AntonioHR.Amusi;
 using AntonioHR.Amusi.BeatSynchronization;
+using UnityEngine;
 
 [AddComponentMenu("Amusic/Musical Position Lerp")]
 public class MusicalPositionLerp : MonoNoteEventListener
