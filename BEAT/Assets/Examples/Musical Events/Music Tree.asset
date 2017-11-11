@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Name: Music Tree
   m_EditorClassIdentifier: 
   hierarchy: {fileID: 114722159453881374}
-  vars: []
+  vars:
+  - name: health
+    value:
+      type: 0
+      intValue: 100
+      boolValue: 0
+      floatValue: 0
   trackDefinitions:
   - name: beat
   - name: particles
@@ -35,6 +41,22 @@ MonoBehaviour:
   _parent: {fileID: 114905847534635502}
   _isFloating: 0
   _content: {fileID: 114150763604218270}
+--- !u!114 &114053230780383018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114722159453881374}
+  _children: []
+  _parent: {fileID: 114547679881137804}
+  _isFloating: 0
+  _content: {fileID: 114850367157185178}
 --- !u!114 &114150763604218270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +314,143 @@ MonoBehaviour:
         duration: 2.5
         subTrack: 0
       name: fire
+--- !u!114 &114289854896501018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 0
+    variableName: 
+--- !u!114 &114349344827732014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114722159453881374}
+  _children:
+  - {fileID: 114924466782643228}
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114680322450291886}
+--- !u!114 &114446080777749850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c65e0b07b50e47b19a73e6d8ba66e, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+--- !u!114 &114510344626703092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114547679881137804}
+  condition:
+    intCondition: 3
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 30
+    floatVal: 0
+    boolVal: 0
+    variableName: health
+--- !u!114 &114547679881137804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114722159453881374}
+  _children:
+  - {fileID: 114053230780383018}
+  _parent: {fileID: 114905847534635502}
+  _isFloating: 0
+  _content: {fileID: 114510344626703092}
+--- !u!114 &114620786457514770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+  clip: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: particles
+    - notes: []
+      name: fire
+--- !u!114 &114621408751611234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114722159453881374}
+  _children: []
+  _parent: {fileID: 114905847534635502}
+  _isFloating: 0
+  _content: {fileID: 114632378748154574}
+--- !u!114 &114632378748154574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c65e0b07b50e47b19a73e6d8ba66e, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114621408751611234}
 --- !u!114 &114640315062150508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,6 +463,30 @@ MonoBehaviour:
   m_Name: Root(Selector)
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114905847534635502}
+--- !u!114 &114657946377806190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2cba1b09be6124f9e3e48ca6311e22, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+--- !u!114 &114680322450291886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2cba1b09be6124f9e3e48ca6311e22, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114349344827732014}
 --- !u!114 &114722159453881374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +499,57 @@ MonoBehaviour:
   m_Name: Hierarchy
   m_EditorClassIdentifier: 
   _root: {fileID: 114905847534635502}
-  _floaters: []
+  _floaters:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &114750745944358062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114924466782643228}
+  clip: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: particles
+    - notes: []
+      name: fire
+--- !u!114 &114850367157185178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114053230780383018}
+  clip: {fileID: 8300000, guid: c1feb4969720a5b46b8aa688f0cbbf04, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: particles
+    - notes: []
+      name: fire
 --- !u!114 &114905847534635502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +563,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tree: {fileID: 114722159453881374}
   _children:
+  - {fileID: 114547679881137804}
   - {fileID: 114045995443287260}
+  - {fileID: 114621408751611234}
   _parent: {fileID: 0}
   _isFloating: 0
   _content: {fileID: 114640315062150508}
+--- !u!114 &114924466782643228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114722159453881374}
+  _children: []
+  _parent: {fileID: 114349344827732014}
+  _isFloating: 0
+  _content: {fileID: 114750745944358062}
