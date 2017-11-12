@@ -15,6 +15,7 @@ public class PlayAnimationOnBeat : MonoDancer
     PlayableGraph playableGraph;
 
     AnimationClipPlayable playableClip;
+    AnimationPlayableOutput playableOutput;
 
     float lastProg = 0;
 
@@ -26,7 +27,7 @@ public class PlayAnimationOnBeat : MonoDancer
         playableGraph = PlayableGraph.Create();
         //playableGraph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
 
-        var playableOutput = AnimationPlayableOutput.Create(playableGraph, "Anim", animator);
+        playableOutput = AnimationPlayableOutput.Create(playableGraph, "Anim", animator);
 
         playableClip = AnimationClipPlayable.Create(playableGraph, clip);
 
@@ -49,7 +50,8 @@ public class PlayAnimationOnBeat : MonoDancer
 
     protected override void OnNoteEnd()
     {
-        playableGraph.Stop();
+        playableClip.SetTime(clip.length);
+        //playableGraph.Stop();
     }
     private void OnDestroy()
     {

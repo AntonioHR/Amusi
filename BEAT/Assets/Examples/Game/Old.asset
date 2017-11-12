@@ -9,16 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f9262a8cb2661548906ce83966b077d, type: 3}
-  m_Name: Ingame
+  m_Name: Old
   m_EditorClassIdentifier: 
   hierarchy: {fileID: 114103007005434050}
   vars: []
   trackDefinitions:
   - name: beat
-  - name: playerBullet
-  - name: playerShoot
-  - name: playerCannon
-  defaultBPM: 130
+  defaultBPM: 160
   barType: 0
 --- !u!114 &114103007005434050
 MonoBehaviour:
@@ -90,268 +87,106 @@ MonoBehaviour:
   m_Name: Node
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114476803998519562}
-  clip: {fileID: 8300000, guid: f1fdaf686a7ed4b469c9af7a4f3a12ef, type: 3}
+  clip: {fileID: 8300000, guid: 390c649ae51459641a172c420807d186, type: 3}
   useCustomBPM: 0
   customBPM: 0
   sheet:
     tracks:
     - notes:
       - start: 0
-        duration: 0
-        subTrack: 0
-      - start: 0
         duration: 0.5
         subTrack: 0
       - start: 0.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 0
       - start: 1
         duration: 0.5
         subTrack: 0
       - start: 1.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 0
       - start: 2
         duration: 0.5
         subTrack: 0
       - start: 2.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 0
       - start: 3
         duration: 0.5
         subTrack: 0
       - start: 3.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 0
       - start: 4
         duration: 0.5
-        subTrack: 0
+        subTrack: 1
       - start: 4.5
         duration: 0.5
         subTrack: 1
       - start: 5
         duration: 0.5
-        subTrack: 0
+        subTrack: 1
       - start: 5.5
         duration: 0.5
         subTrack: 1
       - start: 6
         duration: 0.5
-        subTrack: 0
+        subTrack: 1
       - start: 6.5
         duration: 0.5
         subTrack: 1
       - start: 7
         duration: 0.5
-        subTrack: 0
+        subTrack: 1
       - start: 7.5
         duration: 0.5
         subTrack: 1
       - start: 8
         duration: 0.5
-        subTrack: 0
+        subTrack: 2
       - start: 8.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 2
       - start: 9
         duration: 0.5
-        subTrack: 0
+        subTrack: 2
       - start: 9.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 2
       - start: 10
         duration: 0.5
-        subTrack: 0
+        subTrack: 2
       - start: 10.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 2
       - start: 11
         duration: 0.5
-        subTrack: 0
+        subTrack: 2
       - start: 11.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 2
       - start: 12
         duration: 0.5
-        subTrack: 0
+        subTrack: 3
       - start: 12.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 3
       - start: 13
         duration: 0.5
-        subTrack: 0
+        subTrack: 3
       - start: 13.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 3
       - start: 14
         duration: 0.5
-        subTrack: 0
+        subTrack: 3
       - start: 14.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 3
       - start: 15
         duration: 0.5
-        subTrack: 0
+        subTrack: 3
       - start: 15.5
         duration: 0.5
-        subTrack: 1
+        subTrack: 3
       name: beat
-    - notes:
-      - start: 0
-        duration: 0
-        subTrack: 0
-      - start: 0
-        duration: 0.5
-        subTrack: 0
-      - start: 1
-        duration: 0.5
-        subTrack: 0
-      - start: 2
-        duration: 0.5
-        subTrack: 0
-      - start: 3
-        duration: 0.5
-        subTrack: 0
-      - start: 4
-        duration: 0.5
-        subTrack: 1
-      - start: 5
-        duration: 0.5
-        subTrack: 1
-      - start: 6
-        duration: 0.5
-        subTrack: 1
-      - start: 7
-        duration: 0.5
-        subTrack: 1
-      - start: 8
-        duration: 0.5
-        subTrack: 2
-      - start: 9
-        duration: 0.5
-        subTrack: 2
-      - start: 10
-        duration: 0.5
-        subTrack: 2
-      - start: 11
-        duration: 0.5
-        subTrack: 2
-      - start: 12
-        duration: 0.5
-        subTrack: 3
-      - start: 13
-        duration: 0.5
-        subTrack: 3
-      - start: 14
-        duration: 0.5
-        subTrack: 3
-      - start: 15
-        duration: 0.5
-        subTrack: 3
-      name: playerBullet
-    - notes:
-      - start: 0
-        duration: 0
-        subTrack: 0
-      - start: 0
-        duration: 1
-        subTrack: 0
-      - start: 2
-        duration: 1
-        subTrack: 1
-      - start: 4
-        duration: 1
-        subTrack: 0
-      - start: 6
-        duration: 1
-        subTrack: 1
-      - start: 8
-        duration: 1
-        subTrack: 0
-      - start: 10
-        duration: 1
-        subTrack: 1
-      - start: 12
-        duration: 1
-        subTrack: 0
-      - start: 14
-        duration: 1
-        subTrack: 1
-      - start: 16
-        duration: 1
-        subTrack: 0
-      - start: 18
-        duration: 1
-        subTrack: 1
-      - start: 20
-        duration: 1
-        subTrack: 0
-      - start: 22
-        duration: 1
-        subTrack: 1
-      - start: 24
-        duration: 1
-        subTrack: 0
-      - start: 26
-        duration: 1
-        subTrack: 1
-      - start: 28
-        duration: 1
-        subTrack: 0
-      - start: 30
-        duration: 1
-        subTrack: 1
-      name: playerShoot
-    - notes:
-      - start: 0
-        duration: 0
-        subTrack: 0
-      - start: 0
-        duration: 1
-        subTrack: 0
-      - start: 2
-        duration: 1
-        subTrack: 1
-      - start: 4
-        duration: 1
-        subTrack: 0
-      - start: 6
-        duration: 1
-        subTrack: 1
-      - start: 8
-        duration: 1
-        subTrack: 0
-      - start: 10
-        duration: 1
-        subTrack: 1
-      - start: 12
-        duration: 1
-        subTrack: 0
-      - start: 14
-        duration: 1
-        subTrack: 1
-      - start: 16
-        duration: 1
-        subTrack: 0
-      - start: 18
-        duration: 1
-        subTrack: 1
-      - start: 20
-        duration: 1
-        subTrack: 0
-      - start: 22
-        duration: 1
-        subTrack: 1
-      - start: 24
-        duration: 1
-        subTrack: 0
-      - start: 26
-        duration: 1
-        subTrack: 1
-      - start: 28
-        duration: 1
-        subTrack: 0
-      - start: 30
-        duration: 1
-        subTrack: 1
-      name: playerCannon

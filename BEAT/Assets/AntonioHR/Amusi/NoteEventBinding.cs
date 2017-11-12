@@ -18,6 +18,7 @@ namespace AntonioHR.Amusi
         public void Init()
         {
             player = GameObject.FindObjectOfType<MusicTreePlayer>();
+            //Debug.LogFormat("Adding listener for {0}, {1}", track, subtrack);
             player.AddListener(track, subtrack, this);
         }
 
