@@ -24,6 +24,7 @@ public class PlayerPatternShooting : MonoBehaviour {
         var bullet = Instantiate(bulletPrefab).GetComponent<PlayerBullet>();
         bullet.transform.position = transform.position;
         //bullet.Binding.subtrack = 0;
+        bullet.transform.rotation = Quaternion.FromToRotation(Vector3.up, directions[i]);
         bullet.Direction = directions[i];
     }
 

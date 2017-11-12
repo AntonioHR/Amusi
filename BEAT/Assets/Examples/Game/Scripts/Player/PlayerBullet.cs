@@ -3,37 +3,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullet : MonoDancer {
+public class PlayerBullet : MonoBehaviour {
     public Vector3 Direction { get; internal set; }
-    public NoteEventBinding Binding { get { return this.binding; } }
+    //public NoteEventBinding Binding { get { return this.binding; } }
+    public float speed = 3;
 
-    Vector3 start;
-    Vector3 target;
+    //Vector3 start;
+    //Vector3 target;
 
-    protected override void Init()
+    private void Start()
     {
-        PrepareJump();
+        Debug.Log(Direction);
+        GetComponent<Rigidbody>().velocity = Direction * speed;
     }
 
-    protected override void OnNoteStart()
-    {
-        PrepareJump();
-    }
+    //protected override void Init()
+    //{
+    //    PrepareJump();
+    //}
 
-    protected override void OnNoteUpdate(float progress)
-    {
-        transform.position = Vector3.Lerp(start, target, progress);
-    }
+    //protected override void OnNoteStart()
+    //{
+    //    PrepareJump();
+    //}
 
-    protected override void OnNoteEnd()
-    {
-        transform.position = target;
-    }
+    //protected override void OnNoteUpdate(float progress)
+    //{
+    //    transform.position = Vector3.Lerp(start, target, progress);
+    //}
+
+    //protected override void OnNoteEnd()
+    //{
+    //    transform.position = target;
+    //}
 
 
-    private void PrepareJump()
-    {
-        start = transform.position;
-        target = transform.position + Direction;
-    }
+    //private void PrepareJump()
+    //{
+    //    start = transform.position;
+    //    target = transform.position + Direction;
+    //}
 }

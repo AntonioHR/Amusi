@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 23551336062482870, guid: b9aa89a7a6e214e42b1e78efea0516bc,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35af2b898d198e84698d20641859eac3, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
   m_IsPrefabParent: 0
@@ -348,6 +353,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 23551336062482870, guid: b9aa89a7a6e214e42b1e78efea0516bc,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35af2b898d198e84698d20641859eac3, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
   m_IsPrefabParent: 0
@@ -821,6 +831,11 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 23551336062482870, guid: b9aa89a7a6e214e42b1e78efea0516bc,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35af2b898d198e84698d20641859eac3, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
   m_IsPrefabParent: 0
@@ -1006,6 +1021,11 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 23551336062482870, guid: b9aa89a7a6e214e42b1e78efea0516bc,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35af2b898d198e84698d20641859eac3, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
   m_IsPrefabParent: 0
@@ -1017,6 +1037,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 789249023}
+  - component: {fileID: 789249024}
   m_Layer: 0
   m_Name: Cannons
   m_TagString: Untagged
@@ -1039,6 +1060,33 @@ Transform:
   m_Father: {fileID: 1681926712}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &789249024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 789249022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ef33b647fa6cf246bab41dc49abfc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bindings:
+  - track: playerCannon
+    subtrack: 0
+  - track: playerCannon
+    subtrack: 1
+  - track: playerCannon
+    subtrack: 2
+  - track: playerCannon
+    subtrack: 3
+  directions:
+  - {x: 0, y: 0, z: 1}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: 0, z: -1}
+  - {x: -1, y: 0, z: 0}
+  bulletPrefab: {fileID: 1510480918002076, guid: d97bd875f40b379418244f310f7a955e,
+    type: 2}
 --- !u!1 &938695319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,7 +1393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1202849483
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,7 +1577,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1616612468
 Transform:
   m_ObjectHideFlags: 0
