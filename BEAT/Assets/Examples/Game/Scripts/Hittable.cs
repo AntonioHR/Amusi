@@ -10,7 +10,21 @@ public class Hittable : MonoBehaviour {
     public UnityEvent Hit;
     public UnityEvent Deflected;
 
-    public bool deflect;
+    [SerializeField]
+    private bool deflect;
+
+    public bool Deflect
+    {
+        get
+        {
+            return deflect;
+        }
+
+        set
+        {
+            deflect = value;
+        }
+    }
 
     internal void OnHit(Hitter hitter)
     {
@@ -23,7 +37,7 @@ public class Hittable : MonoBehaviour {
         }
     }
 
-    internal void Deflect(Hitter hitter)
+    internal void DoDeflect(Hitter hitter)
     {
         Deflected.Invoke();
     }

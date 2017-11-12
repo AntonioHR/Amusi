@@ -16,7 +16,7 @@ public class Hitter : MonoBehaviour {
         var hittable = other.GetComponent<Hittable>();
         if(hittable != null && CanHit(hittable))
         {
-            if (hittable.deflect)
+            if (hittable.Deflect)
                 OnDeflect(hittable);
             else
                 Hit(hittable);
@@ -25,7 +25,7 @@ public class Hitter : MonoBehaviour {
 
     private void OnDeflect(Hittable hittable)
     {
-        hittable.Deflect(this);
+        hittable.DoDeflect(this);
         Deflected.Invoke();
     }
 
