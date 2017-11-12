@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     Settings settings;
     [SerializeField]
-    Rigidbody2D body;
+    Rigidbody body;
 
     public float HorizontalInput { get { return Input.GetAxis("Horizontal"); } }
     public float VerticalInput { get { return Input.GetAxis("Vertical"); } }
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	void Update () {
-        Vector2 move = new Vector2(HorizontalInput, VerticalInput);
+        var move = new Vector3(HorizontalInput, 0, VerticalInput);
         body.velocity = move * settings.speed; ;
         
 	}

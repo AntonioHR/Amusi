@@ -16,8 +16,8 @@ MonoBehaviour:
   trackDefinitions:
   - name: beat
   - name: playerBullet
-  - name: playerShoot
   - name: playerCannon
+  - name: ramielLaser
   defaultBPM: 130
   barType: 0
 --- !u!114 &114103007005434050
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: Node
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114476803998519562}
-  clip: {fileID: 8300000, guid: e935826f6fdf6a54bb042ebbf766ee97, type: 3}
+  clip: {fileID: 8300000, guid: 15986af7ad5cb4b47bc036a7888a0e7e, type: 3}
   useCustomBPM: 0
   customBPM: 0
   sheet:
@@ -254,59 +254,6 @@ MonoBehaviour:
         duration: 0
         subTrack: 0
       - start: 0
-        duration: 1
-        subTrack: 0
-      - start: 2
-        duration: 1
-        subTrack: 1
-      - start: 4
-        duration: 1
-        subTrack: 0
-      - start: 6
-        duration: 1
-        subTrack: 1
-      - start: 8
-        duration: 1
-        subTrack: 0
-      - start: 10
-        duration: 1
-        subTrack: 1
-      - start: 12
-        duration: 1
-        subTrack: 0
-      - start: 14
-        duration: 1
-        subTrack: 1
-      - start: 16
-        duration: 1
-        subTrack: 0
-      - start: 18
-        duration: 1
-        subTrack: 1
-      - start: 20
-        duration: 1
-        subTrack: 0
-      - start: 22
-        duration: 1
-        subTrack: 1
-      - start: 24
-        duration: 1
-        subTrack: 0
-      - start: 26
-        duration: 1
-        subTrack: 1
-      - start: 28
-        duration: 1
-        subTrack: 0
-      - start: 30
-        duration: 1
-        subTrack: 1
-      name: playerShoot
-    - notes:
-      - start: 0
-        duration: 0
-        subTrack: 0
-      - start: 0
         duration: 0.5
         subTrack: 0
       - start: 1
@@ -403,3 +350,104 @@ MonoBehaviour:
         duration: 0.5
         subTrack: 3
       name: playerCannon
+    - notes:
+      - start: 0
+        duration: 0
+        subTrack: 0
+      - start: 0
+        duration: 1
+        subTrack: 0
+      - start: 1
+        duration: 1
+        subTrack: 1
+      - start: 2
+        duration: 1
+        subTrack: 2
+      - start: 3
+        duration: 1
+        subTrack: 3
+      - start: 4
+        duration: 1
+        subTrack: 0
+      - start: 5
+        duration: 1
+        subTrack: 1
+      - start: 6
+        duration: 1
+        subTrack: 2
+      - start: 7
+        duration: 1
+        subTrack: 3
+      - start: 8
+        duration: 1
+        subTrack: 0
+      - start: 9
+        duration: 1
+        subTrack: 1
+      - start: 10
+        duration: 1
+        subTrack: 2
+      - start: 11
+        duration: 1
+        subTrack: 3
+      - start: 12
+        duration: 1
+        subTrack: 0
+      - start: 13
+        duration: 1
+        subTrack: 1
+      - start: 14
+        duration: 1
+        subTrack: 2
+      - start: 15
+        duration: 1
+        subTrack: 3
+      - start: 16
+        duration: 1
+        subTrack: 0
+      - start: 17
+        duration: 1
+        subTrack: 1
+      - start: 18
+        duration: 1
+        subTrack: 2
+      - start: 19
+        duration: 1
+        subTrack: 3
+      - start: 20
+        duration: 1
+        subTrack: 0
+      - start: 21
+        duration: 1
+        subTrack: 1
+      - start: 22
+        duration: 1
+        subTrack: 2
+      - start: 23
+        duration: 1
+        subTrack: 3
+      - start: 24
+        duration: 1
+        subTrack: 0
+      - start: 25
+        duration: 1
+        subTrack: 1
+      - start: 26
+        duration: 1
+        subTrack: 2
+      - start: 27
+        duration: 1
+        subTrack: 3
+      - start: 28
+        duration: 1
+        subTrack: 0
+      - start: 29
+        duration: 1
+        subTrack: 1
+      - start: 30
+        duration: 1
+        subTrack: 2
+      - start: 31
+        duration: 1
+        subTrack: 3
+      name: ramielLaser

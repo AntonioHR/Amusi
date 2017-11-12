@@ -56,5 +56,6 @@ public class PlayAnimationOnBeat : MonoDancer
     private void OnDestroy()
     {
         playableGraph.Destroy();
+        binding.Cleanup();
     }
 }
