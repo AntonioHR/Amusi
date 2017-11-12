@@ -17,6 +17,10 @@ public class PlayerBullet : MonoBehaviour {
         GetComponent<Rigidbody>().velocity = Direction * speed;
     }
 
+    public void Destroy()
+    {
+        GameObject.Destroy(gameObject);
+    }
     //protected override void Init()
     //{
     //    PrepareJump();

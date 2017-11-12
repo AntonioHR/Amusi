@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198039345671850634}
   - component: {fileID: 199010851675324218}
   m_Layer: 0
-  m_Name: HitParticle
+  m_Name: DeflectParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

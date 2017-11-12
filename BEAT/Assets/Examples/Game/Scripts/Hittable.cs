@@ -8,6 +8,9 @@ public class Hittable : MonoBehaviour {
     public Team team;
 
     public UnityEvent Hit;
+    public UnityEvent Deflected;
+
+    public bool deflect;
 
     internal void OnHit(Hitter hitter)
     {
@@ -18,5 +21,10 @@ public class Hittable : MonoBehaviour {
         {
             health.Damage(dmg.damage);       
         }
+    }
+
+    internal void Deflect(Hitter hitter)
+    {
+        Deflected.Invoke();
     }
 }
