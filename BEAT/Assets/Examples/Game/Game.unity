@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings:
-    speed: 4
+    speed: 8
   body: {fileID: 1681926708}
 --- !u!1 &314978023
 GameObject:
@@ -650,7 +650,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &586655177
 GameObject:
@@ -786,7 +786,7 @@ Transform:
   - {fileID: 1658749050}
   - {fileID: 2059758900}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &689840277
 Prefab:
@@ -976,7 +976,7 @@ Transform:
   - {fileID: 1550484989}
   - {fileID: 453540071}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &776345807
 Prefab:
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 789249022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef33b647fa6cf246bab41dc49abfc65, type: 3}
+  m_Script: {fileID: 11500000, guid: 1dbdbcfb25a921f429410bac1a72de72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bindings:
@@ -1073,15 +1073,48 @@ MonoBehaviour:
     subtrack: 1
   - track: playerCannon
     subtrack: 2
-  - track: playerCannon
-    subtrack: 3
-  directions:
-  - {x: 0, y: 0, z: 1}
-  - {x: 1, y: 0, z: 0}
-  - {x: 0, y: 0, z: -1}
-  - {x: -1, y: 0, z: 0}
   bulletPrefab: {fileID: 1510480918002076, guid: d97bd875f40b379418244f310f7a955e,
     type: 2}
+  patterns:
+  - directions:
+    - {x: 1, y: 0, z: 0}
+    - {x: 0, y: 0, z: 1}
+    - {x: -1, y: 0, z: 0}
+    - {x: 0, y: 0, z: -1}
+  - directions:
+    - {x: 1, y: 0, z: 1}
+    - {x: -1, y: 0, z: 1}
+    - {x: -1, y: 0, z: -1}
+    - {x: 1, y: 0, z: -1}
+--- !u!1 &902376726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 902376727}
+  m_Layer: 0
+  m_Name: CameraTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &902376727
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 902376726}
+  m_LocalRotation: {x: 0.26868096, y: -0.014122829, z: 0.010755223, w: 0.9630656}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1155398080}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 31.186, y: -1.4350001, z: 0.87900007}
 --- !u!1 &938695319
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1316,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1155398075
 GameObject:
@@ -1345,7 +1378,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1367,13 +1400,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1155398075}
-  m_LocalRotation: {x: 0.2931451, y: -0, z: -0, w: 0.956068}
-  m_LocalPosition: {x: 0, y: 9.51, z: -14.15}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: -19.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 902376727}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 34.093002, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1202849482
 GameObject:
   m_ObjectHideFlags: 0
@@ -1676,8 +1709,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1681926707}
   m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -4.88, y: 0.5, z: 1.76}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 6.18, y: 0.75, z: 1.76}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 291628423}
   - {fileID: 401981338}
