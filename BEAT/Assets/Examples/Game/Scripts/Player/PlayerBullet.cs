@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerBullet : MonoBehaviour {
     public Vector3 Direction { get; internal set; }
@@ -20,6 +21,11 @@ public class PlayerBullet : MonoBehaviour {
     public void Destroy()
     {
         GameObject.Destroy(gameObject);
+    }
+
+    internal void SetColor(Color color)
+    {
+        GetComponentInChildren<MeshRenderer>().material.SetColor("_EmissionColor", color);
     }
     //protected override void Init()
     //{

@@ -612,7 +612,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 35af2b898d198e84698d20641859eac3, type: 2}
+  - {fileID: 2100000, guid: a1df39cc2fcfd5c4f8ff0ba89f75cb09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1014,7 +1014,7 @@ LineRenderer:
   - {x: -7.88, y: 0.5, z: 8.53}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:

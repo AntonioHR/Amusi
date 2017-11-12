@@ -8,12 +8,21 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     public UnityEvent Died;
+    public UnityEvent TookDamage;
 
     public int Max = 3;
     public bool invulnerable = false;
 
     int Current;
     bool dead = false;
+
+    public float HealthPercent
+    {
+        get
+        {
+            return (float)Current / (float)Max;
+        }
+    }
 
     private void Start()
     {
@@ -26,6 +35,9 @@ public class Health : MonoBehaviour
             return;
 
         Current -= damage;
+
+        TookDamage.Invoke();
+
         if (Current <= 0)
             Die();
     }

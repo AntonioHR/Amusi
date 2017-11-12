@@ -6,6 +6,8 @@ using System;
 
 public class PlayerCrossXShooter :  MultiMonoDancer
 {
+    public PlayerCoreColor Core;
+
     [Serializable]
     public class Pattern
     {
@@ -33,6 +35,7 @@ public class PlayerCrossXShooter :  MultiMonoDancer
         {
             var shootDir = dir.normalized;
             var bullet = Instantiate(bulletPrefab).GetComponent<PlayerBullet>();
+            bullet.SetColor(Core.CoreColor());
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.up, shootDir);
             bullet.Direction = shootDir;
