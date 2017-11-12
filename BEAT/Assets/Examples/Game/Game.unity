@@ -122,7 +122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4068876577398076, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4068876577398076, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -322,7 +322,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4068876577398076, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4068876577398076, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -791,7 +791,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4068876577398076, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4068876577398076, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1005,18 +1005,6 @@ Prefab:
     - target: {fileID: 1472439258142664, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
       propertyPath: m_Name
       value: Enemy (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4178406654717884, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4178406654717884, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4383378183948074, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b9aa89a7a6e214e42b1e78efea0516bc, type: 2}

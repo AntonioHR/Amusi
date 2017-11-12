@@ -25,6 +25,7 @@ public class SelectAndPlayAnimationsOnBeat : MonoBehaviour {
     AnimationMixerPlayable mixer;
 
     AnimationClipPlayable[] playableClips;
+    public bool stayOnAnimation = false;
 
     float lastProg = 0;
 
@@ -65,18 +66,27 @@ public class SelectAndPlayAnimationsOnBeat : MonoBehaviour {
     {
         playableGraph.Play();
         playableClips[i].SetPlayState(PlayState.Paused);
-        mixer.SetInputWeight(i, 1);
+        playableClips[i].SetTime(0);
+
+        for (int j = 0; j < clipBindings.Length; j++)
+        {
+            mixer.SetInputWeight(j, j == i? 1:0);
+        }
+
         lastProg = 0;
     }
 
     private void UpdateClip(int i, float f)
     {
+        
         playableClips[i].SetTime(clipBindings[i].clip.length * f);
     }
 
     private void EndClip(int i)
     {
-        mixer.SetInputWeight(i, 0);
+        playableClips[i].SetTime(clipBindings[i].clip.length);
+        if (!stayOnAnimation)
+            mixer.SetInputWeight(i, 0);
     }
     
 }

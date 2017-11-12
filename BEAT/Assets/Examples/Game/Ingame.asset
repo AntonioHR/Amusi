@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: Node
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114476803998519562}
-  clip: {fileID: 8300000, guid: 15986af7ad5cb4b47bc036a7888a0e7e, type: 3}
+  clip: {fileID: 8300000, guid: 806b4271d9d380b41bd3ccacdee0aef1, type: 3}
   useCustomBPM: 0
   customBPM: 0
   sheet:
