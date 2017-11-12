@@ -7463,7 +7463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1232470476}
   - component: {fileID: 1232470477}
-  - component: {fileID: 1232470474}
+  - component: {fileID: 1232470475}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -7471,7 +7471,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1232470474
+--- !u!114 &1232470475
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -7479,13 +7479,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1232470473}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1685bbb3e6b987942a017aca61b3997b, type: 3}
+  m_Script: {fileID: 11500000, guid: 289c234e8400ad94abe8bfd982dac750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  binding:
-    track: beat
-    subtrack: 0
-  clip: {fileID: 7400000, guid: 423ad51a64a61944ca324b2dc9254ef8, type: 2}
+  clipBindings:
+  - clip: {fileID: 7400000, guid: 423ad51a64a61944ca324b2dc9254ef8, type: 2}
+    binding:
+      track: particles
+      subtrack: 1
+  - clip: {fileID: 7400000, guid: c1846ab41dc0a794daa22f2252efaebc, type: 2}
+    binding:
+      track: particles
+      subtrack: 2
 --- !u!4 &1232470476
 Transform:
   m_ObjectHideFlags: 0
@@ -7509,7 +7514,7 @@ Animator:
   m_GameObject: {fileID: 1232470473}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8d49dd63d0de9924cad28167fc08e895, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

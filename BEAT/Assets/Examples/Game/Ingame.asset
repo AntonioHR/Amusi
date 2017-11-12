@@ -1,0 +1,192 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9262a8cb2661548906ce83966b077d, type: 3}
+  m_Name: Ingame
+  m_EditorClassIdentifier: 
+  hierarchy: {fileID: 114103007005434050}
+  vars: []
+  trackDefinitions:
+  - name: beat
+  defaultBPM: 160
+  barType: 0
+--- !u!114 &114103007005434050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b772e827a70c054d9e28f5770432221, type: 3}
+  m_Name: Hierarchy
+  m_EditorClassIdentifier: 
+  _root: {fileID: 114638773381292676}
+  _floaters: []
+--- !u!114 &114476803998519562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 114638773381292676}
+  _isFloating: 0
+  _content: {fileID: 114900508448831956}
+--- !u!114 &114638773381292676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Root(Selector))
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children:
+  - {fileID: 114476803998519562}
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114645230081529876}
+--- !u!114 &114645230081529876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c65e0b07b50e47b19a73e6d8ba66e, type: 3}
+  m_Name: Root(Selector)
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114638773381292676}
+--- !u!114 &114900508448831956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114476803998519562}
+  clip: {fileID: 8300000, guid: 390c649ae51459641a172c420807d186, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes:
+      - start: 0
+        duration: 0.5
+        subTrack: 0
+      - start: 0.5
+        duration: 0.5
+        subTrack: 0
+      - start: 1
+        duration: 0.5
+        subTrack: 0
+      - start: 1.5
+        duration: 0.5
+        subTrack: 0
+      - start: 2
+        duration: 0.5
+        subTrack: 0
+      - start: 2.5
+        duration: 0.5
+        subTrack: 0
+      - start: 3
+        duration: 0.5
+        subTrack: 0
+      - start: 3.5
+        duration: 0.5
+        subTrack: 0
+      - start: 4
+        duration: 0.5
+        subTrack: 1
+      - start: 4.5
+        duration: 0.5
+        subTrack: 1
+      - start: 5
+        duration: 0.5
+        subTrack: 1
+      - start: 5.5
+        duration: 0.5
+        subTrack: 1
+      - start: 6
+        duration: 0.5
+        subTrack: 1
+      - start: 6.5
+        duration: 0.5
+        subTrack: 1
+      - start: 7
+        duration: 0.5
+        subTrack: 1
+      - start: 7.5
+        duration: 0.5
+        subTrack: 1
+      - start: 8
+        duration: 0.5
+        subTrack: 2
+      - start: 8.5
+        duration: 0.5
+        subTrack: 2
+      - start: 9
+        duration: 0.5
+        subTrack: 2
+      - start: 9.5
+        duration: 0.5
+        subTrack: 2
+      - start: 10
+        duration: 0.5
+        subTrack: 2
+      - start: 10.5
+        duration: 0.5
+        subTrack: 2
+      - start: 11
+        duration: 0.5
+        subTrack: 2
+      - start: 11.5
+        duration: 0.5
+        subTrack: 2
+      - start: 12
+        duration: 0.5
+        subTrack: 3
+      - start: 12.5
+        duration: 0.5
+        subTrack: 3
+      - start: 13
+        duration: 0.5
+        subTrack: 3
+      - start: 13.5
+        duration: 0.5
+        subTrack: 3
+      - start: 14
+        duration: 0.5
+        subTrack: 3
+      - start: 14.5
+        duration: 0.5
+        subTrack: 3
+      - start: 15
+        duration: 0.5
+        subTrack: 3
+      - start: 15.5
+        duration: 0.5
+        subTrack: 3
+      name: beat
