@@ -30,8 +30,8 @@ namespace AntonioHR.Amusi.Editor
         public NoteSheet NoteSheet { get; private set; }
         public CachedMusicTree CachedTree { get; private set; }
 
-        public MusicTreePlayer Player { get; private set; }
-        public CueMusicTreeNode PlayedNode { get { return Player == null ? null : Player.CurrentNode; } }
+        public AmusiEngine Engine { get; private set; }
+        public CueMusicTreeNode PlayedNode { get { return Engine == null ? null : Engine.CurrentNode; } }
 
 
         //Events
@@ -48,19 +48,19 @@ namespace AntonioHR.Amusi.Editor
 
         private MusicTreeEditorManager()
         {
-            if (MusicTreePlayer.Instance != null)
+            if (AmusiEngine.Instance != null)
                 OnTreePlayerChanged();
-            MusicTreePlayer.InstanceChanged += OnTreePlayerChanged;
+            AmusiEngine.InstanceChanged += OnTreePlayerChanged;
         }
 
 
         private void OnTreePlayerChanged()
         {
-            if(Player != null)
-                Player.NewNodePlaying -= OnNewNodePayingByPlayer;
-            Player = MusicTreePlayer.Instance;
-            if (Player != null)
-                Player.NewNodePlaying += OnNewNodePayingByPlayer;
+            if(Engine != null)
+                Engine.NewNodePlaying -= OnNewNodePayingByPlayer;
+            Engine = AmusiEngine.Instance;
+            if (Engine != null)
+                Engine.NewNodePlaying += OnNewNodePayingByPlayer;
         }
         private void OnNewNodePayingByPlayer(CueMusicTreeNode obj)
         {
