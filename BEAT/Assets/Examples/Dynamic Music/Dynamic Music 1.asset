@@ -1,0 +1,1015 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9262a8cb2661548906ce83966b077d, type: 3}
+  m_Name: Dynamic Music
+  m_EditorClassIdentifier: 
+  hierarchy: {fileID: 114103007005434050}
+  vars:
+  - name: justBeat
+    value:
+      type: 1
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+  - name: mode
+    value:
+      type: 0
+      intValue: 1
+      boolValue: 0
+      floatValue: 0
+  - name: power
+    value:
+      type: 2
+      intValue: 0
+      boolValue: 0
+      floatValue: 2
+  trackDefinitions:
+  - name: beat
+  - name: particles
+  defaultBPM: 120
+  barType: 0
+--- !u!114 &114022231438388624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2cba1b09be6124f9e3e48ca6311e22, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+--- !u!114 &114065141539374452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 0
+    variableName: mode
+--- !u!114 &114077326126108926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114730724569053872}
+  clip: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: playerCannon
+    - notes: []
+      name: ramielLaser
+--- !u!114 &114085895151428256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114537060469070232}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 0
+    variableName: mode
+--- !u!114 &114103007005434050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b772e827a70c054d9e28f5770432221, type: 3}
+  m_Name: Hierarchy
+  m_EditorClassIdentifier: 
+  _root: {fileID: 114638773381292676}
+  _floaters:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &114192847903417212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children:
+  - {fileID: 114396123131982268}
+  - {fileID: 114308197104948542}
+  _parent: {fileID: 114638773381292676}
+  _isFloating: 0
+  _content: {fileID: 114352946939137036}
+--- !u!114 &114204276048691456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114970183460504156}
+  clip: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: playerCannon
+    - notes: []
+      name: ramielLaser
+--- !u!114 &114212559687068308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 114891556030316132}
+  _isFloating: 0
+  _content: {fileID: 114853812536702898}
+--- !u!114 &114232845748840512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114891556030316132}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 0
+    variableName: justBeat
+--- !u!114 &114264758202584250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+  clip: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: playerCannon
+    - notes: []
+      name: ramielLaser
+--- !u!114 &114278323136290484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c65e0b07b50e47b19a73e6d8ba66e, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+--- !u!114 &114293058875349466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114308197104948542}
+  condition:
+    intCondition: 0
+    floatCondition: 1
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 1
+    boolVal: 0
+    variableName: power
+--- !u!114 &114298662626847530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c65e0b07b50e47b19a73e6d8ba66e, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+--- !u!114 &114308197104948542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children:
+  - {fileID: 114891556030316132}
+  _parent: {fileID: 114192847903417212}
+  _isFloating: 0
+  _content: {fileID: 114293058875349466}
+--- !u!114 &114320073352288206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114838972586353514}
+  condition:
+    intCondition: 2
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 2
+    floatVal: 0
+    boolVal: 0
+    variableName: mode
+--- !u!114 &114352946939137036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2cba1b09be6124f9e3e48ca6311e22, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114192847903417212}
+--- !u!114 &114396123131982268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 114192847903417212}
+  _isFloating: 0
+  _content: {fileID: 114398545158701718}
+--- !u!114 &114398545158701718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114396123131982268}
+  clip: {fileID: 8300000, guid: 865846e0cbafc194f920b451f045ebd2, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: particles
+--- !u!114 &114476803998519562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114900508448831956}
+--- !u!114 &114492475985154998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114758279702951958}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 1
+    variableName: justBeat
+--- !u!114 &114537060469070232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children:
+  - {fileID: 114954152090146224}
+  _parent: {fileID: 114638773381292676}
+  _isFloating: 0
+  _content: {fileID: 114085895151428256}
+--- !u!114 &114541318555252690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c65e0b07b50e47b19a73e6d8ba66e, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+--- !u!114 &114592566163998264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 114758279702951958}
+  _isFloating: 0
+  _content: {fileID: 114731896072126864}
+--- !u!114 &114621760803493310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114791746194884822}
+  clip: {fileID: 8300000, guid: 438b043f185e15e4c8b223a853732ea6, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: particles
+--- !u!114 &114638773381292676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Root(Selector))
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children:
+  - {fileID: 114758279702951958}
+  - {fileID: 114537060469070232}
+  - {fileID: 114838972586353514}
+  - {fileID: 114192847903417212}
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114645230081529876}
+--- !u!114 &114645230081529876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c65e0b07b50e47b19a73e6d8ba66e, type: 3}
+  m_Name: Root(Selector)
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114638773381292676}
+--- !u!114 &114730724569053872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114077326126108926}
+--- !u!114 &114731896072126864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114592566163998264}
+  clip: {fileID: 8300000, guid: f391f1cffd2ec4f4785b8539ffc29645, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: particles
+--- !u!114 &114758279702951958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children:
+  - {fileID: 114592566163998264}
+  _parent: {fileID: 114638773381292676}
+  _isFloating: 0
+  _content: {fileID: 114492475985154998}
+--- !u!114 &114791746194884822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 114838972586353514}
+  _isFloating: 0
+  _content: {fileID: 114621760803493310}
+--- !u!114 &114811675538746756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 0
+    variableName: 
+--- !u!114 &114838972586353514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children:
+  - {fileID: 114791746194884822}
+  _parent: {fileID: 114638773381292676}
+  _isFloating: 0
+  _content: {fileID: 114320073352288206}
+--- !u!114 &114853812536702898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114212559687068308}
+  clip: {fileID: 8300000, guid: 438b043f185e15e4c8b223a853732ea6, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: particles
+--- !u!114 &114891556030316132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children:
+  - {fileID: 114212559687068308}
+  _parent: {fileID: 114308197104948542}
+  _isFloating: 0
+  _content: {fileID: 114232845748840512}
+--- !u!114 &114900508448831956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114476803998519562}
+  clip: {fileID: 8300000, guid: 1607d244e0d57da409ecd54370a45978, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes:
+      - start: 0
+        duration: 0
+        subTrack: 0
+      - start: 0
+        duration: 0.5
+        subTrack: 0
+      - start: 0.5
+        duration: 0.5
+        subTrack: 1
+      - start: 1
+        duration: 0.5
+        subTrack: 0
+      - start: 1.5
+        duration: 0.5
+        subTrack: 1
+      - start: 2
+        duration: 0.5
+        subTrack: 0
+      - start: 2.5
+        duration: 0.5
+        subTrack: 1
+      - start: 3
+        duration: 0.5
+        subTrack: 0
+      - start: 3.5
+        duration: 0.5
+        subTrack: 1
+      - start: 4
+        duration: 0.5
+        subTrack: 0
+      - start: 4.5
+        duration: 0.5
+        subTrack: 1
+      - start: 5
+        duration: 0.5
+        subTrack: 0
+      - start: 5.5
+        duration: 0.5
+        subTrack: 1
+      - start: 6
+        duration: 0.5
+        subTrack: 0
+      - start: 6.5
+        duration: 0.5
+        subTrack: 1
+      - start: 7
+        duration: 0.5
+        subTrack: 0
+      - start: 7.5
+        duration: 0.5
+        subTrack: 1
+      - start: 8
+        duration: 0.5
+        subTrack: 0
+      - start: 8.5
+        duration: 0.5
+        subTrack: 1
+      - start: 9
+        duration: 0.5
+        subTrack: 0
+      - start: 9.5
+        duration: 0.5
+        subTrack: 1
+      - start: 10
+        duration: 0.5
+        subTrack: 0
+      - start: 10.5
+        duration: 0.5
+        subTrack: 1
+      - start: 11
+        duration: 0.5
+        subTrack: 0
+      - start: 11.5
+        duration: 0.5
+        subTrack: 1
+      - start: 12
+        duration: 0.5
+        subTrack: 0
+      - start: 12.5
+        duration: 0.5
+        subTrack: 1
+      - start: 13
+        duration: 0.5
+        subTrack: 0
+      - start: 13.5
+        duration: 0.5
+        subTrack: 1
+      - start: 14
+        duration: 0.5
+        subTrack: 0
+      - start: 14.5
+        duration: 0.5
+        subTrack: 1
+      - start: 15
+        duration: 0.5
+        subTrack: 0
+      - start: 15.5
+        duration: 0.5
+        subTrack: 1
+      name: beat
+    - notes:
+      - start: 0
+        duration: 0
+        subTrack: 0
+      - start: 0
+        duration: 0.5
+        subTrack: 0
+      - start: 1
+        duration: 0.5
+        subTrack: 1
+      - start: 2
+        duration: 0.5
+        subTrack: 2
+      - start: 3
+        duration: 0.5
+        subTrack: 3
+      - start: 4
+        duration: 0.5
+        subTrack: 0
+      - start: 5
+        duration: 0.5
+        subTrack: 1
+      - start: 6
+        duration: 0.5
+        subTrack: 2
+      - start: 7
+        duration: 0.5
+        subTrack: 3
+      - start: 8
+        duration: 0.5
+        subTrack: 0
+      - start: 9
+        duration: 0.5
+        subTrack: 1
+      - start: 10
+        duration: 0.5
+        subTrack: 2
+      - start: 11
+        duration: 0.5
+        subTrack: 3
+      - start: 12
+        duration: 0.5
+        subTrack: 0
+      - start: 13
+        duration: 0.5
+        subTrack: 1
+      - start: 14
+        duration: 0.5
+        subTrack: 2
+      - start: 15
+        duration: 0.5
+        subTrack: 3
+      - start: 16
+        duration: 0.5
+        subTrack: 0
+      - start: 17
+        duration: 0.5
+        subTrack: 1
+      - start: 18
+        duration: 0.5
+        subTrack: 2
+      - start: 19
+        duration: 0.5
+        subTrack: 3
+      - start: 20
+        duration: 0.5
+        subTrack: 0
+      - start: 21
+        duration: 0.5
+        subTrack: 1
+      - start: 22
+        duration: 0.5
+        subTrack: 2
+      - start: 23
+        duration: 0.5
+        subTrack: 3
+      - start: 24
+        duration: 0.5
+        subTrack: 0
+      - start: 25
+        duration: 0.5
+        subTrack: 1
+      - start: 26
+        duration: 0.5
+        subTrack: 2
+      - start: 27
+        duration: 0.5
+        subTrack: 3
+      - start: 28
+        duration: 0.5
+        subTrack: 0
+      - start: 29
+        duration: 0.5
+        subTrack: 1
+      - start: 30
+        duration: 0.5
+        subTrack: 2
+      - start: 31
+        duration: 0.5
+        subTrack: 3
+      name: playerCannon
+    - notes:
+      - start: 0
+        duration: 0
+        subTrack: 0
+      - start: 1
+        duration: 0.5
+        subTrack: 0
+      - start: 1.5
+        duration: 1.5
+        subTrack: 1
+      - start: 3
+        duration: 1
+        subTrack: 2
+      - start: 4
+        duration: 0.5
+        subTrack: 3
+      - start: 5
+        duration: 0.5
+        subTrack: 0
+      - start: 5.5
+        duration: 1.5
+        subTrack: 1
+      - start: 7
+        duration: 1
+        subTrack: 2
+      - start: 8
+        duration: 0.5
+        subTrack: 3
+      - start: 9
+        duration: 0.5
+        subTrack: 0
+      - start: 9.5
+        duration: 1.5
+        subTrack: 1
+      - start: 11
+        duration: 1
+        subTrack: 2
+      - start: 12
+        duration: 0.5
+        subTrack: 3
+      - start: 17
+        duration: 0.5
+        subTrack: 0
+      - start: 17.5
+        duration: 1.5
+        subTrack: 1
+      - start: 19
+        duration: 1
+        subTrack: 2
+      - start: 20
+        duration: 0.5
+        subTrack: 3
+      - start: 21
+        duration: 0.5
+        subTrack: 0
+      - start: 21.5
+        duration: 1.5
+        subTrack: 1
+      - start: 23
+        duration: 1
+        subTrack: 2
+      - start: 24
+        duration: 0.5
+        subTrack: 3
+      - start: 25
+        duration: 0.5
+        subTrack: 0
+      - start: 25.5
+        duration: 1.5
+        subTrack: 1
+      - start: 27
+        duration: 1
+        subTrack: 2
+      - start: 28
+        duration: 0.5
+        subTrack: 3
+      name: ramielLaser
+--- !u!114 &114940984170290318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+  clip: {fileID: 8300000, guid: f391f1cffd2ec4f4785b8539ffc29645, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: playerCannon
+    - notes: []
+      name: ramielLaser
+--- !u!114 &114953800487146202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114954152090146224}
+  clip: {fileID: 8300000, guid: 1607d244e0d57da409ecd54370a45978, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: particles
+--- !u!114 &114954152090146224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 114537060469070232}
+  _isFloating: 0
+  _content: {fileID: 114953800487146202}
+--- !u!114 &114970183460504156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114204276048691456}
