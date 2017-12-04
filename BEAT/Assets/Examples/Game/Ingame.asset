@@ -12,13 +12,42 @@ MonoBehaviour:
   m_Name: Ingame
   m_EditorClassIdentifier: 
   hierarchy: {fileID: 114103007005434050}
-  vars: []
+  vars:
+  - name: justBeat
+    value:
+      type: 1
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
   trackDefinitions:
   - name: beat
   - name: playerCannon
   - name: ramielLaser
   defaultBPM: 130
   barType: 0
+--- !u!114 &114077326126108926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114730724569053872}
+  clip: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: playerCannon
+    - notes: []
+      name: ramielLaser
 --- !u!114 &114103007005434050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31,7 +60,8 @@ MonoBehaviour:
   m_Name: Hierarchy
   m_EditorClassIdentifier: 
   _root: {fileID: 114638773381292676}
-  _floaters: []
+  _floaters:
+  - {fileID: 0}
 --- !u!114 &114476803998519562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +107,42 @@ MonoBehaviour:
   m_Name: Root(Selector)
   m_EditorClassIdentifier: 
   _hierarchy: {fileID: 114638773381292676}
+--- !u!114 &114730724569053872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114077326126108926}
+--- !u!114 &114811675538746756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 0
+    variableName: 
 --- !u!114 &114900508448831956
 MonoBehaviour:
   m_ObjectHideFlags: 0
