@@ -14353,8 +14353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   binding:
-    track: beat
-    subtrack: 0
+    track: particles
+    subtrack: 1
   pos1: {x: -1, y: 0, z: 0}
   pos2: {x: 1, y: 0, z: 0}
   yoyo: 1
