@@ -237,6 +237,8 @@ namespace AntonioHR.Amusi.Editor.Window.NoteSheet.Internal
             if (noteTrack.TryUpdate(grabbedNoteIndex, ghostNote))
             {
                 Event.current.Use();
+                if (DataUpdated != null)
+                    DataUpdated();
             }
             currentActionTarget = ActionTarget.Empty;
         }

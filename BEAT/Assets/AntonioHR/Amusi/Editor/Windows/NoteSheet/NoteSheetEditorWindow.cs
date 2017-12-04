@@ -59,11 +59,16 @@ namespace AntonioHR.Amusi.Editor.Window.NoteSheet
         {
             if (drawer != null)
             {
-                drawer.DataUpdated -= Repaint;
+                drawer.DataUpdated -= Drawer_DataUpdated;
                 drawer.OnReplaced();
             }
-            drawer = new NoteSheetEditor(cue, owner);
-            drawer.DataUpdated += Repaint;
+            drawer = new NoteSheetEditor(cue, owner);;
+            drawer.DataUpdated += Drawer_DataUpdated;
+            Repaint();
+        }
+
+        private void Drawer_DataUpdated()
+        {
             Repaint();
         }
 
