@@ -260,6 +260,102 @@ MonoBehaviour:
       - start: 15.5
         duration: 0.5
         subTrack: 1
+      - start: 16
+        duration: 0.5
+        subTrack: 0
+      - start: 16.5
+        duration: 0.5
+        subTrack: 1
+      - start: 17
+        duration: 0.5
+        subTrack: 0
+      - start: 17.5
+        duration: 0.5
+        subTrack: 1
+      - start: 18
+        duration: 0.5
+        subTrack: 0
+      - start: 18.5
+        duration: 0.5
+        subTrack: 1
+      - start: 19
+        duration: 0.5
+        subTrack: 0
+      - start: 19.5
+        duration: 0.5
+        subTrack: 1
+      - start: 20
+        duration: 0.5
+        subTrack: 0
+      - start: 20.5
+        duration: 0.5
+        subTrack: 1
+      - start: 21
+        duration: 0.5
+        subTrack: 0
+      - start: 21.5
+        duration: 0.5
+        subTrack: 1
+      - start: 22
+        duration: 0.5
+        subTrack: 0
+      - start: 22.5
+        duration: 0.5
+        subTrack: 1
+      - start: 23
+        duration: 0.5
+        subTrack: 0
+      - start: 23.5
+        duration: 0.5
+        subTrack: 1
+      - start: 24
+        duration: 0.5
+        subTrack: 0
+      - start: 24.5
+        duration: 0.5
+        subTrack: 1
+      - start: 25
+        duration: 0.5
+        subTrack: 0
+      - start: 25.5
+        duration: 0.5
+        subTrack: 1
+      - start: 26
+        duration: 0.5
+        subTrack: 0
+      - start: 26.5
+        duration: 0.5
+        subTrack: 1
+      - start: 27
+        duration: 0.5
+        subTrack: 0
+      - start: 27.5
+        duration: 0.5
+        subTrack: 1
+      - start: 28
+        duration: 0.5
+        subTrack: 0
+      - start: 28.5
+        duration: 0.5
+        subTrack: 1
+      - start: 29
+        duration: 0.5
+        subTrack: 0
+      - start: 29.5
+        duration: 0.5
+        subTrack: 1
+      - start: 30
+        duration: 0.5
+        subTrack: 0
+      - start: 30.5
+        duration: 0.5
+        subTrack: 1
+      - start: 31
+        duration: 0.5
+        subTrack: 0
+      - start: 31.5
+        duration: 0.5
+        subTrack: 1
       name: beat
     - notes:
       - start: 0
