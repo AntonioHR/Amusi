@@ -17,12 +17,12 @@ MonoBehaviour:
     value:
       type: 1
       intValue: 0
-      boolValue: 0
+      boolValue: 1
       floatValue: 0
   - name: mode
     value:
       type: 0
-      intValue: 1
+      intValue: 0
       boolValue: 0
       floatValue: 0
   - name: power
@@ -30,10 +30,11 @@ MonoBehaviour:
       type: 2
       intValue: 0
       boolValue: 0
-      floatValue: 2
+      floatValue: 0
   trackDefinitions:
   - name: beat
   - name: particles
+  - name: progress
   defaultBPM: 120
   barType: 0
 --- !u!114 &114022231438388624
@@ -647,6 +648,14 @@ MonoBehaviour:
         duration: 0.5
         subTrack: 1
       name: particles
+    - notes:
+      - start: 0
+        duration: 0
+        subTrack: 0
+      - start: 0
+        duration: 32
+        subTrack: 0
+      name: progress
 --- !u!114 &114476803998519562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,6 +758,11 @@ MonoBehaviour:
       name: beat
     - notes: []
       name: particles
+    - notes:
+      - start: 0
+        duration: 32
+        subTrack: 0
+      name: progress
 --- !u!114 &114638773381292676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +832,11 @@ MonoBehaviour:
       name: beat
     - notes: []
       name: particles
+    - notes:
+      - start: 0
+        duration: 32
+        subTrack: 0
+      name: progress
 --- !u!114 &114758279702951958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,6 +928,14 @@ MonoBehaviour:
       name: beat
     - notes: []
       name: particles
+    - notes:
+      - start: 0
+        duration: 0
+        subTrack: 0
+      - start: 0
+        duration: 32
+        subTrack: 0
+      name: progress
 --- !u!114 &114891556030316132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1266,6 +1293,11 @@ MonoBehaviour:
       name: beat
     - notes: []
       name: particles
+    - notes:
+      - start: 0
+        duration: 32
+        subTrack: 0
+      name: progress
 --- !u!114 &114954152090146224
 MonoBehaviour:
   m_ObjectHideFlags: 0
