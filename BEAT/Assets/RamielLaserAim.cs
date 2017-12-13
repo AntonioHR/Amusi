@@ -1,8 +1,5 @@
 ﻿using AntonioHR.Amusi;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class RamielLaserAim : MonoBehaviour {
     public Transform beam;
@@ -41,7 +38,9 @@ public class RamielLaserAim : MonoBehaviour {
     private void OnNoteStart()
     {
         rend.enabled = true;
-        rend.SetPosition(1, player.transform.position);
+
+        //rend.SetPosition(1, player.transform.position);
+        rend.SetPosition(1, transform.position);
 
         storedPlayerPos = player.transform.position;
         storedPlayerPos.y = 0;
