@@ -162,9 +162,6 @@ MonoBehaviour:
     tracks:
     - notes:
       - start: 0
-        duration: 0
-        subTrack: 0
-      - start: 0
         duration: 0.5
         subTrack: 0
       - start: 0.5
@@ -359,9 +356,6 @@ MonoBehaviour:
       name: beat
     - notes:
       - start: 0
-        duration: 0
-        subTrack: 0
-      - start: 0
         duration: 0.5
         subTrack: 0
       - start: 1
@@ -459,9 +453,6 @@ MonoBehaviour:
         subTrack: 3
       name: playerCannon
     - notes:
-      - start: 0
-        duration: 0
-        subTrack: 0
       - start: 1
         duration: 0.5
         subTrack: 0
