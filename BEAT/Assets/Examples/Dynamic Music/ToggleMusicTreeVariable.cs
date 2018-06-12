@@ -12,6 +12,7 @@ public class ToggleMusicTreeVariable : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         toggle = GetComponent<Toggle>();
+        toggle.isOn = treePlayer.GetBoolValue(var);
         toggle.onValueChanged.AddListener(OnToggleVarChanged);
 	}
 

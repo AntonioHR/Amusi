@@ -13,11 +13,18 @@ namespace AntonioHR.Amusi
         private Action<float> updated;
         private Action ended;
 
+        MusicTreePlayer player;
 
         public void Init()
         {
-            MusicTreePlayer player = GameObject.FindObjectOfType<MusicTreePlayer>();
+            player = GameObject.FindObjectOfType<MusicTreePlayer>();
+            //Debug.LogFormat("Adding listener for {0}, {1}", track, subtrack);
             player.AddListener(track, subtrack, this);
+        }
+
+        internal void Cleanup()
+        {
+            player.RemoveListener(track, subtrack, this);
         }
 
         public void Bind(Action started, Action<float> updated, Action ended)

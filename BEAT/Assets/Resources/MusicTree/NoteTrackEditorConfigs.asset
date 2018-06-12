@@ -23,5 +23,5 @@ MonoBehaviour:
   noteInsertionSnap: 0.5
   noteResizeSnap: 0.25
   noteMoveSnap: 0.25
-  defaultNoteSize: 1
+  defaultNoteSize: 0.5
   noteResizeBorderWidth: 5

@@ -1,0 +1,528 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9262a8cb2661548906ce83966b077d, type: 3}
+  m_Name: Ingame
+  m_EditorClassIdentifier: 
+  hierarchy: {fileID: 114103007005434050}
+  vars:
+  - name: justBeat
+    value:
+      type: 1
+      intValue: 0
+      boolValue: 0
+      floatValue: 0
+  trackDefinitions:
+  - name: beat
+  - name: playerCannon
+  - name: ramielLaser
+  defaultBPM: 130
+  barType: 0
+--- !u!114 &114077326126108926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114730724569053872}
+  clip: {fileID: 0}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes: []
+      name: beat
+    - notes: []
+      name: playerCannon
+    - notes: []
+      name: ramielLaser
+--- !u!114 &114103007005434050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b772e827a70c054d9e28f5770432221, type: 3}
+  m_Name: Hierarchy
+  m_EditorClassIdentifier: 
+  _root: {fileID: 114638773381292676}
+  _floaters:
+  - {fileID: 0}
+--- !u!114 &114476803998519562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 114638773381292676}
+  _isFloating: 0
+  _content: {fileID: 114900508448831956}
+--- !u!114 &114638773381292676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Root(Selector))
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children:
+  - {fileID: 114476803998519562}
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114645230081529876}
+--- !u!114 &114645230081529876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 755c65e0b07b50e47b19a73e6d8ba66e, type: 3}
+  m_Name: Root(Selector)
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114638773381292676}
+--- !u!114 &114730724569053872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d7bd8b15999604d863269936051d4b, type: 3}
+  m_Name: _Node (Node)
+  m_EditorClassIdentifier: 
+  _tree: {fileID: 114103007005434050}
+  _children: []
+  _parent: {fileID: 0}
+  _isFloating: 0
+  _content: {fileID: 114077326126108926}
+--- !u!114 &114811675538746756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b212733c494e7094fabecbc41b883f57, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 0}
+  condition:
+    intCondition: 0
+    floatCondition: 0
+    booleanCondition: 0
+    intVal: 0
+    floatVal: 0
+    boolVal: 0
+    variableName: 
+--- !u!114 &114900508448831956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e9f934dd6879b4a968c7a9b2339adb, type: 3}
+  m_Name: Node
+  m_EditorClassIdentifier: 
+  _hierarchy: {fileID: 114476803998519562}
+  clip: {fileID: 8300000, guid: 2dfba749e60464b489e47791a89de0e2, type: 3}
+  useCustomBPM: 0
+  customBPM: 0
+  sheet:
+    tracks:
+    - notes:
+      - start: 0
+        duration: 0.5
+        subTrack: 0
+      - start: 0.5
+        duration: 0.5
+        subTrack: 1
+      - start: 1
+        duration: 0.5
+        subTrack: 0
+      - start: 1.5
+        duration: 0.5
+        subTrack: 1
+      - start: 2
+        duration: 0.5
+        subTrack: 0
+      - start: 2.5
+        duration: 0.5
+        subTrack: 1
+      - start: 3
+        duration: 0.5
+        subTrack: 0
+      - start: 3.5
+        duration: 0.5
+        subTrack: 1
+      - start: 4
+        duration: 0.5
+        subTrack: 0
+      - start: 4.5
+        duration: 0.5
+        subTrack: 1
+      - start: 5
+        duration: 0.5
+        subTrack: 0
+      - start: 5.5
+        duration: 0.5
+        subTrack: 1
+      - start: 6
+        duration: 0.5
+        subTrack: 0
+      - start: 6.5
+        duration: 0.5
+        subTrack: 1
+      - start: 7
+        duration: 0.5
+        subTrack: 0
+      - start: 7.5
+        duration: 0.5
+        subTrack: 1
+      - start: 8
+        duration: 0.5
+        subTrack: 0
+      - start: 8.5
+        duration: 0.5
+        subTrack: 1
+      - start: 9
+        duration: 0.5
+        subTrack: 0
+      - start: 9.5
+        duration: 0.5
+        subTrack: 1
+      - start: 10
+        duration: 0.5
+        subTrack: 0
+      - start: 10.5
+        duration: 0.5
+        subTrack: 1
+      - start: 11
+        duration: 0.5
+        subTrack: 0
+      - start: 11.5
+        duration: 0.5
+        subTrack: 1
+      - start: 12
+        duration: 0.5
+        subTrack: 0
+      - start: 12.5
+        duration: 0.5
+        subTrack: 1
+      - start: 13
+        duration: 0.5
+        subTrack: 0
+      - start: 13.5
+        duration: 0.5
+        subTrack: 1
+      - start: 14
+        duration: 0.5
+        subTrack: 0
+      - start: 14.5
+        duration: 0.5
+        subTrack: 1
+      - start: 15
+        duration: 0.5
+        subTrack: 0
+      - start: 15.5
+        duration: 0.5
+        subTrack: 1
+      - start: 16
+        duration: 0.5
+        subTrack: 0
+      - start: 16.5
+        duration: 0.5
+        subTrack: 1
+      - start: 17
+        duration: 0.5
+        subTrack: 0
+      - start: 17.5
+        duration: 0.5
+        subTrack: 1
+      - start: 18
+        duration: 0.5
+        subTrack: 0
+      - start: 18.5
+        duration: 0.5
+        subTrack: 1
+      - start: 19
+        duration: 0.5
+        subTrack: 0
+      - start: 19.5
+        duration: 0.5
+        subTrack: 1
+      - start: 20
+        duration: 0.5
+        subTrack: 0
+      - start: 20.5
+        duration: 0.5
+        subTrack: 1
+      - start: 21
+        duration: 0.5
+        subTrack: 0
+      - start: 21.5
+        duration: 0.5
+        subTrack: 1
+      - start: 22
+        duration: 0.5
+        subTrack: 0
+      - start: 22.5
+        duration: 0.5
+        subTrack: 1
+      - start: 23
+        duration: 0.5
+        subTrack: 0
+      - start: 23.5
+        duration: 0.5
+        subTrack: 1
+      - start: 24
+        duration: 0.5
+        subTrack: 0
+      - start: 24.5
+        duration: 0.5
+        subTrack: 1
+      - start: 25
+        duration: 0.5
+        subTrack: 0
+      - start: 25.5
+        duration: 0.5
+        subTrack: 1
+      - start: 26
+        duration: 0.5
+        subTrack: 0
+      - start: 26.5
+        duration: 0.5
+        subTrack: 1
+      - start: 27
+        duration: 0.5
+        subTrack: 0
+      - start: 27.5
+        duration: 0.5
+        subTrack: 1
+      - start: 28
+        duration: 0.5
+        subTrack: 0
+      - start: 28.5
+        duration: 0.5
+        subTrack: 1
+      - start: 29
+        duration: 0.5
+        subTrack: 0
+      - start: 29.5
+        duration: 0.5
+        subTrack: 1
+      - start: 30
+        duration: 0.5
+        subTrack: 0
+      - start: 30.5
+        duration: 0.5
+        subTrack: 1
+      - start: 31
+        duration: 0.5
+        subTrack: 0
+      - start: 31.5
+        duration: 0.5
+        subTrack: 1
+      name: beat
+    - notes:
+      - start: 0
+        duration: 0.5
+        subTrack: 0
+      - start: 1
+        duration: 0.5
+        subTrack: 1
+      - start: 2
+        duration: 0.5
+        subTrack: 2
+      - start: 3
+        duration: 0.5
+        subTrack: 3
+      - start: 4
+        duration: 0.5
+        subTrack: 0
+      - start: 5
+        duration: 0.5
+        subTrack: 1
+      - start: 6
+        duration: 0.5
+        subTrack: 2
+      - start: 7
+        duration: 0.5
+        subTrack: 3
+      - start: 8
+        duration: 0.5
+        subTrack: 0
+      - start: 9
+        duration: 0.5
+        subTrack: 1
+      - start: 10
+        duration: 0.5
+        subTrack: 2
+      - start: 11
+        duration: 0.5
+        subTrack: 3
+      - start: 12
+        duration: 0.5
+        subTrack: 0
+      - start: 13
+        duration: 0.5
+        subTrack: 1
+      - start: 14
+        duration: 0.5
+        subTrack: 2
+      - start: 15
+        duration: 0.5
+        subTrack: 3
+      - start: 16
+        duration: 0.5
+        subTrack: 0
+      - start: 17
+        duration: 0.5
+        subTrack: 1
+      - start: 18
+        duration: 0.5
+        subTrack: 2
+      - start: 19
+        duration: 0.5
+        subTrack: 3
+      - start: 20
+        duration: 0.5
+        subTrack: 0
+      - start: 21
+        duration: 0.5
+        subTrack: 1
+      - start: 22
+        duration: 0.5
+        subTrack: 2
+      - start: 23
+        duration: 0.5
+        subTrack: 3
+      - start: 24
+        duration: 0.5
+        subTrack: 0
+      - start: 25
+        duration: 0.5
+        subTrack: 1
+      - start: 26
+        duration: 0.5
+        subTrack: 2
+      - start: 27
+        duration: 0.5
+        subTrack: 3
+      - start: 28
+        duration: 0.5
+        subTrack: 0
+      - start: 29
+        duration: 0.5
+        subTrack: 1
+      - start: 30
+        duration: 0.5
+        subTrack: 2
+      - start: 31
+        duration: 0.5
+        subTrack: 3
+      name: playerCannon
+    - notes:
+      - start: 1
+        duration: 0.5
+        subTrack: 0
+      - start: 1.5
+        duration: 1.5
+        subTrack: 1
+      - start: 3
+        duration: 1
+        subTrack: 2
+      - start: 4
+        duration: 0.5
+        subTrack: 3
+      - start: 5
+        duration: 0.5
+        subTrack: 0
+      - start: 5.5
+        duration: 1.5
+        subTrack: 1
+      - start: 7
+        duration: 1
+        subTrack: 2
+      - start: 8
+        duration: 0.5
+        subTrack: 3
+      - start: 9
+        duration: 0.5
+        subTrack: 0
+      - start: 9.5
+        duration: 1.5
+        subTrack: 1
+      - start: 11
+        duration: 1
+        subTrack: 2
+      - start: 12
+        duration: 0.5
+        subTrack: 3
+      - start: 17
+        duration: 0.5
+        subTrack: 0
+      - start: 17.5
+        duration: 1.5
+        subTrack: 1
+      - start: 19
+        duration: 1
+        subTrack: 2
+      - start: 20
+        duration: 0.5
+        subTrack: 3
+      - start: 21
+        duration: 0.5
+        subTrack: 0
+      - start: 21.5
+        duration: 1.5
+        subTrack: 1
+      - start: 23
+        duration: 1
+        subTrack: 2
+      - start: 24
+        duration: 0.5
+        subTrack: 3
+      - start: 25
+        duration: 0.5
+        subTrack: 0
+      - start: 25.5
+        duration: 1.5
+        subTrack: 1
+      - start: 27
+        duration: 1
+        subTrack: 2
+      - start: 28
+        duration: 0.5
+        subTrack: 3
+      name: ramielLaser

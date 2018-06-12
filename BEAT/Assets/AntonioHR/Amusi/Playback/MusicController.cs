@@ -55,6 +55,10 @@ namespace AntonioHR.Amusi.Playback
 		{
 			this.audioSources = audioSources;
 			Debug.Assert(audioSources.Length == 2);
+            foreach (var source in audioSources)
+            {
+                Debug.Assert(source.playOnAwake == false);
+            }
 			patchQueue = new Queue<AudioClip>();
 			State = ControllerState.IDLE;
 		}
@@ -106,7 +110,7 @@ namespace AntonioHR.Amusi.Playback
 
 		private void PreStartStep()
 		{
-			if (AudioSettings.dspTime > firstClipStartTime)
+			if (CurrentAudioSource.isPlaying)
 			{
 				State = ControllerState.PLAYING;
 				currentClipEndTime = firstClipStartTime + CurrentClip.length;
